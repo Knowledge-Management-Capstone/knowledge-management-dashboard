@@ -2,9 +2,9 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-import NavigationBarItem from './NavigationBarItem'
-
 import routes from '../../../config/routes'
+
+import NavigationBarItem from './NavigationBarItem'
 
 const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
   return (
