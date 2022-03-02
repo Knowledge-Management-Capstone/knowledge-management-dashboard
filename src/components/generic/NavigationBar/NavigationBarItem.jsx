@@ -1,13 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { classNames } from '../../../utils/classNames'
 
 const NavigationBarItem = ({ name, path, icon: NavIcon }) => {
+  const { pathname } = useLocation()
+
   return (
     <Link
       key={name}
       to={path}
       className={classNames(
-        false
+        pathname === path
           ? 'bg-indigo-800 text-white'
           : 'text-indigo-100 hover:bg-indigo-600',
         'group flex items-center px-2 py-2 text-base font-medium rounded-md'
