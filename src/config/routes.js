@@ -8,27 +8,27 @@ import {
 } from '@heroicons/react/outline'
 
 const routes = [
-  { name: 'Beranda', href: '/', icon: HomeIcon, current: true },
+  { name: 'Beranda', path: '/', icon: HomeIcon, current: true },
   {
     name: 'Dokumentasi Penelitian',
-    href: '/documentation',
+    path: '/documentation',
     icon: FolderIcon,
     current: false
   },
-  { name: 'Diskusi', href: '/discussion', icon: ChatAlt2Icon, current: false },
+  { name: 'Diskusi', path: '/discussion', icon: ChatAlt2Icon, current: false },
   {
     name: 'Pengaturan Repository',
-    href: '/settings',
+    path: '/settings',
     icon: CogIcon,
     current: false
   },
   {
     name: 'Ajukan Repository',
-    href: '/proposal',
+    path: '/proposal',
     icon: PlusIcon,
     current: false
   },
-  { name: 'Profil', href: '/profile', icon: UserIcon, current: false }
+  { name: 'Profil', path: '/profile', icon: UserIcon, current: false }
 ]
 
 export default routes

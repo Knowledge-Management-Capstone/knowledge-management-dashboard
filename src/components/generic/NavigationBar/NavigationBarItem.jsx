@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom'
 import { classNames } from '../../../utils/classNames'
 
 const NavigationBarItem = ({ item }) => {
-  const { name, href, current, icon: NavIcon } = item
+  const { name, path, current, icon: NavIcon } = item
   return (
-    <a
+    <Link
       key={name}
-      href={href}
+      to={path}
       className={classNames(
         current
           ? 'bg-indigo-800 text-white'
@@ -18,7 +19,7 @@ const NavigationBarItem = ({ item }) => {
         aria-hidden="true"
       />
       {name}
-    </a>
+    </Link>
   )
 }
 
