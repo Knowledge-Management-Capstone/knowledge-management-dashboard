@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import pages from './config/pages'
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {pages.map(({ route, navigation }) => (
+        <Route {...route} key={navigation.name} />
+      ))}
     </Routes>
   )
 }
