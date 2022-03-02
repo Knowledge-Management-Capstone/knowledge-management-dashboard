@@ -1,11 +1,13 @@
 import DefaultLayout from '../layouts/DefaultLayout'
 
-const Home = () => {
+const RepositoryProposal = () => {
   return (
     <DefaultLayout>
       <div className="py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <h1 className="text-2xl font-semibold text-gray-900">Beranda</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">
+            Ajukan Repository
+          </h1>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Replace with your content */}
@@ -19,4 +21,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default RepositoryProposal
