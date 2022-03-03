@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import pages from './config/pages'
+import dashboard from './config/dashboard'
 
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -7,7 +7,7 @@ import Register from './pages/Register'
 function App() {
   return (
     <Routes>
-      {pages.map(({ route, navigation }) => (
+      {dashboard.map(({ route, navigation }) => (
         <Route {...route} key={navigation.name} />
       ))}
 

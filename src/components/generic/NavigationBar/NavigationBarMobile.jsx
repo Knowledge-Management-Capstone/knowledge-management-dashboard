@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-import pages from '../../../config/pages'
+import dashboard from '../../../config/dashboard'
 
 import NavigationBarItem from './NavigationBarItem'
 
@@ -64,7 +64,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
             </div>
             <div className="mt-5 flex-1 h-0 overflow-y-auto">
               <nav className="px-2 space-y-1">
-                {pages.map(({ navigation }) => (
+                {dashboard.map(({ navigation }) => (
                   <NavigationBarItem {...navigation} key={navigation.name} />
                 ))}
               </nav>

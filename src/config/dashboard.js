@@ -14,7 +14,7 @@ import RepositorySettings from '../pages/RepositorySettings'
 import RepositoryProposal from '../pages/RepositoryProposal'
 import UserProfile from '../pages/UserProfile'
 
-const pages = [
+const dashboard = [
   {
     route: { path: '/', element: <Home /> },
     navigation: { name: 'Beranda', path: '/', icon: HomeIcon }
@@ -53,4 +53,4 @@ const pages = [
   }
 ]
 
-export default pages
+export default dashboard
