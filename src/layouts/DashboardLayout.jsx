@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Header from '../components/generic/Header'
 import NavigationBar from '../components/generic/NavigationBar'
 
-const DefaultLayout = ({ children }) => {
+const DashboardLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -24,4 +24,4 @@ const DefaultLayout = ({ children }) => {
   )
 }
 
-export default DefaultLayout
+export default DashboardLayout

@@ -1,4 +1,4 @@
-import pages from '../../../config/pages'
+import dashboard from '../../../config/dashboard'
 
 import NavigationBarItem from './NavigationBarItem'
 
@@ -15,7 +15,7 @@ const NavigationBarDesktop = () => {
         </div>
         <div className="mt-5 flex-1 flex flex-col">
           <nav className="flex-1 px-2 pb-4 space-y-1">
-            {pages.map(({ navigation }) => (
+            {dashboard.map(({ navigation }) => (
               <NavigationBarItem {...navigation} key={navigation.name} />
             ))}
           </nav>
