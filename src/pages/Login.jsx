@@ -2,14 +2,16 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import BaseInput from '../components/generic/form/input/BaseInput'
+import BaseCheckbox from '../components/generic/form/input/BaseCheckbox'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log({ email, password })
+    console.log({ email, password, rememberMe })
   }
 
   return (
@@ -48,20 +50,13 @@ const Login = () => {
               />
 
               <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor="remem ber-me"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
-                    Remember me
-                  </label>
-                </div>
+                <BaseCheckbox
+                  id="remember-me"
+                  name="remember-me"
+                  label="Remember me"
+                  checked={rememberMe}
+                  onChange={e => setRememberMe(e.target.checked)}
+                />
 
                 <div className="text-sm">
                   <Link

@@ -1,4 +1,4 @@
-const BaseInput = ({ id, name, label, ...props }) => {
+const BaseInput = ({ id, label, ...props }) => {
   return (
     <>
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
