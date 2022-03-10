@@ -35,6 +35,7 @@ const Login = () => {
               <BaseInput
                 id="email"
                 name="email"
+                label="Email"
                 type="email"
                 autoComplete="email"
                 required
@@ -44,7 +45,9 @@ const Login = () => {
               <BaseInput
                 id="password"
                 name="password"
+                label="Password"
                 type="password"
+                autoComplete="current-password"
                 required
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -68,10 +71,7 @@ const Login = () => {
                   </Link>
                 </div>
               </div>
-
-              <div>
-                <BaseButton onClick={handleSubmit}>Sign in</BaseButton>
-              </div>
+              <BaseButton onClick={handleSubmit}>Sign in</BaseButton>
             </form>
 
             <div className="mt-6">
