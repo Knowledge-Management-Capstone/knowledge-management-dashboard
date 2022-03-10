@@ -1,6 +1,6 @@
 const BaseSelect = ({ id, label, options, ...props }) => {
   return (
-    <>
+    <div>
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
         {label}
       </label>
@@ -13,7 +13,7 @@ const BaseSelect = ({ id, label, options, ...props }) => {
           <option key={option}>{option}</option>
         ))}
       </select>
-    </>
+    </div>
   )
 }
 
