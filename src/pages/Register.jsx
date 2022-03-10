@@ -5,7 +5,10 @@ import BaseInput from '../components/generic/form/input/BaseInput'
 import BaseSelect from '../components/generic/form/input/BaseSelect'
 import BaseButton from '../components/generic/button/BaseButton'
 
-const accountTypes = ['Lecturer', 'Student']
+const accountTypes = [
+  { label: 'Lecturer', value: 'lecturer' },
+  { label: 'Student', value: 'student' }
+]
 
 const Register = () => {
   const [fullName, setFullName] = useState('')
@@ -100,7 +103,6 @@ const Register = () => {
                 id="account-type"
                 name="account-type"
                 label="Account Type"
-                defaultValue="Student"
                 options={accountTypes}
                 value={accountType}
                 onChange={e => setAccountType(e.target.value)}
