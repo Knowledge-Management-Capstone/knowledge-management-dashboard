@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import BaseInput from '../components/generic/form/input/BaseInput'
@@ -7,6 +8,27 @@ import BaseButton from '../components/generic/button/BaseButton'
 const accountTypes = ['Lecturer', 'Student']
 
 const Register = () => {
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [userId, setUserId] = useState('')
+  const [faculty, setFaculty] = useState('')
+  const [major, setMajor] = useState('')
+  const [accountType, setAccountType] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.table({
+      fullName,
+      email,
+      userId,
+      faculty,
+      major,
+      accountType,
+      password
+    })
+  }
+
   return (
     <>
       <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -31,6 +53,8 @@ const Register = () => {
                 type="text"
                 autoComplete="full-name"
                 required
+                value={fullName}
+                onChange={e => setFullName(e.target.value)}
               />
               <BaseInput
                 id="email"
@@ -39,6 +63,8 @@ const Register = () => {
                 type="email"
                 autoComplete="email"
                 required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
               <BaseInput
                 id="user-id"
@@ -47,6 +73,8 @@ const Register = () => {
                 type="text"
                 autoComplete="user-id"
                 required
+                value={userId}
+                onChange={e => setUserId(e.target.value)}
               />
               <BaseInput
                 id="faculty"
@@ -55,6 +83,8 @@ const Register = () => {
                 type="text"
                 autoComplete="faculty"
                 required
+                value={faculty}
+                onChange={e => setFaculty(e.target.value)}
               />
               <BaseInput
                 id="major"
@@ -63,6 +93,8 @@ const Register = () => {
                 type="text"
                 autoComplete="major"
                 required
+                value={major}
+                onChange={e => setMajor(e.target.value)}
               />
               <BaseSelect
                 id="account-type"
@@ -70,6 +102,8 @@ const Register = () => {
                 label="Account Type"
                 defaultValue="Student"
                 options={accountTypes}
+                value={accountType}
+                onChange={e => setAccountType(e.target.value)}
               />
               <BaseInput
                 id="password"
@@ -78,8 +112,10 @@ const Register = () => {
                 type="password"
                 autoComplete="current-password"
                 required
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
-              <BaseButton>Register</BaseButton>
+              <BaseButton onClick={handleSubmit}>Register</BaseButton>
             </form>
 
             <div className="mt-6">

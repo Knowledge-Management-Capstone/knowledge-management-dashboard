@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log({ email, password, rememberMe })
+    console.table({ email, password, rememberMe })
   }
 
   return (
