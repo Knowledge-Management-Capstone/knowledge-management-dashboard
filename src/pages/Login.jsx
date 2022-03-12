@@ -1,19 +1,21 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useFormik } from 'formik'
 
 import BaseInput from '../components/generic/form/input/BaseInput'
 import BaseCheckbox from '../components/generic/form/input/BaseCheckbox'
 import BaseButton from '../components/generic/button/BaseButton'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    console.table({ email, password, rememberMe })
-  }
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      rememberMe: false
+    },
+    onSubmit: values => {
+      console.table(values)
+    }
+  })
 
   return (
     <>
@@ -31,7 +33,7 @@ const Login = () => {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 sm:rounded-lg sm:px-10">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={formik.handleSubmit}>
               <BaseInput
                 id="email"
                 name="email"
@@ -39,8 +41,8 @@ const Login = () => {
                 type="email"
                 autoComplete="email"
                 required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={formik.email}
+                onChange={formik.handleChange}
               />
               <BaseInput
                 id="password"
@@ -49,17 +51,17 @@ const Login = () => {
                 type="password"
                 autoComplete="current-password"
                 required
-                value={password}
-                onChange={e => setPassword(e.target.value)}
+                value={formik.password}
+                onChange={formik.handleChange}
               />
 
               <div className="flex items-center justify-between">
                 <BaseCheckbox
-                  id="remember-me"
-                  name="remember-me"
+                  id="rememberMe"
+                  name="rememberMe"
                   label="Remember me"
-                  checked={rememberMe}
-                  onChange={e => setRememberMe(e.target.checked)}
+                  checked={formik.rememberMe}
+                  onChange={formik.handleChange}
                 />
 
                 <div className="text-sm">
@@ -71,7 +73,7 @@ const Login = () => {
                   </Link>
                 </div>
               </div>
-              <BaseButton onClick={handleSubmit}>Sign in</BaseButton>
+              <BaseButton type="submit">Sign in</BaseButton>
             </form>
 
             <div className="mt-6">
