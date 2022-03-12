@@ -41,24 +41,18 @@ const Login = () => {
             <form className="space-y-6" onSubmit={formik.handleSubmit}>
               <BaseInput
                 id="email"
-                name="email"
                 label="Email"
                 type="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.email}
+                {...formik.getFieldProps('email')}
               />
               {formik.touched.email && formik.errors.email ? (
                 <div>{formik.errors.email}</div>
               ) : null}
               <BaseInput
                 id="password"
-                name="password"
                 label="Password"
                 type="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.password}
+                {...formik.getFieldProps('password')}
               />
               {formik.touched.password && formik.errors.password ? (
                 <div>{formik.errors.password}</div>
@@ -66,10 +60,8 @@ const Login = () => {
               <div className="flex items-center justify-between">
                 <BaseCheckbox
                   id="remember"
-                  name="remember"
                   label="Remember me"
-                  checked={formik.rememberMe}
-                  onChange={formik.handleChange}
+                  {...formik.getFieldProps('remember')}
                 />
 
                 <div className="text-sm">
