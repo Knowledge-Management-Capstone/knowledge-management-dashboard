@@ -1,24 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 import BaseInput from '../components/generic/form/input/BaseInput'
 import BaseCheckbox from '../components/generic/form/input/BaseCheckbox'
 import BaseButton from '../components/generic/button/BaseButton'
-
-const validate = values => {
-  const errors = {}
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-
-  if (!values.password) {
-    errors.password = 'Required'
-  }
-
-  return errors
-}
 
 const Login = () => {
   const formik = useFormik({
@@ -27,7 +13,10 @@ const Login = () => {
       password: '',
       remember: false
     },
-    validate,
+    validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+      password: Yup.string().required('Required')
+    }),
     onSubmit: values => {
       console.table(values)
     }
@@ -55,8 +44,9 @@ const Login = () => {
                 name="email"
                 label="Email"
                 type="email"
-                value={formik.email}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.email}
               />
               {formik.touched.email && formik.errors.email ? (
                 <div>{formik.errors.email}</div>
@@ -66,8 +56,9 @@ const Login = () => {
                 name="password"
                 label="Password"
                 type="password"
-                value={formik.password}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.password}
               />
               {formik.touched.password && formik.errors.password ? (
                 <div>{formik.errors.password}</div>
