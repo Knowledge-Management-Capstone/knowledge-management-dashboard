@@ -10,7 +10,7 @@ const Login = () => {
     initialValues: {
       email: '',
       password: '',
-      rememberMe: false
+      remember: false
     },
     onSubmit: values => {
       console.table(values)
@@ -39,8 +39,6 @@ const Login = () => {
                 name="email"
                 label="Email"
                 type="email"
-                autoComplete="email"
-                required
                 value={formik.email}
                 onChange={formik.handleChange}
               />
@@ -49,16 +47,14 @@ const Login = () => {
                 name="password"
                 label="Password"
                 type="password"
-                autoComplete="current-password"
-                required
                 value={formik.password}
                 onChange={formik.handleChange}
               />
 
               <div className="flex items-center justify-between">
                 <BaseCheckbox
-                  id="rememberMe"
-                  name="rememberMe"
+                  id="remember"
+                  name="remember"
                   label="Remember me"
                   checked={formik.rememberMe}
                   onChange={formik.handleChange}
