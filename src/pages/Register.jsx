@@ -1,5 +1,6 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 import BaseInput from '../components/generic/form/input/BaseInput'
 import BaseSelect from '../components/generic/form/input/BaseSelect'
@@ -11,27 +12,6 @@ const accountTypes = [
 ]
 
 const Register = () => {
-  const [fullName, setFullName] = useState('')
-  const [email, setEmail] = useState('')
-  const [userId, setUserId] = useState('')
-  const [faculty, setFaculty] = useState('')
-  const [major, setMajor] = useState('')
-  const [accountType, setAccountType] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    console.table({
-      fullName,
-      email,
-      userId,
-      faculty,
-      major,
-      accountType,
-      password
-    })
-  }
-
   return (
     <>
       <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -48,77 +28,103 @@ const Register = () => {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 sm:rounded-lg sm:px-10">
-            <form className="space-y-6">
-              <BaseInput
-                id="full-name"
-                name="full-name"
-                label="Full Name"
-                type="text"
-                autoComplete="full-name"
-                required
-                value={fullName}
-                onChange={e => setFullName(e.target.value)}
-              />
-              <BaseInput
-                id="email"
-                name="email"
-                label="Email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              <BaseInput
-                id="user-id"
-                name="user-id"
-                label="NIM / NIP"
-                type="text"
-                autoComplete="user-id"
-                required
-                value={userId}
-                onChange={e => setUserId(e.target.value)}
-              />
-              <BaseInput
-                id="faculty"
-                name="faculty"
-                label="Faculty"
-                type="text"
-                autoComplete="faculty"
-                required
-                value={faculty}
-                onChange={e => setFaculty(e.target.value)}
-              />
-              <BaseInput
-                id="major"
-                name="major"
-                label="Major"
-                type="text"
-                autoComplete="major"
-                required
-                value={major}
-                onChange={e => setMajor(e.target.value)}
-              />
-              <BaseSelect
-                id="account-type"
-                name="account-type"
-                label="Account Type"
-                options={accountTypes}
-                value={accountType}
-                onChange={e => setAccountType(e.target.value)}
-              />
-              <BaseInput
-                id="password"
-                name="password"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
-              <BaseButton onClick={handleSubmit}>Register</BaseButton>
-            </form>
+            <Formik
+              initialValues={{
+                fullName: '',
+                email: '',
+                userId: '',
+                faculty: '',
+                major: '',
+                accountType: '',
+                password: ''
+              }}
+              validationSchema={Yup.object({
+                fullName: Yup.string().required('Required'),
+                email: Yup.string()
+                  .email('Invalid email address')
+                  .required('Required'),
+                userId: Yup.string().required('Required'),
+                faculty: Yup.string().required('Required'),
+                major: Yup.string().required('Required'),
+                accountType: Yup.string().required('Required'),
+                password: Yup.string().required('Required')
+              })}
+              onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                  console.table(values)
+                  setSubmitting(false)
+                }, 400)
+              }}
+            >
+              {formik => (
+                <form className="space-y-6" onSubmit={formik.handleSubmit}>
+                  <BaseInput
+                    id="fullName"
+                    label="Full Name"
+                    type="text"
+                    {...formik.getFieldProps('fullName')}
+                  />
+                  {formik.touched.fullName && formik.errors.fullName ? (
+                    <div>{formik.errors.fullName}</div>
+                  ) : null}
+                  <BaseInput
+                    id="email"
+                    label="Email"
+                    type="email"
+                    {...formik.getFieldProps('email')}
+                  />
+                  {formik.touched.email && formik.errors.email ? (
+                    <div>{formik.errors.email}</div>
+                  ) : null}
+                  <BaseInput
+                    id="userId"
+                    label="NIM / NIP"
+                    type="text"
+                    {...formik.getFieldProps('userId')}
+                  />
+                  {formik.touched.userId && formik.errors.userId ? (
+                    <div>{formik.errors.userId}</div>
+                  ) : null}
+                  <BaseInput
+                    id="faculty"
+                    label="Faculty"
+                    type="text"
+                    {...formik.getFieldProps('faculty')}
+                  />
+                  {formik.touched.faculty && formik.errors.faculty ? (
+                    <div>{formik.errors.faculty}</div>
+                  ) : null}
+                  <BaseInput
+                    id="major"
+                    label="Major"
+                    type="text"
+                    {...formik.getFieldProps('major')}
+                  />
+                  {formik.touched.major && formik.errors.major ? (
+                    <div>{formik.errors.major}</div>
+                  ) : null}
+                  <BaseSelect
+                    id="accountType"
+                    label="Account Type"
+                    options={accountTypes}
+                    {...formik.getFieldProps('accountType')}
+                  />
+                  {formik.touched.accountType && formik.errors.accountType ? (
+                    <div>{formik.errors.accountType}</div>
+                  ) : null}
+                  <BaseInput
+                    id="password"
+                    label="Password"
+                    type="password"
+                    {...formik.getFieldProps('password')}
+                  />
+                  {formik.touched.password && formik.errors.password ? (
+                    <div>{formik.errors.password}</div>
+                  ) : null}
+                  <BaseButton type="submit">Register</BaseButton>
+                </form>
+              )}
+            </Formik>
 
             <div className="mt-6">
               <p className="mt-2 text-center text-sm text-gray-600">
