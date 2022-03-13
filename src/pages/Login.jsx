@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 import BaseInput from '../components/generic/form/input/BaseInput'
@@ -42,45 +42,23 @@ const Login = () => {
                 }, 400)
               }}
             >
-              {formik => (
-                <form className="space-y-6" onSubmit={formik.handleSubmit}>
-                  <BaseInput
-                    id="email"
-                    label="Email"
-                    type="email"
-                    {...formik.getFieldProps('email')}
-                  />
-                  {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
-                  ) : null}
-                  <BaseInput
-                    id="password"
-                    label="Password"
-                    type="password"
-                    {...formik.getFieldProps('password')}
-                  />
-                  {formik.touched.password && formik.errors.password ? (
-                    <div>{formik.errors.password}</div>
-                  ) : null}
-                  <div className="flex items-center justify-between">
-                    <BaseCheckbox
-                      id="remember"
-                      label="Remember me"
-                      {...formik.getFieldProps('remember')}
-                    />
+              <Form className="space-y-6">
+                <BaseInput label="Email" name="email" type="email" />
+                <BaseInput label="Password" name="password" type="password" />
+                <div className="flex items-center justify-between">
+                  <BaseCheckbox label="Remember me" name="remember" />
 
-                    <div className="text-sm">
-                      <Link
-                        to="#"
-                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                      >
-                        Forgot your password?
-                      </Link>
-                    </div>
+                  <div className="text-sm">
+                    <Link
+                      to="#"
+                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      Forgot your password?
+                    </Link>
                   </div>
-                  <BaseButton type="submit">Sign in</BaseButton>
-                </form>
-              )}
+                </div>
+                <BaseButton type="submit">Sign in</BaseButton>
+              </Form>
             </Formik>
 
             <div className="mt-6">

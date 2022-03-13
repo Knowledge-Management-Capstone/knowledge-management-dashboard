@@ -18,7 +18,7 @@ const BaseInput = ({ label, ...props }) => {
         />
       </div>
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <div className="mt-1 text-xs text-red-500">{meta.error}</div>
       ) : null}
     </div>
   )

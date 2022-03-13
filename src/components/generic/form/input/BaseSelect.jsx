@@ -16,7 +16,7 @@ const BaseSelect = ({ label, ...props }) => {
         {...props}
       />
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <div className="text-xs text-red-500">{meta.error}</div>
       ) : null}
     </div>
   )
