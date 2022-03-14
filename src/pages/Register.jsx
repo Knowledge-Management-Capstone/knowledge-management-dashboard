@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
@@ -6,7 +7,12 @@ import BaseInput from '../components/generic/form/input/BaseInput'
 import BaseSelect from '../components/generic/form/input/BaseSelect'
 import BaseButton from '../components/generic/button/BaseButton'
 
+import { register } from '../store/actions/userActions'
+
 const Register = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   return (
     <>
       <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -45,10 +51,28 @@ const Register = () => {
                 password: Yup.string().required('Required')
               })}
               onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  console.table(values)
-                  setSubmitting(false)
-                }, 400)
+                const {
+                  fullName,
+                  email,
+                  userId,
+                  faculty,
+                  major,
+                  accountType,
+                  password
+                } = values
+                dispatch(
+                  register(
+                    fullName,
+                    email,
+                    userId,
+                    faculty,
+                    major,
+                    accountType,
+                    password
+                  )
+                )
+                setSubmitting(false)
+                navigate('/', { replace: true })
               }}
             >
               <Form className="space-y-6">
