@@ -16,6 +16,7 @@ export const login = (email, password) => async dispatch => {
     const { data } = await axios.post('/api/users/login', { email, password })
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
+    localStorage.setItem('user', JSON.stringify(data))
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -44,6 +45,7 @@ export const register =
       })
 
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data })
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
