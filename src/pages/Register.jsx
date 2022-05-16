@@ -17,7 +17,9 @@ const Register = () => {
   const { user } = useSelector(state => state.userLogin)
 
   useEffect(() => {
-    navigate('/', { replace: true })
+    if (user) {
+      navigate('/', { replace: true })
+    }
   }, [user, navigate])
 
   const handleSubmit = (values, { setSubmitting }) => {
