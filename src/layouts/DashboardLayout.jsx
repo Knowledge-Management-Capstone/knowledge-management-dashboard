@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }) => {
   const { user } = useSelector(state => state.userLogin)
 
   useEffect(() => {
-    navigate('/login', { replace: true })
+    if (!user) navigate('/login')
   }, [user, navigate])
 
   return (
