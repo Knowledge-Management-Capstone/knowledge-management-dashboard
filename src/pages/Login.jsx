@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
@@ -12,6 +13,20 @@ import { login } from '../store/actions/userActions'
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const { user } = useSelector(state => state.userLogin)
+
+  useEffect(() => {
+    if (user) {
+      navigate('/', { replace: true })
+    }
+  }, [user, navigate])
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    const { email, password } = values
+    dispatch(login(email, password))
+    setSubmitting(false)
+  }
 
   return (
     <>
@@ -41,12 +56,7 @@ const Login = () => {
                   .required('Required'),
                 password: Yup.string().required('Required')
               })}
-              onSubmit={(values, { setSubmitting }) => {
-                const { email, password } = values
-                dispatch(login(email, password))
-                setSubmitting(false)
-                navigate('/', { replace: true })
-              }}
+              onSubmit={handleSubmit}
             >
               <Form className="space-y-6">
                 <BaseInput label="Email" name="email" type="email" />
