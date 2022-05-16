@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
@@ -12,6 +13,23 @@ import { register } from '../store/actions/userActions'
 const Register = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const { user } = useSelector(state => state.userLogin)
+
+  useEffect(() => {
+    if (user) {
+      navigate('/', { replace: true })
+    }
+  }, [user, navigate])
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    const { fullName, email, userId, faculty, major, accountType, password } =
+      values
+    dispatch(
+      register(fullName, email, userId, faculty, major, accountType, password)
+    )
+    setSubmitting(false)
+  }
 
   return (
     <>
@@ -50,30 +68,7 @@ const Register = () => {
                 accountType: Yup.string().required('Required'),
                 password: Yup.string().required('Required')
               })}
-              onSubmit={(values, { setSubmitting }) => {
-                const {
-                  fullName,
-                  email,
-                  userId,
-                  faculty,
-                  major,
-                  accountType,
-                  password
-                } = values
-                dispatch(
-                  register(
-                    fullName,
-                    email,
-                    userId,
-                    faculty,
-                    major,
-                    accountType,
-                    password
-                  )
-                )
-                setSubmitting(false)
-                navigate('/', { replace: true })
-              }}
+              onSubmit={handleSubmit}
             >
               <Form className="space-y-6">
                 <BaseInput label="Full Name" name="fullName" type="text" />
