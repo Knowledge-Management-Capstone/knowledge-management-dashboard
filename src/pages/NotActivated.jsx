@@ -9,7 +9,7 @@ const NotFound = () => {
   useEffect(() => {
     if (!user) navigate('/login', { replace: true })
     if (user.isApproved) navigate('/', { replace: true })
-  })
+  }, [user, navigate])
 
   return (
     <>
