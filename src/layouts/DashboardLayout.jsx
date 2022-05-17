@@ -12,7 +12,8 @@ const DashboardLayout = ({ children }) => {
   const { user } = useSelector(state => state.userLogin)
 
   useEffect(() => {
-    if (!user) navigate('/login')
+    if (!user) navigate('/login', { replace: true })
+    if (!user.isApproved) navigate('/not-activated', { replace: true })
   }, [user, navigate])
 
   return (
