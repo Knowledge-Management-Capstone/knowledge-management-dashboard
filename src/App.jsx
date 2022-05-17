@@ -4,6 +4,7 @@ import dashboard from './config/dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import NotFound from './pages/NotFound'
+import NotActivated from './pages/NotActivated'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/not-activated" element={<NotActivated />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
