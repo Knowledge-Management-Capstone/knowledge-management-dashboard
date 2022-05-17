@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-
-import { classNames } from '../../../utils/classNames'
+import clsx from 'clsx'
 
 const HeaderProfileDropdown = ({ userNavigation }) => {
   return (
@@ -31,10 +30,9 @@ const HeaderProfileDropdown = ({ userNavigation }) => {
               {({ active }) => (
                 <a
                   href={item.href}
-                  className={classNames(
-                    active ? 'bg-gray-100' : '',
-                    'block px-4 py-2 text-sm text-gray-700'
-                  )}
+                  className={clsx('block px-4 py-2 text-sm text-gray-700', {
+                    'bg-gray-100': active
+                  })}
                 >
                   {item.name}
                 </a>
