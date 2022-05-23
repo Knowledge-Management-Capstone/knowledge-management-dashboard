@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
+import { logout } from '../store/actions/userActions'
 
 const NotFound = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { user } = useSelector(state => state.userLogin)
 
   useEffect(() => {
@@ -26,12 +29,12 @@ const NotFound = () => {
                 </p>
               </div>
               <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
-                <Link
-                  to="/login"
+                <button
                   className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => dispatch(logout())}
                 >
                   Go back to login
-                </Link>
+                </button>
               </div>
             </div>
           </main>
