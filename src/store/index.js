@@ -12,8 +12,8 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer
 })
 
-const userFromStorage = localStorage.getItem('user')
-  ? JSON.parse(localStorage.getItem('user'))
+const userFromStorage = localStorage.getItem('user-admin')
+  ? JSON.parse(localStorage.getItem('user-admin'))
   : null
 
 const initialState = {
