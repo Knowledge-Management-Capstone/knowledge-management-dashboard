@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import clsx from 'clsx'
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
-const ResearcherTableItem = ({ proposal }) => {
+const ProposalTableItem = ({ proposal }) => {
   const handleEdit = () => {}
   const handleDelete = () => {}
 
@@ -41,4 +41,4 @@ const ResearcherTableItem = ({ proposal }) => {
   )
 }
 
-export default ResearcherTableItem
+export default ProposalTableItem

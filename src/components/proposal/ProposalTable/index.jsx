@@ -1,14 +1,15 @@
-import ResearcherTableItem from './ProposalTableItem'
+import ProposalTableItem from './ProposalTableItem'
 
 const proposals = [
   {
+    _id: 1,
     title: 'Capstone Project',
     description: 'Lorem ipsum',
     status: 'pending'
   }
 ]
 
-const ResearcherTable = () => {
+const ProposalTable = () => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="mt-8 flex flex-col">
@@ -40,7 +41,9 @@ const ResearcherTable = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {proposals &&
-                    proposals.map(p => <ResearcherTableItem proposal={p} />)}
+                    proposals.map(p => (
+                      <ProposalTableItem proposal={p} key={p._id} />
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -51,4 +54,4 @@ const ResearcherTable = () => {
   )
 }
 
-export default ResearcherTable
+export default ProposalTable
