@@ -1,14 +1,14 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import AddRepositoryButton from './AddRepositoryButton'
 import AddRepositoryDialog from './AddRepositoryDialog'
 
 const AddRepository = () => {
   const [open, setOpen] = useState(false)
   return (
-    <Fragment>
+    <div className="flex justify-end mt-3">
       <AddRepositoryButton setOpen={setOpen} />
       <AddRepositoryDialog open={open} setOpen={setOpen} />
-    </Fragment>
+    </div>
   )
 }
 

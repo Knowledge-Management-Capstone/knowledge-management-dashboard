@@ -1,5 +1,6 @@
 import DashboardLayout from '../layouts/DashboardLayout'
 import ProposalTable from '../components/proposal/ProposalTable'
+import AddRepository from '../components/proposal/AddRepository'
 
 const RepositoryProposal = () => {
   return (
@@ -12,6 +13,7 @@ const RepositoryProposal = () => {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <ProposalTable />
+          <AddRepository />
         </div>
       </div>
     </DashboardLayout>
