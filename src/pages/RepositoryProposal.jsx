@@ -1,4 +1,6 @@
 import DashboardLayout from '../layouts/DashboardLayout'
+import ProposalTable from '../components/proposal/ProposalTable'
+import AddRepository from '../components/proposal/AddRepository'
 
 const RepositoryProposal = () => {
   return (
@@ -10,11 +12,8 @@ const RepositoryProposal = () => {
           </h1>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          {/* Replace with your content */}
-          <div className="py-4">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-          </div>
-          {/* /End replace */}
+          <ProposalTable />
+          <AddRepository />
         </div>
       </div>
     </DashboardLayout>
