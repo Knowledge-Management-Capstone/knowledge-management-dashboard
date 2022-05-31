@@ -7,8 +7,6 @@ const FormModal = ({ title, open, setOpen, ...props }) => {
   return (
     <BaseModal title={title} open={open} setOpen={setOpen}>
       <BaseForm {...props}>
-        <BaseInput label="Email" name="email" type="email" />
-        <BaseInput label="Password" name="password" type="password" />
         <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
           <BaseButton
             type="submit"
