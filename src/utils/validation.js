@@ -2,6 +2,8 @@ import * as Yup from 'yup'
 
 export const fullName = Yup.string().required('Full name is required')
 export const password = Yup.string().required('Password is required')
+export const userId = Yup.string().required('User ID is required')
+export const faculty = Yup.string().required('Faculty is required')
 export const email = Yup.string()
   .email('Invalid email address')
   .required('Email is required')

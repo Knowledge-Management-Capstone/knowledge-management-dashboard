@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import dashboard from '~/config/dashboard'
 
 import Login from '~/pages/Login'
+import Register from '~/pages/Register'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <Route {...route} key={navigation.name} />
       ))}
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   )
 }
