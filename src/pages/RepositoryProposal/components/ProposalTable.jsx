@@ -2,6 +2,8 @@ import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
+import { title, description } from '~/utils/validation'
+
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
 import ProposalEditModal from './ProposalEditModal'
@@ -11,14 +13,18 @@ const proposal = [
   {
     _id: 1,
     title: 'Capstone Project',
-    status: 'accepted'
+    description: 'Best project ever',
+    status: 'updated'
   }
 ]
 
 const ProposalTable = () => {
   const [openDialog, setOpenDialog] = useState(false)
+  const [selectedProposal, setSelectedProposal] = useState(null)
 
-  const handleEdit = () => {
+  const handleEdit = p => {
+    setSelectedProposal(p)
+    console.log(selectedProposal)
     setOpenDialog(true)
   }
   const handleDelete = () => {}
@@ -37,6 +43,7 @@ const ProposalTable = () => {
                     'inline-flex rounded-full  px-2 text-xs font-semibold leading-5 ',
                     {
                       'bg-blue-100 text-blue-800': p.status === 'pending',
+                      'bg-yellow-100 text-yellow-800': p.status === 'updated',
                       'bg-green-100 text-green-800': p.status === 'accepted',
                       'bg-red-100 text-red-800': !p.status === 'rejected'
                     }
@@ -48,7 +55,7 @@ const ProposalTable = () => {
               <BaseTableItem className="relative flex gap-2">
                 <PencilAltIcon
                   className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-blue-700"
-                  onClick={() => handleEdit()}
+                  onClick={() => handleEdit(p)}
                 />
                 <TrashIcon
                   className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-red-700"
@@ -58,7 +65,12 @@ const ProposalTable = () => {
             </tr>
           ))}
       </BaseTable>
-      <ProposalEditModal open={openDialog} setOpen={setOpenDialog} />
+      <ProposalEditModal
+        open={openDialog}
+        setOpen={setOpenDialog}
+        validation={{ title, description }}
+        initialValues={selectedProposal}
+      />
     </Fragment>
   )
 }
