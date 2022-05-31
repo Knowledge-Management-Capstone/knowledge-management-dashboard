@@ -2,11 +2,9 @@ import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
-import { title, description } from '~/utils/validation'
-
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
-import ProposalEditModal from './ProposalEditModal'
+import ProposalModal from './ProposalModal'
 
 const header = ['Title', 'Status', 'Actions']
 const proposal = [
@@ -65,11 +63,12 @@ const ProposalTable = () => {
             </tr>
           ))}
       </BaseTable>
-      <ProposalEditModal
+      <ProposalModal
+        title="Edit Repository"
         open={openDialog}
         setOpen={setOpenDialog}
-        validation={{ title, description }}
         initialValues={selectedProposal}
+        handleSubmit={console.log}
       />
     </Fragment>
   )
