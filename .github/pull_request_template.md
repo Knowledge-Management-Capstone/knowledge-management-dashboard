@@ -1,6 +1,6 @@
 ## Issue
 
-close https://github.com/Knowledge-Management-Capstone/knowledge-management-admin/issues/
+close https://github.com/Knowledge-Management-Capstone/knowledge-management-dashboard/issues/
 
 ## Changes
 
