@@ -1,4 +1,5 @@
-import { PaperAirplaneIcon, PaperClipIcon } from '@heroicons/react/solid'
+import { PaperClipIcon } from '@heroicons/react/outline'
+import { PaperAirplaneIcon } from '@heroicons/react/solid'
 
 import BaseIconButton from '~/components/generic/button/BaseIconButton'
 
