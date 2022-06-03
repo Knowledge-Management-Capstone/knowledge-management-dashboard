@@ -5,7 +5,7 @@ import BaseIconButton from '~/components/generic/button/BaseIconButton'
 
 const ChatInput = () => {
   return (
-    <div className="fixed bottom-0 pb-10 w-10/12 md:w-2/3">
+    <div className="pb-10 px-10 w-full">
       <div className="flex gap-2 align-center justify-end">
         <div className="mt-1 grow">
           <input

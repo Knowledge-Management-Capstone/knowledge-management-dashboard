@@ -13,9 +13,9 @@ const DashboardLayout = ({ children }) => {
         setSidebarOpen={setSidebarOpen}
       />
 
-      <div className="md:pl-64 flex flex-col flex-1">
+      <div className="md:pl-64 flex flex-col flex-1 h-screen w-screen">
         <Header setSidebarOpen={setSidebarOpen} />
-        <main>{children}</main>
+        <main className="h-full">{children}</main>
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ const research = {
 
 const DiscussionHeader = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div className="w-full mx-auto px-4 sm:px-6 md:px-8">
       <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
           <div className="ml-4 mt-4">
