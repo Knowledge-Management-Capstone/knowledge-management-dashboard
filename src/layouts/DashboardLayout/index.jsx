@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <Fragment>
+    <div className="min-h-screen">
       <NavigationBar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
@@ -15,10 +15,9 @@ const DashboardLayout = ({ children }) => {
 
       <div className="md:pl-64 flex flex-col flex-1">
         <Header setSidebarOpen={setSidebarOpen} />
-
         <main>{children}</main>
       </div>
-    </Fragment>
+    </div>
   )
 }
 
