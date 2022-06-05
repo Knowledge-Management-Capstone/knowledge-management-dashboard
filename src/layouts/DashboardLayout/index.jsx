@@ -1,6 +1,5 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 
-import Header from './components/Header'
 import NavigationBar from './components/NavigationBar'
 
 const DashboardLayout = ({ children }) => {
@@ -12,9 +11,7 @@ const DashboardLayout = ({ children }) => {
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
-
       <div className="md:pl-64 flex flex-col flex-1 h-screen w-screen">
-        <Header setSidebarOpen={setSidebarOpen} />
         <main className="h-full">{children}</main>
       </div>
     </div>
