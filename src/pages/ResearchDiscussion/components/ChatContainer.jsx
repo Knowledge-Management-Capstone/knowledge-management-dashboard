@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 import ChatBubble from './ChatBubble'
 
 const user1 = {
@@ -11,6 +13,12 @@ const user2 = {
 }
 
 const ChatContainer = () => {
+  const endMessage = useRef(null)
+
+  useEffect(() => {
+    endMessage.current?.scrollIntoView()
+  })
+
   return (
     <div className="w-full mx-auto px-4 sm:px-6 md:px-14 overflow-y-scroll h-7/8">
       <div className="flex flex-col">
@@ -18,6 +26,7 @@ const ChatContainer = () => {
           <ChatBubble key={i} user={user2} />
         ))}
         <ChatBubble user={user1} />
+        <div ref={endMessage} />
       </div>
     </div>
   )
