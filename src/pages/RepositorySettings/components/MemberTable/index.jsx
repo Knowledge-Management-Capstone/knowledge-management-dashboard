@@ -4,6 +4,7 @@ import { PencilAltIcon, PlusSmIcon, TrashIcon } from '@heroicons/react/outline'
 import BaseIconButton from '~/components/generic/button/BaseIconButton'
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
+import MemberAddModal from './MemberAddModal'
 import MemberEditModal from './MemberEditModal'
 
 const header = ['Name', 'Faculty', 'Type', 'Role', 'Action']
@@ -62,6 +63,7 @@ const MemberTable = () => {
           <PlusSmIcon className="h-6 w-6" aria-hidden="true" />
         </BaseIconButton>
       </div>
+      <MemberAddModal open={openAddDialog} setOpen={setOpenAddDialog} />
       <MemberEditModal
         open={openEditDialog}
         setOpen={setOpenEditDialog}
