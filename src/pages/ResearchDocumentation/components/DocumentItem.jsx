@@ -7,7 +7,7 @@ import {
   TrashIcon
 } from '@heroicons/react/outline'
 
-const DocumentItem = ({ type }) => {
+const DocumentItem = ({ type, onRename }) => {
   return (
     <Link
       to="#"
@@ -28,7 +28,10 @@ const DocumentItem = ({ type }) => {
           className="z-40 w-56 min-w-max py-1 rounded-md shadow-sm outline-none bg-white border border-gray-200 dark:bg-neutral-800 dark:border-gray-700"
           alignOffset={-5}
         >
-          <ContextMenu.Item className="flex items-center w-full px-3 h-8 flex-shrink-0 text-sm text-left cursor-base focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-700">
+          <ContextMenu.Item
+            className="flex items-center w-full px-3 h-8 flex-shrink-0 text-sm text-left cursor-base focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-700"
+            onClick={() => onRename({ documentName: 'Dian Rahmaji Dokumen' })}
+          >
             <PencilAltIcon className="h-6 w-6 mr-2" />
             <span className="flex-1 mr-2">Rename</span>
           </ContextMenu.Item>
