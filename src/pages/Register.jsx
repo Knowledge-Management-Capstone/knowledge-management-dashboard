@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { LockClosedIcon } from '@heroicons/react/outline'
 
 import {
@@ -17,6 +17,7 @@ import BaseButton from '~/components/generic/button/BaseButton'
 import BaseForm from '~/components/generic/form/BaseForm'
 import BaseInput from '~/components/generic/form/BaseInput'
 import BaseSelect from '~/components/generic/form/BaseSelect'
+import { register } from '../store/actions/userActions'
 
 const Register = () => {
   const initialValues = {
@@ -29,6 +30,7 @@ const Register = () => {
     password: ''
   }
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const { user } = useSelector(state => state.userLogin)
@@ -38,7 +40,11 @@ const Register = () => {
   }, [user, navigate])
 
   const handleSubmit = values => {
-    console.log(values)
+    const { fullName, email, userId, faculty, major, accountType, password } =
+      values
+    dispatch(
+      register(fullName, email, userId, faculty, major, accountType, password)
+    )
   }
 
   return (
