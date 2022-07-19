@@ -1,6 +1,9 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
+
+import { teamList } from '~/store/actions/teamActions'
 
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
@@ -19,6 +22,15 @@ const proposal = [
 const ProposalTable = () => {
   const [openDialog, setOpenDialog] = useState(false)
   const [selectedProposal, setSelectedProposal] = useState(null)
+
+  const dispatch = useDispatch()
+
+  const { user } = useSelector(state => state.userLogin)
+  const { teams } = useSelector(state => state.teamList)
+
+  useEffect(() => {
+    dispatch(teamList(user._id))
+  }, [dispatch, user])
 
   const handleEdit = p => {
     setSelectedProposal(p)
