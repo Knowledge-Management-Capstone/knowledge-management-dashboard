@@ -17,8 +17,7 @@ const RepositoryProlosal = () => {
   } = useSelector(state => state.userLogin)
 
   const handleSubmit = values => {
-    console.log(_id)
-    console.log(values)
+    console.log({ administrator: _id, ...values })
     setOpenDialog(false)
   }
 
