@@ -42,8 +42,8 @@ const ProposalTable = () => {
   return (
     <Fragment>
       <BaseTable header={header}>
-        {proposal &&
-          proposal.map(p => (
+        {teams &&
+          teams.map(p => (
             <tr key={p._id}>
               <BaseTableItem className="font-medium">{p.title}</BaseTableItem>
               <BaseTableItem>
