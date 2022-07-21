@@ -6,8 +6,6 @@ import DashboardLayout from '~/layouts/DashboardLayout'
 import ProposalModal from './components/ProposalModal'
 import ProposalTable from './components/ProposalTable'
 
-const initialValues = { title: '', description: '' }
-
 const RepositoryProlosal = () => {
   const [openDialog, setOpenDialog] = useState(false)
 
@@ -25,7 +23,6 @@ const RepositoryProlosal = () => {
             title="Add Repository"
             open={openDialog}
             setOpen={setOpenDialog}
-            initialValues={initialValues}
             handleSubmit={console.log}
           />
           <div className="flex mt-3 px-8 justify-end">
