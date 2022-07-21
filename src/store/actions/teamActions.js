@@ -10,7 +10,7 @@ export const teamList = id => async dispatch => {
   try {
     dispatch({ type: FETCH_TEAM_REQUEST })
 
-    const { data } = await axios.get(`/api/team/${id}/add`)
+    const { data } = await axios.get(`/api/user/${id}/team`)
 
     dispatch({ type: FETCH_TEAM_SUCCESS, payload: data })
   } catch (error) {
