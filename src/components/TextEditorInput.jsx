@@ -1,10 +1,16 @@
-import { useState } from 'react'
 import { useField } from 'formik'
 import ReactQuill from '~/components/ReactQuill'
 
 const TextEditorInput = ({ label, ...props }) => {
-  const [value, setValue] = useState('')
-  const [field, meta] = useField(props)
+  const [field, meta, helpers] = useField(props)
+
+  const { onBlur, value } = field
+  const { touched, error } = meta
+  const { setValue } = helpers
+
+  const handleBlur = () => {
+    onBlur({ target: { name: props.name } })
+  }
 
   return (
     <div className="mt-3">
@@ -15,8 +21,11 @@ const TextEditorInput = ({ label, ...props }) => {
         {label}
       </label>
       <div className="mt-1">
-        <ReactQuill value={value} setValue={setValue} />
+        <ReactQuill value={value} onBlur={handleBlur} setValue={setValue} />
       </div>
+      {touched && error ? (
+        <div className="mt-1 text-xs text-red-500">{meta.error}</div>
+      ) : null}
     </div>
   )
 }
