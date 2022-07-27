@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
-import { teamList } from '~/store/actions/teamActions'
+import { teamList, updateTeam } from '~/store/actions/teamActions'
 
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
@@ -34,8 +34,8 @@ const ProposalTable = () => {
 
   const handleDelete = () => {}
 
-  const handleSubmit = values => {
-    console.log(values)
+  const handleSubmit = ({ status, ...rest }) => {
+    dispatch(updateTeam(rest))
     setOpenDialog(false)
   }
 

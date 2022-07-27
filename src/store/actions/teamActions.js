@@ -48,22 +48,20 @@ export const createTeam = payload => async dispatch => {
   }
 }
 
-export const updateTeam =
-  ({ id, team }) =>
-  async dispatch => {
-    try {
-      dispatch({ type: UPDATE_TEAM_REQUEST })
+export const updateTeam = payload => async dispatch => {
+  try {
+    dispatch({ type: UPDATE_TEAM_REQUEST })
 
-      const { data } = await axios.put(`/api/team/${id}`, team)
+    const { data } = await axios.put(`/api/team/${payload._id}`, payload)
 
-      dispatch({ type: UPDATE_TEAM_SUCCESS, payload: data })
-    } catch (error) {
-      dispatch({
-        type: UPDATE_TEAM_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message
-      })
-    }
+    dispatch({ type: UPDATE_TEAM_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_TEAM_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
   }
+}
