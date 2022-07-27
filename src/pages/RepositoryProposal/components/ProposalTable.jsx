@@ -26,11 +26,18 @@ const ProposalTable = () => {
 
   const handleEdit = p => {
     const { repository, ...rest } = p
+    repository.startDate = repository.startDate.slice(0, 10)
+    repository.endDate = repository.endDate.slice(0, 10)
     setSelectedProposal({ ...repository, ...rest })
-    console.log(selectedProposal)
     setOpenDialog(true)
   }
+
   const handleDelete = () => {}
+
+  const handleSubmit = values => {
+    console.log(values)
+    setOpenDialog(false)
+  }
 
   return (
     <Fragment>
@@ -72,7 +79,7 @@ const ProposalTable = () => {
         open={openDialog}
         setOpen={setOpenDialog}
         initialValues={selectedProposal}
-        handleSubmit={console.log}
+        handleSubmit={handleSubmit}
       />
     </Fragment>
   )
