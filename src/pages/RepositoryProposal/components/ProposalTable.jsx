@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
-import { teamList, updateTeam, deleteTeam } from '~/store/actions/teamActions'
+import { fetchTeams, updateTeam, deleteTeam } from '~/store/actions/teamActions'
 
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
@@ -18,10 +18,10 @@ const ProposalTable = () => {
   const dispatch = useDispatch()
 
   const { data } = useSelector(state => state.user)
-  const { teams } = useSelector(state => state.teamList)
+  const { data: teams } = useSelector(state => state.teams)
 
   useEffect(() => {
-    dispatch(teamList(data._id))
+    dispatch(fetchTeams(data._id))
   }, [dispatch, data])
 
   const handleEdit = p => {

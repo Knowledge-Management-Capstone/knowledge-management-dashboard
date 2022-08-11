@@ -3,11 +3,11 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { userReducer } from './reducers/userReducers'
-import { teamReducer } from './reducers/teamReducers'
+import { teamsReducer } from './reducers/teamReducers'
 
 const reducer = combineReducers({
   user: userReducer,
-  teams: teamReducer
+  teams: teamsReducer
 })
 
 const userFromStorage = localStorage.getItem('user-researcher')
