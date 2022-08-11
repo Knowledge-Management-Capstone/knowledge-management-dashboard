@@ -1,9 +1,27 @@
+import { useState } from 'react'
 import { LogoutIcon } from '@heroicons/react/outline'
 import dashboard from '~/config/dashboard'
 
+import BaseCombobox from '~/components/generic/form/BaseCombobox'
 import NavigationBarItem from './NavigationBarItem'
 
+const people = [
+  { id: 1, name: 'Leslie Alexander' },
+  { id: 2, name: 'Dian Rahmaji' }
+  // More users...
+]
+
 const NavigationBarDesktop = () => {
+  const [query, setQuery] = useState('')
+  const [selectedPerson, setSelectedPerson] = useState()
+
+  const filteredPeople =
+    query === ''
+      ? people
+      : people.filter(person => {
+          return person.name.toLowerCase().includes(query.toLowerCase())
+        })
+
   const handleLogout = () => {
     console.log('logout')
   }
@@ -20,6 +38,13 @@ const NavigationBarDesktop = () => {
         </div>
         <div className="mt-5 flex-1 flex flex-col">
           <nav className="flex-1 px-2 pb-4 space-y-1">
+            <BaseCombobox
+              className="mb-4"
+              value={selectedPerson}
+              onChange={setSelectedPerson}
+              filteredPeople={filteredPeople}
+              setQuery={setQuery}
+            />
             {dashboard.map(({ navigation }) => (
               <NavigationBarItem {...navigation} key={navigation.name} />
             ))}
