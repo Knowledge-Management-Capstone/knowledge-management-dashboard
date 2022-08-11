@@ -4,9 +4,13 @@ import {
   CREATE_TEAM,
   DELETE_TEAM,
   EDIT_TEAM,
+  ERROR_ACCEPTED_TEAM,
   ERROR_TEAM,
+  FETCH_ACCEPTED_TEAM,
   FETCH_TEAM,
-  LOADING_TEAM
+  LOADING_ACCEPTED_TEAM,
+  LOADING_TEAM,
+  SELECT_ACCEPTED_TEAM
 } from '../constants/teamConstants'
 
 export const fetchTeams = id => async dispatch => {
@@ -77,4 +81,27 @@ export const deleteTeam = id => async dispatch => {
           : error.message
     })
   }
+}
+
+export const fetchAcceptedTeams = () => async dispatch => {
+  try {
+    dispatch({ type: LOADING_ACCEPTED_TEAM })
+
+    const { data } = await axios.get(`/api/user/${id}/team?accepted=true`)
+
+    dispatch({ type: FETCH_ACCEPTED_TEAM, payload: data })
+  } catch (error) {
+    dispatch({
+      type: ERROR_ACCEPTED_TEAM,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
+
+export const selectTeam = id => dispatch => {
+  localStorage.setItem('selected-team', id)
+  dispatch({ type: SELECT_ACCEPTED_TEAM, payload: id })
 }
