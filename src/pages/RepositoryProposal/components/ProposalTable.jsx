@@ -17,12 +17,12 @@ const ProposalTable = () => {
 
   const dispatch = useDispatch()
 
-  const { user } = useSelector(state => state.userLogin)
+  const { data } = useSelector(state => state.user)
   const { teams } = useSelector(state => state.teamList)
 
   useEffect(() => {
-    dispatch(teamList(user._id))
-  }, [dispatch, user])
+    dispatch(teamList(data._id))
+  }, [dispatch, data])
 
   const handleEdit = p => {
     const { repository, ...rest } = p
