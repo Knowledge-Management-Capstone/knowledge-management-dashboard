@@ -117,5 +117,7 @@ export const acceptedTeamsReducer = (
         data: state.data
       }
     }
+    default:
+      return state
   }
 }

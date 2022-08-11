@@ -2,8 +2,8 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { userReducer, acceptedTeamsReducer } from './reducers/userReducers'
-import { teamsReducer } from './reducers/teamReducers'
+import { userReducer } from './reducers/userReducers'
+import { teamsReducer, acceptedTeamsReducer } from './reducers/teamReducers'
 
 const reducer = combineReducers({
   user: userReducer,
