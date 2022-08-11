@@ -47,7 +47,7 @@ export const teamsReducer = (
       return {
         loading: false,
         error: null,
-        data: state.filter(r => r._id !== action.payload)
+        data: state.data.filter(r => r._id !== action.payload)
       }
     }
     default:

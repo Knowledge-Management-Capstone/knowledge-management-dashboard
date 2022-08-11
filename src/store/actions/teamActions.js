@@ -31,7 +31,10 @@ export const createTeam = payload => async dispatch => {
   try {
     const { data } = await axios.post(`/api/team`, payload)
 
-    dispatch({ type: CREATE_TEAM, payload })
+    dispatch({
+      type: CREATE_TEAM,
+      payload: { ...payload, _id: data._id, status: 'pending' }
+    })
   } catch (error) {
     dispatch({
       type: ERROR_TEAM,
@@ -61,7 +64,8 @@ export const updateTeam = payload => async dispatch => {
 
 export const deleteTeam = id => async dispatch => {
   try {
-    let { data } = await axios.delete(`/api/team/${id}`)
+    await axios.delete(`/api/team/${id}`)
+    console.log(id)
 
     dispatch({ type: DELETE_TEAM, payload: id })
   } catch (error) {
