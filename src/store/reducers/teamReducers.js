@@ -95,7 +95,7 @@ export const acceptedTeamsReducer = (
         loading: false,
         error: null,
         data: {
-          selectedTeam: state.data.selectedTeam ?? action.payload[0],
+          selectedTeam: state.data.selectedTeam ?? action.payload[0]._id,
           acceptedTeams: action.payload
         }
       }
