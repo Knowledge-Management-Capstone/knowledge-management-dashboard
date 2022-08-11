@@ -12,8 +12,10 @@ const NavigationBar = ({ sidebarOpen, setSidebarOpen }) => {
   const { data: user } = useSelector(state => state.user)
 
   useEffect(() => {
-    dispatch(fetchAcceptedTeams(user._id))
-  }, [dispatch])
+    if (user) {
+      dispatch(fetchAcceptedTeams(user._id))
+    }
+  }, [dispatch, user])
 
   return (
     <Fragment>

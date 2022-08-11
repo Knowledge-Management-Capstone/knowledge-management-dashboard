@@ -5,7 +5,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function BaseCombobox({ filteredPeople, setQuery, ...props }) {
+export default function BaseCombobox({ filteredItem, setQuery, ...props }) {
   return (
     <Combobox as="div" {...props}>
       <Combobox.Label className="block text-sm font-medium text-gray-700">
@@ -15,18 +15,18 @@ export default function BaseCombobox({ filteredPeople, setQuery, ...props }) {
         <Combobox.Input
           className="w-full text-primary font-bold rounded-md border border-accent bg-secondary py-2 pl-3 pr-10 shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:text-sm"
           onChange={event => setQuery(event.target.value)}
-          displayValue={person => person?.name}
+          displayValue={item => item?.name}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <SelectorIcon className="h-5 w-5 text-primary" aria-hidden="true" />
         </Combobox.Button>
 
-        {filteredPeople.length > 0 && (
+        {filteredItem.length > 0 && (
           <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filteredPeople.map(person => (
+            {filteredItem.map(item => (
               <Combobox.Option
-                key={person.id}
-                value={person}
+                key={item._id}
+                value={item}
                 className={({ active }) =>
                   classNames(
                     'relative cursor-default select-none py-2 pl-3 pr-9',
@@ -42,7 +42,7 @@ export default function BaseCombobox({ filteredPeople, setQuery, ...props }) {
                         selected && 'font-semibold'
                       )}
                     >
-                      {person.name}
+                      {item.name}
                     </span>
 
                     {selected && (

@@ -18,8 +18,8 @@ const userFromStorage = localStorage.getItem('user-researcher')
 const acceptedTeamsFromStorage = localStorage.getItem('selected-team')
   ? {
       data: {
-        selectedTeam: localStorage.getItem('selected-team'),
-        acceptedTeams: [localStorage.getItem('selected-team')]
+        selectedTeam: JSON.parse(localStorage.getItem('selected-team')),
+        acceptedTeams: [JSON.parse(localStorage.getItem('selected-team'))]
       }
     }
   : { data: { selectedTeam: null, acceptedTeams: [] } }

@@ -93,7 +93,7 @@ export const fetchAcceptedTeams = id => async dispatch => {
     const teams = data.map(({ _id, name }) => ({ _id, name }))
 
     if (!localStorage.getItem('selected-team')) {
-      localStorage.setItem('selected-team', teams[0]._id)
+      localStorage.setItem('selected-team', JSON.stringify(teams[0]))
     }
     dispatch({ type: FETCH_ACCEPTED_TEAM, payload: teams })
   } catch (error) {
@@ -107,7 +107,7 @@ export const fetchAcceptedTeams = id => async dispatch => {
   }
 }
 
-export const selectTeam = id => dispatch => {
-  localStorage.setItem('selected-team', id)
-  dispatch({ type: SELECT_ACCEPTED_TEAM, payload: id })
+export const selectTeam = team => dispatch => {
+  localStorage.setItem('selected-team', JSON.stringify(team))
+  dispatch({ type: SELECT_ACCEPTED_TEAM, payload: team })
 }
