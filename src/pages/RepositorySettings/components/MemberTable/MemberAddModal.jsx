@@ -137,6 +137,7 @@ const MemberAddModal = ({ open, setOpen, members, teamId, setTeamDetail }) => {
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     if (members.includes(values.researcher)) {
       setFieldError('researcher', 'Researcher already exists')
+      return
     }
 
     await axios.put(`/api/team/${teamId}/member`, { userId: values.researcher })
@@ -149,6 +150,7 @@ const MemberAddModal = ({ open, setOpen, members, teamId, setTeamDetail }) => {
       ]
     }))
 
+    setSubmitting(false)
     setOpen(false)
   }
 
