@@ -10,7 +10,7 @@ import MemberEditModal from './MemberEditModal'
 
 const header = ['Name', 'Faculty', 'Type', 'Role']
 
-const MemberTable = ({ administrator, members }) => {
+const MemberTable = ({ administrator, members = [] }) => {
   const [openEditDialog, setOpenEditDialog] = useState(false)
   const [openAddDialog, setOpenAddDialog] = useState(false)
   const [selectedMember, setSelectedMember] = useState(null)
@@ -72,7 +72,11 @@ const MemberTable = ({ administrator, members }) => {
           </BaseIconButton>
         </div>
       )}
-      <MemberAddModal open={openAddDialog} setOpen={setOpenAddDialog} />
+      <MemberAddModal
+        open={openAddDialog}
+        setOpen={setOpenAddDialog}
+        members={[...members, administrator].map(m => m?._id)}
+      />
       <MemberEditModal
         open={openEditDialog}
         setOpen={setOpenEditDialog}
