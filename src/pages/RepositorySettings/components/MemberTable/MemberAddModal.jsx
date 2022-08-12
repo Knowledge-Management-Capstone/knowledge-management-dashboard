@@ -117,7 +117,7 @@ const ResearcherCombobox = ({
   )
 }
 
-const MemberAddModal = ({ open, setOpen, members }) => {
+const MemberAddModal = ({ open, setOpen, members, teamId, setTeamDetail }) => {
   const [researchers, setResearchers] = useState([])
   const [selectedReseracher, setSelectedResearcher] = useState(null)
 
@@ -134,10 +134,22 @@ const MemberAddModal = ({ open, setOpen, members }) => {
     fetchResearchers(query)
   }, 500)
 
-  const handleSubmit = (values, { setSubmitting, setFieldError }) => {
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     if (members.includes(values.researcher)) {
       setFieldError('researcher', 'Researcher already exists')
     }
+
+    await axios.put(`/api/team/${teamId}/add`, { userId: values.researcher })
+
+    setTeamDetail(detail => ({
+      ...detail,
+      members: [
+        ...detail.members,
+        researchers.find(({ _id }) => _id === values.researcher)
+      ]
+    }))
+
+    setOpen(false)
   }
 
   return (
