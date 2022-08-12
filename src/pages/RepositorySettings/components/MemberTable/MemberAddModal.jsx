@@ -139,7 +139,7 @@ const MemberAddModal = ({ open, setOpen, members, teamId, setTeamDetail }) => {
       setFieldError('researcher', 'Researcher already exists')
     }
 
-    await axios.put(`/api/team/${teamId}/add`, { userId: values.researcher })
+    await axios.put(`/api/team/${teamId}/member`, { userId: values.researcher })
 
     setTeamDetail(detail => ({
       ...detail,
