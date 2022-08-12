@@ -6,6 +6,9 @@ import RepositoryEditModal from './RepositoryEditModal'
 
 const RepositoryDetails = ({ detail }) => {
   const [openDialog, setOpenDialog] = useState(false)
+  const { repository, ...rest } = detail
+  repository.startDate = repository.startDate.slice(0, 10)
+  repository.endDate = repository.endDate.slice(0, 10)
 
   const { data } = useSelector(state => state.user)
 
@@ -33,9 +36,10 @@ const RepositoryDetails = ({ detail }) => {
         )}
       </div>
       <RepositoryEditModal
+        title="Repository Edit Modal"
         open={openDialog}
         setOpen={setOpenDialog}
-        initialValues={detail}
+        initialValues={{ ...repository, ...rest }}
       />
     </Fragment>
   )
