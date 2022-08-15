@@ -24,24 +24,12 @@ const reducer = combineReducers({
   selectedTeamId: selectedTeamIdReducer
 })
 
-// const userFromStorage = localStorage.getItem('user-researcher')
-//   ? { data: JSON.parse(localStorage.getItem('user-researcher')) }
-//   : { data: null }
-
-// const selectedTeamIdFromStorage = localStorage.getItem('selected-team-id') || ''
-
-// const initialState = {
-//   user: userFromStorage,
-//   selectedTeamId: selectedTeamIdFromStorage
-// }
-
 const middlewares = [thunk]
 
 const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = createStore(
   persistedReducer,
-  // initialState,
   composeWithDevTools(applyMiddleware(...middlewares))
 )
 
