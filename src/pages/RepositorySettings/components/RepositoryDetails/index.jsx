@@ -12,8 +12,6 @@ const RepositoryDetails = ({ detail }) => {
   repository.startDate = toLocaleFormat(repository?.startDate && new Date())
   repository.endDate = toLocaleFormat(repository?.endDate && new Date())
 
-  console.log(repository)
-
   const { data } = useSelector(state => state.user)
 
   return (

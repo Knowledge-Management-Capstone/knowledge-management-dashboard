@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import BaseInput from '~/components/generic/form/BaseInput'
 import FormModal from '~/components/FormModal'
 import TextEditorInput from '~/components/TextEditorInput'
@@ -5,11 +7,15 @@ import TextEditorInput from '~/components/TextEditorInput'
 import { name, title, description, date } from '~/utils/validation'
 
 const ProposalModal = props => {
-  console.log(props.initialValues)
+  const handleSubmit = async values => {
+    await axios.put(`/api/team/${values._id}`, values)
+    props.setOpen(false)
+  }
+
   return (
     <FormModal
       validation={{ name, title, description, startDate: date, endDate: date }}
-      handleSubmit={console.log}
+      handleSubmit={handleSubmit}
       {...props}
     >
       <BaseInput label="Team Name" name="name" type="text" />
