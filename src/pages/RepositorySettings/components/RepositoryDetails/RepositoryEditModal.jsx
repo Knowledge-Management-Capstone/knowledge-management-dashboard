@@ -4,19 +4,11 @@ import TextEditorInput from '~/components/TextEditorInput'
 
 import { name, title, description, date } from '~/utils/validation'
 
-const initialValues = {
-  name: '',
-  title: '',
-  description: '',
-  startDate: '',
-  endDate: ''
-}
-
 const ProposalModal = props => {
+  console.log(props.initialValues)
   return (
     <FormModal
       validation={{ name, title, description, startDate: date, endDate: date }}
-      initialValues={initialValues}
       handleSubmit={console.log}
       {...props}
     >
