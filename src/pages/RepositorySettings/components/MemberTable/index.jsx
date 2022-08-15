@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { PencilAltIcon, PlusSmIcon, TrashIcon } from '@heroicons/react/outline'
+
+import { deleteTeamMember } from '~/store/actions/teamActions'
 
 import BaseIconButton from '~/components/generic/button/BaseIconButton'
 import BaseTable from '~/components/generic/table/BaseTable'
@@ -16,13 +17,16 @@ const MemberTable = () => {
   const [openAddDialog, setOpenAddDialog] = useState(false)
   const [selectedMember, setSelectedMember] = useState(null)
 
+  const dispatch = useDispatch()
+
+  const selectedTeamId = useSelector(state => state.selectedTeamId)
   const {
     _id: teamId,
-    members = [],
+    members,
     administrator
-  } = useSelector(({ selectedTeamId, acceptedTeams }) => {
-    return acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
-  })
+  } = useSelector(state =>
+    state.acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
+  )
 
   const { data } = useSelector(state => state.user)
 
@@ -31,13 +35,8 @@ const MemberTable = () => {
     setOpenEditDialog(true)
   }
 
-  const handleDelete = async userId => {
-    await axios.delete(`/api/team/${teamId}/member/${userId}`)
-
-    setTeamDetail(detail => ({
-      ...detail,
-      members: detail.members.filter(({ _id }) => _id !== userId)
-    }))
+  const handleDelete = userId => {
+    dispatch(deleteTeamMember({ userId, teamId }))
   }
 
   const setTeamDetail = () => {}

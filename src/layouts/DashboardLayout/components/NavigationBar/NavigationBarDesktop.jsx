@@ -26,7 +26,6 @@ const NavigationBarDesktop = () => {
 
   useEffect(() => {
     setSelectedTeam(acceptedTeams.find(({ _id }) => _id === selectedTeamId))
-    console.log(selectedTeam)
   }, [selectedTeamId, acceptedTeams])
 
   const handleSelectTeam = ({ _id }) => {

@@ -3,6 +3,7 @@ import axios from 'axios'
 import {
   CREATE_TEAM,
   DELETE_TEAM,
+  DELETE_TEAM_MEMBER,
   EDIT_ACCEPTED_TEAM,
   EDIT_TEAM,
   ERROR_ACCEPTED_TEAM,
@@ -70,7 +71,6 @@ export const updateTeam = payload => async dispatch => {
 export const deleteTeam = id => async dispatch => {
   try {
     await axios.delete(`/api/team/${id}`)
-    console.log(id)
 
     dispatch({ type: DELETE_TEAM, payload: id })
   } catch (error) {
@@ -109,7 +109,7 @@ export const deleteTeamMember =
     try {
       await axios.delete(`/api/team/${teamId}/member/${userId}`)
 
-      dispatch({ type: DELETE_TEAM_MEMBER, payload: userId })
+      dispatch({ type: DELETE_TEAM_MEMBER, payload: { userId, teamId } })
     } catch (error) {
       dispatch({
         type: ERROR_ACCEPTED_TEAM,

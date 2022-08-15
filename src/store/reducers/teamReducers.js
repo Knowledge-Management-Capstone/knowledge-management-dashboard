@@ -73,7 +73,10 @@ export const teamsReducer = (
  * Cases:
  * 1. Loading accepted teams
  * 2. Fetch accepted teams
- * 3. Error accepted teams
+ * 3. Edit accepted team
+ * 4. Add team member
+ * 5. Delete team member
+ * 6. Error accepted teams
  */
 export const acceptedTeamsReducer = (
   state = {
@@ -106,10 +109,17 @@ export const acceptedTeamsReducer = (
       return { loading: false, error: null, data }
     }
     case DELETE_TEAM_MEMBER: {
-      const data = {
-        ...state.data,
-        members: state.data.members.filter(({ _id }) => _id !== action.payload)
-      }
+      console.log(action.payload)
+      const data = state.data.map(d =>
+        d._id === action.payload.teamId
+          ? {
+              ...d,
+              members: d.members.filter(
+                ({ _id }) => _id !== action.payload.userId
+              )
+            }
+          : d
+      )
 
       return { loading: false, error: null, data }
     }
