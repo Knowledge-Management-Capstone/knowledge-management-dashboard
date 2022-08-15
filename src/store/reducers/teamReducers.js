@@ -8,7 +8,8 @@ import {
   DELETE_TEAM,
   ERROR_TEAM,
   ERROR_ACCEPTED_TEAM,
-  SELECT_ACCEPTED_TEAM_ID
+  SELECT_ACCEPTED_TEAM_ID,
+  EDIT_ACCEPTED_TEAM
 } from '../constants/teamConstants'
 
 /**
@@ -95,6 +96,13 @@ export const acceptedTeamsReducer = (
         error: null,
         data: action.payload
       }
+    }
+    case EDIT_ACCEPTED_TEAM: {
+      const data = state.data.map(d =>
+        d._id === action.payload._id ? { ...d, ...action.payload } : d
+      )
+
+      return { loading: false, error: null, data }
     }
     case ERROR_ACCEPTED_TEAM: {
       return {

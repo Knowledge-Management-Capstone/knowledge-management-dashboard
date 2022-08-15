@@ -3,6 +3,7 @@ import axios from 'axios'
 import {
   CREATE_TEAM,
   DELETE_TEAM,
+  EDIT_ACCEPTED_TEAM,
   EDIT_TEAM,
   ERROR_ACCEPTED_TEAM,
   ERROR_TEAM,
@@ -52,7 +53,7 @@ export const createTeam = payload => async dispatch => {
 
 export const updateTeam = payload => async dispatch => {
   try {
-    const { data } = await axios.put(`/api/team/${payload._id}`, payload)
+    await axios.put(`/api/team/${payload._id}`, payload)
 
     dispatch({ type: EDIT_TEAM, payload })
   } catch (error) {
@@ -91,6 +92,22 @@ export const fetchAcceptedTeams = id => async dispatch => {
 
     dispatch({ type: FETCH_ACCEPTED_TEAM, payload: data })
     localStorage.setItem('selected-team-id', data[0]._id)
+  } catch (error) {
+    dispatch({
+      type: ERROR_ACCEPTED_TEAM,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
+
+export const updateAcceptedTeam = payload => async dispatch => {
+  try {
+    await axios.put(`/api/team/${payload._id}`, payload)
+
+    dispatch({ type: EDIT_ACCEPTED_TEAM, payload })
   } catch (error) {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
