@@ -1,5 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { userReducer } from './reducers/userReducers'
@@ -8,6 +10,12 @@ import {
   acceptedTeamsReducer,
   selectedTeamIdReducer
 } from './reducers/teamReducers'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user', 'selectedTeamId']
+}
 
 const reducer = combineReducers({
   user: userReducer,
@@ -29,10 +37,14 @@ const initialState = {
 
 const middlewares = [thunk]
 
+const persistedReducer = persistReducer(persistConfig, reducer)
+
 const store = createStore(
-  reducer,
+  redupersistedReducercer,
   initialState,
   composeWithDevTools(applyMiddleware(...middlewares))
 )
 
-export default store
+const persistor = persistStore(store)
+
+export default { store, persistor }
