@@ -1,4 +1,5 @@
 import {
+  ADD_TEAM_MEMBER,
   CREATE_TEAM,
   EDIT_TEAM,
   FETCH_TEAM,
@@ -108,8 +109,15 @@ export const acceptedTeamsReducer = (
 
       return { loading: false, error: null, data }
     }
+    case ADD_TEAM_MEMBER: {
+      const data = state.data.map(d =>
+        d._id === action.payload.teamId
+          ? { ...d, members: [...d.members, action.payload.researcher] }
+          : d
+      )
+      return { loading: false, error: null, data }
+    }
     case DELETE_TEAM_MEMBER: {
-      console.log(action.payload)
       const data = state.data.map(d =>
         d._id === action.payload.teamId
           ? {

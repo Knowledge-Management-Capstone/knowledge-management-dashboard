@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import {
+  ADD_TEAM_MEMBER,
   CREATE_TEAM,
   DELETE_TEAM,
   DELETE_TEAM_MEMBER,
@@ -92,6 +93,24 @@ export const fetchAcceptedTeams = id => async dispatch => {
 
     dispatch({ type: FETCH_ACCEPTED_TEAM, payload: data })
     localStorage.setItem('selected-team-id', data[0]._id)
+  } catch (error) {
+    dispatch({
+      type: ERROR_ACCEPTED_TEAM,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
+
+export const addTeamMember = payload => async dispatch => {
+  try {
+    await axios.put(`/api/team/${payload.teamId}/member`, {
+      userId: payload.researcher._id
+    })
+
+    dispatch({ type: ADD_TEAM_MEMBER, payload })
   } catch (error) {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
