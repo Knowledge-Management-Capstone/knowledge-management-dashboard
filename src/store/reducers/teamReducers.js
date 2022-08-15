@@ -70,15 +70,14 @@ export const teamsReducer = (
 /**
  * Cases:
  * 1. Loading accepted teams
- * 1. Fetch accepted teams
- * 2. Select accepted teams
+ * 2. Fetch accepted teams
  * 3. Error accepted teams
  */
 export const acceptedTeamsReducer = (
   state = {
     loading: false,
     error: null,
-    data: { selectedTeam: null, acceptedTeams: [] }
+    data: []
   },
   action
 ) => {
@@ -94,20 +93,7 @@ export const acceptedTeamsReducer = (
       return {
         loading: false,
         error: null,
-        data: {
-          selectedTeam: state.data.selectedTeam ?? action.payload[0]._id,
-          acceptedTeams: action.payload
-        }
-      }
-    }
-    case SELECT_ACCEPTED_TEAM: {
-      return {
-        loading: false,
-        error: null,
-        data: {
-          ...state.data,
-          selectedTeam: action.payload
-        }
+        data: [action.payload]
       }
     }
     case ERROR_ACCEPTED_TEAM: {
@@ -116,6 +102,20 @@ export const acceptedTeamsReducer = (
         error: action.payload,
         data: state.data
       }
+    }
+    default:
+      return state
+  }
+}
+
+/**
+ *
+ * Cases:
+ * 1. Select accepted team
+ */
+export const selectedTeamReducer = (state = '', action) => {
+  switch (action.type) {
+    case SELECT_ACCEPTED_TEAM: {
     }
     default:
       return state
