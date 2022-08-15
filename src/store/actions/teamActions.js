@@ -89,13 +89,8 @@ export const fetchAcceptedTeams = id => async dispatch => {
 
     const { data } = await axios.get(`/api/user/${id}/team?accepted=true`)
 
-    //TODO: Fetch only the id and name
-    const teams = data.map(({ _id, name }) => ({ _id, name }))
-
-    if (!localStorage.getItem('selected-team')) {
-      localStorage.setItem('selected-team', JSON.stringify(teams[0]))
-    }
-    dispatch({ type: FETCH_ACCEPTED_TEAM, payload: teams })
+    dispatch({ type: FETCH_ACCEPTED_TEAM, payload: data })
+    localStorage.setItem('selected-team-id', data[0]._id)
   } catch (error) {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,

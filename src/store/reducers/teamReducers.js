@@ -93,7 +93,7 @@ export const acceptedTeamsReducer = (
       return {
         loading: false,
         error: null,
-        data: [action.payload]
+        data: action.payload
       }
     }
     case ERROR_ACCEPTED_TEAM: {
