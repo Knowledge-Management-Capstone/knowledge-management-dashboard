@@ -20,11 +20,11 @@ const userFromStorage = localStorage.getItem('user-researcher')
   ? { data: JSON.parse(localStorage.getItem('user-researcher')) }
   : { data: null }
 
-const selectedTeamFromStorage = localStorage.getItem('selected-team-id') || ''
+const selectedTeamIdFromStorage = localStorage.getItem('selected-team-id') || ''
 
 const initialState = {
   user: userFromStorage,
-  selectedTeamId: selectedTeamFromStorage
+  selectedTeamId: selectedTeamIdFromStorage
 }
 
 const middlewares = [thunk]

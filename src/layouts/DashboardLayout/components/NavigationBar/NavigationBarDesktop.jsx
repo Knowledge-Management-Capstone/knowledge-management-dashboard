@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { LogoutIcon } from '@heroicons/react/outline'
 import dashboard from '~/config/dashboard'
@@ -10,6 +10,7 @@ import NavigationBarItem from './NavigationBarItem'
 
 const NavigationBarDesktop = () => {
   const [query, setQuery] = useState('')
+  const [selectedTeam, setSelectedTeam] = useState({})
 
   const dispatch = useDispatch()
 
@@ -23,7 +24,10 @@ const NavigationBarDesktop = () => {
           return team.name.toLowerCase().includes(query.toLowerCase())
         })
 
-  const selectedTeam = acceptedTeams.find(({ _id }) => _id === selectedTeamId)
+  useEffect(() => {
+    setSelectedTeam(acceptedTeams.find(({ _id }) => _id === selectedTeamId))
+    console.log(selectedTeam)
+  }, [selectedTeamId, acceptedTeams])
 
   const handleSelectTeam = ({ _id }) => {
     dispatch(selectTeam(_id))

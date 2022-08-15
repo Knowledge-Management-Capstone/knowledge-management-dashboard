@@ -116,6 +116,7 @@ export const acceptedTeamsReducer = (
 export const selectedTeamIdReducer = (state = '', action) => {
   switch (action.type) {
     case SELECT_ACCEPTED_TEAM_ID: {
+      return action.payload
     }
     default:
       return state
