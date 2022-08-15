@@ -9,7 +9,8 @@ import {
   ERROR_TEAM,
   ERROR_ACCEPTED_TEAM,
   SELECT_ACCEPTED_TEAM_ID,
-  EDIT_ACCEPTED_TEAM
+  EDIT_ACCEPTED_TEAM,
+  DELETE_TEAM_MEMBER
 } from '../constants/teamConstants'
 
 /**
@@ -101,6 +102,14 @@ export const acceptedTeamsReducer = (
       const data = state.data.map(d =>
         d._id === action.payload._id ? { ...d, ...action.payload } : d
       )
+
+      return { loading: false, error: null, data }
+    }
+    case DELETE_TEAM_MEMBER: {
+      const data = {
+        ...state.data,
+        members: state.data.members.filter(({ _id }) => _id !== action.payload)
+      }
 
       return { loading: false, error: null, data }
     }

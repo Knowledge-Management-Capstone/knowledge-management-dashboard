@@ -103,6 +103,24 @@ export const fetchAcceptedTeams = id => async dispatch => {
   }
 }
 
+export const deleteTeamMember =
+  ({ teamId, userId }) =>
+  async dispatch => {
+    try {
+      await axios.delete(`/api/team/${teamId}/member/${userId}`)
+
+      dispatch({ type: DELETE_TEAM_MEMBER, payload: userId })
+    } catch (error) {
+      dispatch({
+        type: ERROR_ACCEPTED_TEAM,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+      })
+    }
+  }
+
 export const updateAcceptedTeam = payload => async dispatch => {
   try {
     await axios.put(`/api/team/${payload._id}`, payload)

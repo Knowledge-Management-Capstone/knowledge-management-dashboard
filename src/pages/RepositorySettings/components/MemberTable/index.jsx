@@ -11,12 +11,18 @@ import MemberEditModal from './MemberEditModal'
 
 const header = ['Name', 'Faculty', 'Type', 'Role']
 
-const MemberTable = ({ teamDetail, setTeamDetail }) => {
+const MemberTable = () => {
   const [openEditDialog, setOpenEditDialog] = useState(false)
   const [openAddDialog, setOpenAddDialog] = useState(false)
   const [selectedMember, setSelectedMember] = useState(null)
 
-  const { _id: teamId, members = [], administrator } = teamDetail
+  const {
+    _id: teamId,
+    members = [],
+    administrator
+  } = useSelector(({ selectedTeamId, acceptedTeams }) => {
+    return acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
+  })
 
   const { data } = useSelector(state => state.user)
 
@@ -33,6 +39,8 @@ const MemberTable = ({ teamDetail, setTeamDetail }) => {
       members: detail.members.filter(({ _id }) => _id !== userId)
     }))
   }
+
+  const setTeamDetail = () => {}
 
   return (
     <div>
