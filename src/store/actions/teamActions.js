@@ -92,7 +92,12 @@ export const fetchAcceptedTeams = id => async dispatch => {
     const { data } = await axios.get(`/api/user/${id}/team?accepted=true`)
 
     dispatch({ type: FETCH_ACCEPTED_TEAM, payload: data })
-    dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: data[0]._id })
+
+    const persistedData = JSON.parse(localStorage.getItem('persist:root'))
+
+    if (!persistedData.selectedTeamId) {
+      dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: data[0]._id })
+    }
   } catch (error) {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
