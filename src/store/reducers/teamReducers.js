@@ -103,8 +103,21 @@ export const acceptedTeamsReducer = (
       }
     }
     case EDIT_ACCEPTED_TEAM: {
+      const { title, description, startDate, endDate, rest } = action.payload
       const data = state.data.map(d =>
-        d._id === action.payload._id ? { ...d, ...action.payload } : d
+        d._id === action.payload._id
+          ? {
+              ...d,
+              ...rest,
+              repository: {
+                ...d.repository,
+                title,
+                description,
+                startDate,
+                endDate
+              }
+            }
+          : d
       )
 
       return { loading: false, error: null, data }
@@ -115,6 +128,7 @@ export const acceptedTeamsReducer = (
           ? { ...d, members: [...d.members, action.payload.researcher] }
           : d
       )
+
       return { loading: false, error: null, data }
     }
     case DELETE_TEAM_MEMBER: {
