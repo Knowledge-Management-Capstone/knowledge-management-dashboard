@@ -8,8 +8,11 @@ import Login from '~/pages/Login'
 import Register from '~/pages/Register'
 
 const App = () => {
-  const { data: user } = useSelector(state => state.user)
-  createAxios(user)
+  const {
+    data: { token }
+  } = useSelector(state => state.user)
+
+  createAxios(token)
 
   return (
     <Routes>
