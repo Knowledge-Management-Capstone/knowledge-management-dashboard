@@ -8,7 +8,7 @@ import {
   DELETE_TEAM,
   ERROR_TEAM,
   ERROR_ACCEPTED_TEAM,
-  SELECT_ACCEPTED_TEAM
+  SELECT_ACCEPTED_TEAM_ID
 } from '../constants/teamConstants'
 
 /**
@@ -113,9 +113,9 @@ export const acceptedTeamsReducer = (
  * Cases:
  * 1. Select accepted team
  */
-export const selectedTeamReducer = (state = '', action) => {
+export const selectedTeamIdReducer = (state = '', action) => {
   switch (action.type) {
-    case SELECT_ACCEPTED_TEAM: {
+    case SELECT_ACCEPTED_TEAM_ID: {
     }
     default:
       return state

@@ -6,25 +6,25 @@ import { userReducer } from './reducers/userReducers'
 import {
   teamsReducer,
   acceptedTeamsReducer,
-  selectedTeamReducer
+  selectedTeamIdReducer
 } from './reducers/teamReducers'
 
 const reducer = combineReducers({
   user: userReducer,
   teams: teamsReducer,
   acceptedTeams: acceptedTeamsReducer,
-  selectedTeam: selectedTeamReducer
+  selectedTeamId: selectedTeamIdReducer
 })
 
 const userFromStorage = localStorage.getItem('user-researcher')
   ? { data: JSON.parse(localStorage.getItem('user-researcher')) }
   : { data: null }
 
-const selectedTeamFromStorage = localStorage.getItem('selected-team') && ''
+const selectedTeamFromStorage = localStorage.getItem('selected-team-id') && ''
 
 const initialState = {
   user: userFromStorage,
-  selectedTeam: selectedTeamFromStorage
+  selectedTeamId: selectedTeamFromStorage
 }
 
 const middlewares = [thunk]

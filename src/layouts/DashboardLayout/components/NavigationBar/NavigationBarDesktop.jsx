@@ -13,9 +13,8 @@ const NavigationBarDesktop = () => {
 
   const dispatch = useDispatch()
 
-  const {
-    data: { selectedTeam, acceptedTeams }
-  } = useSelector(state => state.acceptedTeams)
+  const { data: acceptedTeams } = useSelector(state => state.acceptedTeams)
+  const selectedTeamId = useSelector(state => state.selectedTeamId)
 
   const filteredTeams =
     query === ''
@@ -24,8 +23,10 @@ const NavigationBarDesktop = () => {
           return team.name.toLowerCase().includes(query.toLowerCase())
         })
 
-  const handleSelectTeam = team => {
-    dispatch(selectTeam(team))
+  const selectedTeam = acceptedTeams.find(({ _id }) => _id === selectedTeamId)
+
+  const handleSelectTeam = ({ _id }) => {
+    dispatch(selectTeam(_id))
   }
 
   const handleLogout = () => {

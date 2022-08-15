@@ -10,7 +10,7 @@ import {
   FETCH_TEAM,
   LOADING_ACCEPTED_TEAM,
   LOADING_TEAM,
-  SELECT_ACCEPTED_TEAM
+  SELECT_ACCEPTED_TEAM_ID
 } from '../constants/teamConstants'
 
 export const fetchTeams = id => async dispatch => {
@@ -107,7 +107,7 @@ export const fetchAcceptedTeams = id => async dispatch => {
   }
 }
 
-export const selectTeam = team => dispatch => {
-  localStorage.setItem('selected-team', JSON.stringify(team))
-  dispatch({ type: SELECT_ACCEPTED_TEAM, payload: team })
+export const selectTeam = id => dispatch => {
+  localStorage.setItem('selected-team-id', id)
+  dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: id })
 }
