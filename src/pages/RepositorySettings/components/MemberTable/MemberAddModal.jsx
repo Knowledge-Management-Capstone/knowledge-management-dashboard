@@ -151,16 +151,6 @@ const MemberAddModal = ({ open, setOpen, members, teamId }) => {
       })
     )
 
-    // await axios.put(`/api/team/${teamId}/member`, { userId: values.researcher })
-
-    // setTeamDetail(detail => ({
-    //   ...detail,
-    //   members: [
-    //     ...detail.members,
-    //     researchers.find(({ _id }) => _id === values.researcher)
-    //   ]
-    // }))
-
     setSubmitting(false)
     setOpen(false)
   }

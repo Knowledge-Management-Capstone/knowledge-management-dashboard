@@ -22,7 +22,6 @@ const RepositorySettings = () => {
             <>
               <RepositoryDetails />
               <MemberTable />
-              <pre>{JSON.stringify(teamDetail, null, 2)}</pre>
             </>
           )}
         </div>

@@ -7,9 +7,11 @@ import RepositoryEditModal from './RepositoryEditModal'
 
 const RepositoryDetails = () => {
   const [openDialog, setOpenDialog] = useState(false)
+
   const detail = useSelector(({ selectedTeamId, acceptedTeams }) => {
     return acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
   })
+
   const { repository, ...rest } = detail
 
   repository.startDate = toLocaleFormat(repository?.startDate && new Date())
