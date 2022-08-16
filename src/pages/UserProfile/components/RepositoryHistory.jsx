@@ -7,22 +7,6 @@ import BaseTableItem from '~/components/generic/table/BaseTableItem'
 import axios from 'axios'
 
 const header = ['Name', 'Title', 'Time', 'Status', 'Year']
-const repository = [
-  {
-    _id: 1,
-    title: 'Capstone Project',
-    time: 250,
-    isDone: true,
-    year: 2021
-  },
-  {
-    _id: 2,
-    title: 'Sistem Informasi Kesehatan',
-    time: 500,
-    isDone: false,
-    year: 2020
-  }
-]
 
 const RepositoryHistory = () => {
   const [teams, setTeams] = useState([])
