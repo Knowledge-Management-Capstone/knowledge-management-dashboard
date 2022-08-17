@@ -7,6 +7,13 @@ import { XIcon } from '@heroicons/react/outline'
 
 import { toLocaleFormat } from '~/utils/date'
 
+const getProfileFromFullName = fullName => {
+  const names = fullName.split(' ')
+
+  if (names.length < 2) return fullName.slice(0, 2).toUpperCase()
+  return `${names[0][0]}${names[1][0]}`
+}
+
 export default function TeamInfo({ open, setOpen }) {
   const data = useSelector(({ selectedTeamId, acceptedTeams }) =>
     acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
@@ -137,11 +144,22 @@ export default function TeamInfo({ open, setOpen }) {
                                       />
                                       <div className="relative flex min-w-0 flex-1 items-center">
                                         <span className="relative inline-block flex-shrink-0">
-                                          <img
-                                            className="h-10 w-10 rounded-full"
-                                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            alt=""
-                                          />
+                                          {person.pictureUrl ? (
+                                            <img
+                                              className="h-10 w-10 rounded-full"
+                                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                              alt=""
+                                            />
+                                          ) : (
+                                            <div className="flex my-auto items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+                                              <div className=" text-primary text-sm">
+                                                {getProfileFromFullName(
+                                                  person.fullName
+                                                )}
+                                              </div>
+                                            </div>
+                                          )}
+
                                           <span
                                             className={clsx(
                                               {
