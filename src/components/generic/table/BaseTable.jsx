@@ -36,7 +36,7 @@ function TableRow({ colSpan, type = 'empty' }) {
   )
 }
 
-const BaseTable = ({ header, loading, children }) => {
+const BaseTable = ({ header, loading, empty, children }) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="mt-8 flex flex-col">
@@ -60,10 +60,10 @@ const BaseTable = ({ header, loading, children }) => {
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {loading ? (
                     <TableRow colSpan={header.length + 1} type="loading" />
+                  ) : empty ? (
+                    <TableRow colSpan={header.length + 1} type="empty" />
                   ) : (
-                    children || (
-                      <TableRow colSpan={header.length + 1} type="empty" />
-                    )
+                    children
                   )}
                 </tbody>
               </table>
