@@ -13,10 +13,10 @@ import {
   FETCH_TEAM,
   LOADING_ACCEPTED_TEAM,
   LOADING_TEAM,
-  SELECT_ACCEPTED_TEAM_ID
+  SELECT_ACCEPTED_TEAM_ID,
 } from '../constants/teamConstants'
 
-export const fetchTeams = id => async dispatch => {
+export const fetchTeams = (id) => async (dispatch) => {
   try {
     dispatch({ type: LOADING_TEAM })
 
@@ -29,18 +29,18 @@ export const fetchTeams = id => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
-export const createTeam = payload => async dispatch => {
+export const createTeam = (payload) => async (dispatch) => {
   try {
     const { data } = await axios.post(`/api/team`, payload)
 
     dispatch({
       type: CREATE_TEAM,
-      payload: { ...payload, _id: data._id, status: 'pending' }
+      payload: { ...payload, _id: data._id, status: 'pending' },
     })
   } catch (error) {
     dispatch({
@@ -48,12 +48,12 @@ export const createTeam = payload => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
-export const updateTeam = payload => async dispatch => {
+export const updateTeam = (payload) => async (dispatch) => {
   try {
     await axios.put(`/api/team/${payload._id}`, payload)
 
@@ -64,12 +64,12 @@ export const updateTeam = payload => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
-export const deleteTeam = id => async dispatch => {
+export const deleteTeam = (id) => async (dispatch) => {
   try {
     await axios.delete(`/api/team/${id}`)
 
@@ -80,12 +80,12 @@ export const deleteTeam = id => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
-export const fetchAcceptedTeams = id => async dispatch => {
+export const fetchAcceptedTeams = (id) => async (dispatch) => {
   try {
     dispatch({ type: LOADING_ACCEPTED_TEAM })
 
@@ -104,12 +104,12 @@ export const fetchAcceptedTeams = id => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
-export const addTeamMember = payload => async dispatch => {
+export const addTeamMember = (payload) => async (dispatch) => {
   try {
     await axios.put(
       `/api/team/${payload.teamId}/member/${payload.researcher._id}`
@@ -122,14 +122,14 @@ export const addTeamMember = payload => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
 export const deleteTeamMember =
   ({ teamId, userId }) =>
-  async dispatch => {
+  async (dispatch) => {
     try {
       await axios.delete(`/api/team/${teamId}/member/${userId}`)
 
@@ -140,12 +140,12 @@ export const deleteTeamMember =
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
-            : error.message
+            : error.message,
       })
     }
   }
 
-export const updateAcceptedTeam = payload => async dispatch => {
+export const updateAcceptedTeam = (payload) => async (dispatch) => {
   try {
     await axios.put(`/api/team/${payload._id}`, payload)
 
@@ -156,11 +156,11 @@ export const updateAcceptedTeam = payload => async dispatch => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message
+          : error.message,
     })
   }
 }
 
-export const selectTeam = id => dispatch => {
+export const selectTeam = (id) => (dispatch) => {
   dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: id })
 }

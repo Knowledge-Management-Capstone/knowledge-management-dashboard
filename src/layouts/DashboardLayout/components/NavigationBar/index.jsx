@@ -9,7 +9,7 @@ import NavigationBarMobile from './NavigationBarMobile'
 const NavigationBar = ({ sidebarOpen, setSidebarOpen }) => {
   const dispatch = useDispatch()
 
-  const { data: user } = useSelector(state => state.user)
+  const { data: user } = useSelector((state) => state.user)
 
   useEffect(() => {
     if (user) {

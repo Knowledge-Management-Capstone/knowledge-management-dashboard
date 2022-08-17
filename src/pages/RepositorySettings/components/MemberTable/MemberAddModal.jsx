@@ -40,7 +40,7 @@ const ResearcherCombobox = ({
         as="div"
         value={value}
         onBlur={handleBlur}
-        onChange={val => setValue(val._id)}
+        onChange={(val) => setValue(val._id)}
       >
         <Combobox.Label
           htmlFor={props.id || props.name}
@@ -50,9 +50,9 @@ const ResearcherCombobox = ({
         </Combobox.Label>
         <div className="relative mt-1">
           <Combobox.Input
-            className="w-full text-primary font-bold rounded-md border border-accent bg-white py-2 pl-3 pr-10 shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:text-sm"
-            onChange={event => setQuery(event.target.value)}
-            displayValue={value =>
+            className="w-full rounded-md border border-accent bg-white py-2 pl-3 pr-10 font-bold text-primary shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:text-sm"
+            onChange={(event) => setQuery(event.target.value)}
+            displayValue={(value) =>
               filteredItem.find(({ _id }) => value === _id)?.fullName
             }
           />
@@ -62,7 +62,7 @@ const ResearcherCombobox = ({
 
           {filteredItem.length > 0 && (
             <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {filteredItem.map(item => (
+              {filteredItem.map((item) => (
                 <Combobox.Option
                   key={item._id}
                   value={item}
@@ -129,12 +129,12 @@ const MemberAddModal = ({ open, setOpen, members, teamId }) => {
     fetchResearchers('')
   }, [])
 
-  const fetchResearchers = async query => {
+  const fetchResearchers = async (query) => {
     const { data } = await axios.get(`/api/user/search?param=${query}`)
     setResearchers(data)
   }
 
-  const handleQuery = debounce(query => {
+  const handleQuery = debounce((query) => {
     fetchResearchers(query)
   }, 500)
 
@@ -147,7 +147,7 @@ const MemberAddModal = ({ open, setOpen, members, teamId }) => {
     dispatch(
       addTeamMember({
         teamId,
-        researcher: researchers.find(({ _id }) => _id === values.researcher)
+        researcher: researchers.find(({ _id }) => _id === values.researcher),
       })
     )
 
@@ -174,16 +174,16 @@ const MemberAddModal = ({ open, setOpen, members, teamId }) => {
             setQuery={handleQuery}
             members={members}
           />
-          <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+          <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
             <BaseButton
               type="submit"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 focus:outline-none sm:col-start-2 sm:text-sm"
+              className="inline-flex w-full justify-center rounded-md border border-transparent px-4 py-2 shadow-sm focus:outline-none sm:col-start-2 sm:text-sm"
             >
               Simpan
             </BaseButton>
             <BaseButton
               type="button"
-              className="mt-3 w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 sm:mt-0 sm:col-start-1 sm:text-sm"
+              className="mt-3 inline-flex w-full justify-center rounded-md border px-4 py-2 shadow-sm sm:col-start-1 sm:mt-0 sm:text-sm"
               secondary
               onClick={() => setOpen(false)}
             >

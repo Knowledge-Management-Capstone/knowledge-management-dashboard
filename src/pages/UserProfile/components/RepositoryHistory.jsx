@@ -13,8 +13,8 @@ const RepositoryHistory = () => {
   const [loading, setLoading] = useState(false)
 
   const {
-    data: { _id }
-  } = useSelector(state => state.user)
+    data: { _id },
+  } = useSelector((state) => state.user)
 
   useEffect(() => {
     async function fetchTeams() {
@@ -28,13 +28,13 @@ const RepositoryHistory = () => {
   }, [])
 
   return (
-    <div className="py-6 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 md:px-8">
       <h1 className="text-2xl font-semibold text-gray-900">
         Repository Penelitian
       </h1>
       <BaseTable header={header} loading={loading} empty={teams.length === 0}>
         {teams &&
-          teams.map(t => (
+          teams.map((t) => (
             <tr key={t._id}>
               <BaseTableItem>{t.name}</BaseTableItem>
               <BaseTableItem>{t.repository.title}</BaseTableItem>
@@ -48,7 +48,7 @@ const RepositoryHistory = () => {
                       'bg-blue-100 text-blue-800': t.status === 'pending',
                       'bg-yellow-100 text-yellow-800': t.status === 'updated',
                       'bg-green-100 text-green-800': t.status === 'accepted',
-                      'bg-red-100 text-red-800': !t.status === 'rejected'
+                      'bg-red-100 text-red-800': !t.status === 'rejected',
                     }
                   )}
                 >

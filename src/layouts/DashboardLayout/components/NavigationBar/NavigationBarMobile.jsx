@@ -8,7 +8,7 @@ import BaseCombobox from '~/components/generic/form/BaseCombobox'
 import NavigationBarItem from './NavigationBarItem'
 
 const people = [
-  { id: 1, name: 'Leslie Alexander' }
+  { id: 1, name: 'Leslie Alexander' },
 
   // More users...
 ]
@@ -20,7 +20,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
   const filteredPeople =
     query === ''
       ? people
-      : people.filter(person => {
+      : people.filter((person) => {
           return person.name.toLowerCase().includes(query.toLowerCase())
         })
 
@@ -28,7 +28,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
     <Transition.Root show={sidebarOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 flex z-40 md:hidden"
+        className="fixed inset-0 z-40 flex md:hidden"
         onClose={setSidebarOpen}
       >
         <Transition.Child
@@ -51,7 +51,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-indigo-700">
+          <div className="relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4">
             <Transition.Child
               as={Fragment}
               enter="ease-in-out duration-300"
@@ -64,7 +64,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
               <div className="absolute top-0 right-0 -mr-12 pt-2">
                 <button
                   type="button"
-                  className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                   onClick={() => setSidebarOpen(false)}
                 >
                   <span className="sr-only">Close sidebar</span>
@@ -72,15 +72,15 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
                 </button>
               </div>
             </Transition.Child>
-            <div className="flex-shrink-0 flex items-center px-4">
+            <div className="flex flex-shrink-0 items-center px-4">
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
                 alt="Workflow"
               />
             </div>
-            <div className="mt-5 flex-1 h-0 overflow-y-auto">
-              <nav className="px-2 space-y-1">
+            <div className="mt-5 h-0 flex-1 overflow-y-auto">
+              <nav className="space-y-1 px-2">
                 <BaseCombobox
                   className="mb-4"
                   value={selectedPerson}
@@ -98,7 +98,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
             </div>
           </div>
         </Transition.Child>
-        <div className="flex-shrink-0 w-14" aria-hidden="true"></div>
+        <div className="w-14 flex-shrink-0" aria-hidden="true"></div>
       </Dialog>
     </Transition.Root>
   )

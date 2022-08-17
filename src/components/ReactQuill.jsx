@@ -14,16 +14,16 @@ const modules = {
       { list: 'ordered' },
       { list: 'bullet' },
       { indent: '-1' },
-      { indent: '+1' }
+      { indent: '+1' },
     ],
     [{ direction: 'rtl' }],
     ['link', 'image', 'video'],
-    ['clean']
-  ]
+    ['clean'],
+  ],
 }
 
 const ReactQuill = ({ value, setValue }) => {
-  const onChange = text => {
+  const onChange = (text) => {
     setValue(text)
   }
 

@@ -7,7 +7,7 @@ import { XIcon } from '@heroicons/react/outline'
 
 import { toLocaleFormat } from '~/utils/date'
 
-const getProfileFromFullName = fullName => {
+const getProfileFromFullName = (fullName) => {
   const names = fullName.split(' ')
 
   if (names.length < 2) return fullName.slice(0, 2).toUpperCase()
@@ -83,7 +83,7 @@ export default function TeamInfo({ open, setOpen }) {
                                 <div
                                   className="prose"
                                   dangerouslySetInnerHTML={{
-                                    __html: data?.repository?.description
+                                    __html: data?.repository?.description,
                                   }}
                                 ></div>
                               </dd>
@@ -131,7 +131,7 @@ export default function TeamInfo({ open, setOpen }) {
                         >
                           {data &&
                             [...data.members, data.administrator].map(
-                              person => (
+                              (person) => (
                                 <li key={person._id}>
                                   <div className="group relative flex items-center py-6 px-5">
                                     <a
@@ -151,8 +151,8 @@ export default function TeamInfo({ open, setOpen }) {
                                               alt=""
                                             />
                                           ) : (
-                                            <div className="flex my-auto items-center justify-center h-12 w-12 rounded-full bg-blue-100">
-                                              <div className=" text-primary text-sm">
+                                            <div className="my-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                                              <div className=" text-sm text-primary">
                                                 {getProfileFromFullName(
                                                   person.fullName
                                                 )}
@@ -166,7 +166,7 @@ export default function TeamInfo({ open, setOpen }) {
                                                 'bg-green-400':
                                                   person.status === 'online',
                                                 'bg-gray-300':
-                                                  person.status !== 'online'
+                                                  person.status !== 'online',
                                               },
 
                                               'absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white'

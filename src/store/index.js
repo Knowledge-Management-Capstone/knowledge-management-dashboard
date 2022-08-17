@@ -8,20 +8,20 @@ import { userReducer } from './reducers/userReducers'
 import {
   teamsReducer,
   acceptedTeamsReducer,
-  selectedTeamIdReducer
+  selectedTeamIdReducer,
 } from './reducers/teamReducers'
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user', 'selectedTeamId']
+  whitelist: ['user', 'selectedTeamId'],
 }
 
 const reducer = combineReducers({
   user: userReducer,
   teams: teamsReducer,
   acceptedTeams: acceptedTeamsReducer,
-  selectedTeamId: selectedTeamIdReducer
+  selectedTeamId: selectedTeamIdReducer,
 })
 
 const middlewares = [thunk]

@@ -3,7 +3,7 @@ import {
   LOADING_USER,
   USER_LOGIN,
   USER_LOGOUT,
-  USER_REGISTER
+  USER_REGISTER,
 } from '../constants/userConstants.js'
 
 /**TODO: Try wether `loading` and `error` could be omitted

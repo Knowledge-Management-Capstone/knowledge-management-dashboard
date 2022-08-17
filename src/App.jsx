@@ -9,8 +9,8 @@ import Register from '~/pages/Register'
 
 const App = () => {
   const {
-    data: { token }
-  } = useSelector(state => state.user)
+    data: { token },
+  } = useSelector((state) => state.user)
 
   createAxios(token)
 

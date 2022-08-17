@@ -11,7 +11,7 @@ import {
   ERROR_ACCEPTED_TEAM,
   SELECT_ACCEPTED_TEAM_ID,
   EDIT_ACCEPTED_TEAM,
-  DELETE_TEAM_MEMBER
+  DELETE_TEAM_MEMBER,
 } from '../constants/teamConstants'
 
 /**
@@ -37,32 +37,32 @@ export const teamsReducer = (
       return {
         loading: false,
         error: null,
-        data: [...state.data, action.payload]
+        data: [...state.data, action.payload],
       }
     }
     case EDIT_TEAM: {
-      const data = state.data.map(r =>
+      const data = state.data.map((r) =>
         r._id === action.payload._id ? { ...r, ...action.payload } : r
       )
 
       return {
         loading: false,
         error: null,
-        data
+        data,
       }
     }
     case DELETE_TEAM: {
       return {
         loading: false,
         error: null,
-        data: state.data.filter(r => r._id !== action.payload)
+        data: state.data.filter((r) => r._id !== action.payload),
       }
     }
     case ERROR_TEAM: {
       return {
         loading: false,
         error: action.payload,
-        data: state.data
+        data: state.data,
       }
     }
     default:
@@ -83,7 +83,7 @@ export const acceptedTeamsReducer = (
   state = {
     loading: false,
     error: null,
-    data: []
+    data: [],
   },
   action
 ) => {
@@ -92,19 +92,19 @@ export const acceptedTeamsReducer = (
       return {
         loading: true,
         error: null,
-        data: state.data
+        data: state.data,
       }
     }
     case FETCH_ACCEPTED_TEAM: {
       return {
         loading: false,
         error: null,
-        data: action.payload
+        data: action.payload,
       }
     }
     case EDIT_ACCEPTED_TEAM: {
       const { title, description, startDate, endDate, rest } = action.payload
-      const data = state.data.map(d =>
+      const data = state.data.map((d) =>
         d._id === action.payload._id
           ? {
               ...d,
@@ -114,8 +114,8 @@ export const acceptedTeamsReducer = (
                 title,
                 description,
                 startDate,
-                endDate
-              }
+                endDate,
+              },
             }
           : d
       )
@@ -123,7 +123,7 @@ export const acceptedTeamsReducer = (
       return { loading: false, error: null, data }
     }
     case ADD_TEAM_MEMBER: {
-      const data = state.data.map(d =>
+      const data = state.data.map((d) =>
         d._id === action.payload.teamId
           ? { ...d, members: [...d.members, action.payload.researcher] }
           : d
@@ -132,13 +132,13 @@ export const acceptedTeamsReducer = (
       return { loading: false, error: null, data }
     }
     case DELETE_TEAM_MEMBER: {
-      const data = state.data.map(d =>
+      const data = state.data.map((d) =>
         d._id === action.payload.teamId
           ? {
               ...d,
               members: d.members.filter(
                 ({ _id }) => _id !== action.payload.userId
-              )
+              ),
             }
           : d
       )
@@ -149,7 +149,7 @@ export const acceptedTeamsReducer = (
       return {
         loading: false,
         error: action.payload,
-        data: state.data
+        data: state.data,
       }
     }
     default:
