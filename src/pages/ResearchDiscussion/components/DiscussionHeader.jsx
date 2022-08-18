@@ -19,12 +19,18 @@ const DiscussionHeader = ({ setOpen }) => {
         <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="ml-4 mt-4">
             <div className="flex items-center">
-              {teamDetail && (<div className="ml-4">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">{teamDetail.name}</h3>
-                <p className="mt-2 text-sm text-gray-500">
-                {  teamDetail.members.length ? [teamDetail.administrator, ...teamDetail.members].reduce((prev, curr) => prev?.fullName + ', ' + curr?.fullName): teamDetail.administrator.fullName}
-                </p>
-              </div>)}
+              {teamDetail && (
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">{teamDetail.name}</h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    {teamDetail.members.length
+                      ? [teamDetail.administrator, ...teamDetail.members].reduce(
+                          (prev, curr) => prev?.fullName + ', ' + curr?.fullName
+                        )
+                      : teamDetail.administrator.fullName}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <div className="ml-4 mt-4 flex flex-shrink-0">
