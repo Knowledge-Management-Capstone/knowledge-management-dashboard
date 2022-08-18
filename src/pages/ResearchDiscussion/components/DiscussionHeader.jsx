@@ -22,7 +22,7 @@ const DiscussionHeader = ({ setOpen }) => {
               {teamDetail && (<div className="ml-4">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">{teamDetail.name}</h3>
                 <p className="mt-2 text-sm text-gray-500">
-                  <a href="#">{[teamDetail.administrator, ...teamDetail.members].reduce((prev, curr, idx) => idx === 1 ? prev.fullName + ', ' + curr.fullName : prev + ', ' + curr.fullName)}</a>
+                {  teamDetail.members.length ? [teamDetail.administrator, ...teamDetail.members].reduce((prev, curr) => prev?.fullName + ', ' + curr?.fullName): teamDetail.administrator.fullName}
                 </p>
               </div>)}
             </div>
