@@ -4,12 +4,12 @@ import ChatBubble from './ChatBubble'
 
 const user1 = {
   _id: 1,
-  fullName: 'Dian Rahmaji',
+  fullName: 'Dian Rahmaji'
 }
 
 const user2 = {
   id: 2,
-  fullName: 'Dzakiy Harissalam',
+  fullName: 'Dzakiy Harissalam'
 }
 
 const ChatContainer = () => {

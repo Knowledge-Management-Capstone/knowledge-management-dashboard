@@ -20,10 +20,7 @@ const NavigationBar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <Fragment>
       <div>
-        <NavigationBarMobile
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-        />
+        <NavigationBarMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <NavigationBarDesktop />
       </div>

@@ -1,21 +1,14 @@
 import clsx from 'clsx'
 
-const BaseIconButton = ({
-  children,
-  className,
-  secondary,
-  loading,
-  ...props
-}) => {
+const BaseIconButton = ({ children, className, secondary, loading, ...props }) => {
   return (
     <button
       className={clsx(
         `${className} rounded-full p-3 text-base font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-auto disabled:opacity-50 sm:text-sm `,
         {
-          'bg-primary text-secondary hover:bg-accent focus:ring-primary':
-            !secondary,
+          'bg-primary text-secondary hover:bg-accent focus:ring-primary': !secondary,
           'border-gray-300 bg-white text-primary hover:bg-gray-50 hover:text-accent focus:ring-primary':
-            secondary,
+            secondary
         }
       )}
       disabled={loading}

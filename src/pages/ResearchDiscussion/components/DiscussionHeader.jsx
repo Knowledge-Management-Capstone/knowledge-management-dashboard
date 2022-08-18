@@ -4,7 +4,7 @@ import BaseIconButton from '~/components/generic/button/BaseIconButton'
 
 const research = {
   title: 'Capstone Project',
-  members: ['Dian Rahmaji', 'Dzakiy Harissalam'],
+  members: ['Dian Rahmaji', 'Dzakiy Harissalam']
 }
 
 const DiscussionHeader = ({ setOpen }) => {
@@ -15,15 +15,9 @@ const DiscussionHeader = ({ setOpen }) => {
           <div className="ml-4 mt-4">
             <div className="flex items-center">
               <div className="ml-4">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  {research.title}
-                </h3>
+                <h3 className="text-lg font-medium leading-6 text-gray-900">{research.title}</h3>
                 <p className="mt-2 text-sm text-gray-500">
-                  <a href="#">
-                    {research.members.reduce(
-                      (prev, curr) => prev + ', ' + curr
-                    )}
-                  </a>
+                  <a href="#">{research.members.reduce((prev, curr) => prev + ', ' + curr)}</a>
                 </p>
               </div>
             </div>

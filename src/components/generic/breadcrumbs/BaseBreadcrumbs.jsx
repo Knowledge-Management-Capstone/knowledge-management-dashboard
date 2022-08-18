@@ -18,7 +18,7 @@ const BaseBreadcrumbs = ({ pages, separator: SeparatorIcon }) => {
                 to={p.redirect}
                 className={clsx(`text-md font-medium `, {
                   'text-gray-500 hover:text-gray-700': !p.current,
-                  'text-gray-900': p.current,
+                  'text-gray-900': p.current
                 })}
                 aria-current={p.current ? 'page' : undefined}
               >

@@ -13,7 +13,7 @@ import {
   FETCH_TEAM,
   LOADING_ACCEPTED_TEAM,
   LOADING_TEAM,
-  SELECT_ACCEPTED_TEAM_ID,
+  SELECT_ACCEPTED_TEAM_ID
 } from '../constants/teamConstants'
 
 export const fetchTeams = (id) => async (dispatch) => {
@@ -27,9 +27,7 @@ export const fetchTeams = (id) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }
@@ -40,15 +38,13 @@ export const createTeam = (payload) => async (dispatch) => {
 
     dispatch({
       type: CREATE_TEAM,
-      payload: { ...payload, _id: data._id, status: 'pending' },
+      payload: { ...payload, _id: data._id, status: 'pending' }
     })
   } catch (error) {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }
@@ -62,9 +58,7 @@ export const updateTeam = (payload) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }
@@ -78,9 +72,7 @@ export const deleteTeam = (id) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }
@@ -102,27 +94,21 @@ export const fetchAcceptedTeams = (id) => async (dispatch) => {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }
 
 export const addTeamMember = (payload) => async (dispatch) => {
   try {
-    await axios.put(
-      `/api/team/${payload.teamId}/member/${payload.researcher._id}`
-    )
+    await axios.put(`/api/team/${payload.teamId}/member/${payload.researcher._id}`)
 
     dispatch({ type: ADD_TEAM_MEMBER, payload })
   } catch (error) {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }
@@ -140,7 +126,7 @@ export const deleteTeamMember =
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
-            : error.message,
+            : error.message
       })
     }
   }
@@ -154,9 +140,7 @@ export const updateAcceptedTeam = (payload) => async (dispatch) => {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        error.response && error.response.data.message ? error.response.data.message : error.message
     })
   }
 }

@@ -18,7 +18,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   const {
-    data: { token },
+    data: { token }
   } = useSelector((state) => state.user)
 
   useEffect(() => {
@@ -52,10 +52,7 @@ const Login = () => {
             <div className="flex items-center justify-between">
               <BaseCheckbox label="Remember me" name="remember" />
               <div className="mt-3 text-sm">
-                <Link
-                  to="#"
-                  className="font-medium text-primary hover:text-accent"
-                >
+                <Link to="#" className="font-medium text-primary hover:text-accent">
                   Forgot your password?
                 </Link>
               </div>
@@ -67,10 +64,7 @@ const Login = () => {
           <div className="mt-6">
             <p className="mt-2 text-center text-sm text-gray-600">
               Don't have an account?{' '}
-              <Link
-                to="/register"
-                className="font-medium text-primary hover:text-accent"
-              >
+              <Link to="/register" className="font-medium text-primary hover:text-accent">
                 Register
               </Link>
             </p>

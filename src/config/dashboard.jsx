@@ -4,7 +4,7 @@ import {
   ChatAlt2Icon,
   CogIcon,
   PlusIcon,
-  UserIcon,
+  UserIcon
 } from '@heroicons/react/outline'
 
 import Home from '~/pages/Home'
@@ -17,44 +17,44 @@ import UserProfile from '~/pages/UserProfile'
 const dashboard = [
   {
     route: { path: '/', element: <Home /> },
-    navigation: { name: 'Beranda', path: '/', icon: HomeIcon },
+    navigation: { name: 'Beranda', path: '/', icon: HomeIcon }
   },
   {
     route: { path: '/documentation', element: <ResearchDocumentation /> },
     navigation: {
       name: 'Dokumentasi Penelitian',
       path: '/documentation',
-      icon: FolderIcon,
-    },
+      icon: FolderIcon
+    }
   },
   {
     route: { path: '/discussion', element: <ResearchDiscussion /> },
     navigation: {
       name: 'Diskusi',
       path: '/discussion',
-      icon: ChatAlt2Icon,
-    },
+      icon: ChatAlt2Icon
+    }
   },
   {
     route: { path: '/settings', element: <RepositorySettings /> },
     navigation: {
       name: 'Pengaturan Repository',
       path: '/settings',
-      icon: CogIcon,
-    },
+      icon: CogIcon
+    }
   },
   {
     route: { path: '/proposal', element: <RepositoryProposal /> },
     navigation: {
       name: 'Ajukan Repository',
       path: '/proposal',
-      icon: PlusIcon,
-    },
+      icon: PlusIcon
+    }
   },
   {
     route: { path: '/profile', element: <UserProfile /> },
-    navigation: { name: 'Profil', path: '/profile', icon: UserIcon },
-  },
+    navigation: { name: 'Profil', path: '/profile', icon: UserIcon }
+  }
 ]
 
 export default dashboard

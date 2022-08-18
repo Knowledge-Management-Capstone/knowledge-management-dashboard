@@ -7,7 +7,7 @@ import DocumentContainer from './components/DocumentContainer'
 
 const pages = [
   { name: 'Capstone Projects', redirect: '#', current: false },
-  { name: 'C-251', redirect: '#', current: true },
+  { name: 'C-251', redirect: '#', current: true }
 ]
 
 const ResearchDocumentation = () => {

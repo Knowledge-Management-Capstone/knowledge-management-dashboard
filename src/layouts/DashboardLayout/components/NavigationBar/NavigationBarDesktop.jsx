@@ -59,12 +59,7 @@ const NavigationBarDesktop = () => {
               <NavigationBarItem {...navigation} key={navigation.name} />
             ))}
             <div className="pt-3">
-              <NavigationBarItem
-                name="Keluar"
-                path="#"
-                icon={LogoutIcon}
-                onLogout={handleLogout}
-              />
+              <NavigationBarItem name="Keluar" path="#" icon={LogoutIcon} onLogout={handleLogout} />
             </div>
           </nav>
         </div>

@@ -6,10 +6,9 @@ const BaseButton = ({ children, className, secondary, loading, ...props }) => {
       className={clsx(
         `${className} divide-xisabled:opacity-50 rounded-md px-4 py-2 text-base font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-auto sm:text-sm`,
         {
-          'bg-primary text-secondary hover:bg-accent focus:ring-primary':
-            !secondary,
+          'bg-primary text-secondary hover:bg-accent focus:ring-primary': !secondary,
           'border-gray-300 bg-white text-primary hover:bg-gray-50 hover:text-accent focus:ring-primary':
-            secondary,
+            secondary
         }
       )}
       disabled={loading}

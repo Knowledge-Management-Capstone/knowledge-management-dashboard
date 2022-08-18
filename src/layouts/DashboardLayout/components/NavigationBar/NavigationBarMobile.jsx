@@ -8,7 +8,7 @@ import BaseCombobox from '~/components/generic/form/BaseCombobox'
 import NavigationBarItem from './NavigationBarItem'
 
 const people = [
-  { id: 1, name: 'Leslie Alexander' },
+  { id: 1, name: 'Leslie Alexander' }
 
   // More users...
 ]
@@ -26,11 +26,7 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
 
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
-      <Dialog
-        as="div"
-        className="fixed inset-0 z-40 flex md:hidden"
-        onClose={setSidebarOpen}
-      >
+      <Dialog as="div" className="fixed inset-0 z-40 flex md:hidden" onClose={setSidebarOpen}>
         <Transition.Child
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"

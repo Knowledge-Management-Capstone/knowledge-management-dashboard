@@ -9,7 +9,7 @@ const initialValues = {
   title: '',
   description: '',
   startDate: '',
-  endDate: '',
+  endDate: ''
 }
 
 const ProposalModal = (props) => {

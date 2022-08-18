@@ -23,10 +23,8 @@ const MemberTable = () => {
   const {
     _id: teamId,
     members,
-    administrator,
-  } = useSelector((state) =>
-    state.acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
-  )
+    administrator
+  } = useSelector((state) => state.acceptedTeams.data.find(({ _id }) => _id === selectedTeamId))
 
   const { data, loading } = useSelector((state) => state.user)
 

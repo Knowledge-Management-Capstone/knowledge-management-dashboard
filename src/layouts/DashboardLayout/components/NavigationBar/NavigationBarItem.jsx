@@ -12,7 +12,7 @@ const NavigationBarItem = ({ name, path, icon: NavIcon }) => {
         'group flex items-center rounded-md px-2 py-2 text-base font-medium text-white hover:text-secondary',
         {
           'bg-primary hover:bg-accent': pathname !== path,
-          'bg-accent font-bold': pathname === path,
+          'bg-accent font-bold': pathname === path
         }
       )}
     >

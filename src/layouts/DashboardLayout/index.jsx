@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }) => {
   const navigate = useNavigate()
 
   const {
-    data: { token },
+    data: { token }
   } = useSelector((state) => state.user)
 
   useEffect(() => {
@@ -18,10 +18,7 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen">
-      <NavigationBar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
+      <NavigationBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex h-screen w-screen flex-1 flex-col md:pl-64">
         <main className="h-full">{children}</main>
       </div>

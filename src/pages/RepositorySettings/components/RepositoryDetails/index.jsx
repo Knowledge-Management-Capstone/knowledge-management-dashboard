@@ -18,9 +18,7 @@ const RepositoryDetails = () => {
 
   return (
     <Fragment>
-      <h1 className="mt-3 text-2xl font-semibold text-gray-900">
-        {detail?.name}
-      </h1>
+      <h1 className="mt-3 text-2xl font-semibold text-gray-900">{detail?.name}</h1>
       <div className="my-6 ml-4 flex flex-col">
         <div className="text-lg font-medium">Topic</div>
         {/* TODO: Add this field to db */}
@@ -36,9 +34,7 @@ const RepositoryDetails = () => {
           </time>
         </div>
         <div className="mt-5 text-lg  font-medium">Description</div>
-        <div
-          dangerouslySetInnerHTML={{ __html: detail?.repository?.description }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: detail?.repository?.description }} />
         {data?._id === detail?.administrator?._id && (
           <BaseButton className="ml-auto" onClick={() => setOpenDialog(true)}>
             Edit
@@ -53,7 +49,7 @@ const RepositoryDetails = () => {
           ...repository,
           startDate: toYupFormat(repository?.startDate),
           endDate: toYupFormat(repository?.endDate),
-          ...rest,
+          ...rest
         }}
       />
     </Fragment>

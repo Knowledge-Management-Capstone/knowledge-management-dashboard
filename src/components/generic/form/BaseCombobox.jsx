@@ -36,12 +36,7 @@ export default function BaseCombobox({ filteredItem, setQuery, ...props }) {
               >
                 {({ active, selected }) => (
                   <>
-                    <span
-                      className={classNames(
-                        'block truncate',
-                        selected && 'font-semibold'
-                      )}
-                    >
+                    <span className={classNames('block truncate', selected && 'font-semibold')}>
                       {item.name}
                     </span>
 

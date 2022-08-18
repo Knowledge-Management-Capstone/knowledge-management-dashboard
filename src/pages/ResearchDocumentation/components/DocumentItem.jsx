@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom'
 import * as ContextMenu from '@radix-ui/react-context-menu'
-import {
-  DocumentTextIcon,
-  FolderIcon,
-  PencilAltIcon,
-  TrashIcon,
-} from '@heroicons/react/outline'
+import { DocumentTextIcon, FolderIcon, PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
 const DocumentItem = ({ type, onRename }) => {
   return (
