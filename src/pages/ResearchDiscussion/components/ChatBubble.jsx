@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { toTimeOnlyFormat } from "~/utils/date";
 
-const loggedInId = 1;
-
 function ChatBubble({ message }) {
   const {
     data: { _id: userId },
@@ -17,7 +15,9 @@ function ChatBubble({ message }) {
       })}
     >
       <div className="w-fit max-w-xl text-black">
-        {message.sender._id !== userId && <p className="text-sm">{message.sender.fullName}</p>}
+        {message.sender._id !== userId && (
+          <p className="text-sm">{message.sender.fullName}</p>
+        )}
         <p
           className={clsx(" mb-3 rounded-xl p-4", {
             "bg-gray-200": message.sender._id !== userId,
@@ -25,7 +25,10 @@ function ChatBubble({ message }) {
           })}
         >
           {message.text}
-          <time dateTime={message.createdAt} className="mt-2 flex justify-end text-xs italic">
+          <time
+            dateTime={message.createdAt}
+            className="mt-2 flex justify-end text-xs italic"
+          >
             {toTimeOnlyFormat(message.createdAt)}
           </time>
         </p>

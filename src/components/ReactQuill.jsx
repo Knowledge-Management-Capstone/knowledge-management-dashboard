@@ -1,4 +1,3 @@
-import React from "react";
 import Quill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -10,7 +9,12 @@ const modules = {
     [{ color: [] }, { background: [] }],
     [{ script: "super" }, { script: "sub" }],
     ["blockquote", "code-block"],
-    [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
     [{ direction: "rtl" }],
     ["link", "image", "video"],
     ["clean"],

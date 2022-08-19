@@ -17,13 +17,20 @@ function NavigationBarMobile({ sidebarOpen, setSidebarOpen }) {
   const [query, setQuery] = useState("");
   const [selectedPerson, setSelectedPerson] = useState();
 
-  const filteredPeople = query === ""
-    ? people
-    : people.filter((person) => person.name.toLowerCase().includes(query.toLowerCase()));
+  const filteredPeople =
+    query === ""
+      ? people
+      : people.filter((person) =>
+          person.name.toLowerCase().includes(query.toLowerCase()),
+        );
 
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 z-40 flex md:hidden" onClose={setSidebarOpen}>
+      <Dialog
+        as="div"
+        className="fixed inset-0 z-40 flex md:hidden"
+        onClose={setSidebarOpen}
+      >
         <Transition.Child
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"

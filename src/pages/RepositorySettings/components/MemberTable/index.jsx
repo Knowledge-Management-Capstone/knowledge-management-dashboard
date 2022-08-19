@@ -15,7 +15,7 @@ const header = ["Name", "Faculty", "Type", "Role"];
 function MemberTable() {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [openAddDialog, setOpenAddDialog] = useState(false);
-  const [selectedMember, setSelectedMember] = useState(null);
+  const [selectedMember] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -24,14 +24,16 @@ function MemberTable() {
     _id: teamId,
     members,
     administrator,
-  } = useSelector((state) => state.acceptedTeams.data.find(({ _id }) => _id === selectedTeamId));
+  } = useSelector((state) =>
+    state.acceptedTeams.data.find(({ _id }) => _id === selectedTeamId),
+  );
 
   const { data, loading } = useSelector((state) => state.user);
 
-  const handleEdit = (m) => {
-    setSelectedMember(m);
-    setOpenEditDialog(true);
-  };
+  // const handleEdit = (m) => {
+  //   setSelectedMember(m);
+  //   setOpenEditDialog(true);
+  // };
 
   const handleDelete = (userId) => {
     dispatch(deleteTeamMember({ userId, teamId }));
@@ -52,8 +54,8 @@ function MemberTable() {
           <BaseTableItem>{administrator?.accountType}</BaseTableItem>
           <BaseTableItem>Administrator</BaseTableItem>
         </tr>
-        {members
-          && members.map((m) => (
+        {members &&
+          members.map((m) => (
             <tr key={m._id}>
               <BaseTableItem>{m.fullName}</BaseTableItem>
               <BaseTableItem>{m.faculty}</BaseTableItem>

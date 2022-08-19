@@ -16,7 +16,7 @@ import {
  */
 export const userReducer = (
   state = { loading: false, error: null, data: {} },
-  action
+  action,
 ) => {
   switch (action.type) {
     case LOADING_USER: {

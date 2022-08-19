@@ -6,12 +6,14 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint './**/*.{js,jsx,ts,tsx,css,md,json}'",
-    "lint:fix": "eslint --fix './**/*.{js,jsx,ts,tsx,css,md,json}'",
-    "format:check": "npx prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}'",
-    "format:fix": "npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "lint": "eslint './**/*.{js,jsx,ts,tsx,md}'",
+    "lint:quiet": "eslint --quiet './**/*.{js,jsx,ts,tsx,md}'",
+    "lint:fix": "eslint --fix './**/*.{js,jsx,ts,tsx,md}'",
+    "format:check": "npx prettier --check './**/*.{js,jsx,ts,tsx,css,md}'",
+    "format:fix": "npx prettier --write './**/*.{js,jsx,ts,tsx,css,md}'",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.4",
@@ -55,6 +57,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-tailwindcss": "^3.6.0",
+    "husky": "^8.0.0",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",

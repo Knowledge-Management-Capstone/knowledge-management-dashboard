@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ChatContainer from "./components/ChatContainer";
 import ChatInput from "./components/ChatInput";

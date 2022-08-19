@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 import debounce from "lodash.debounce";
@@ -18,7 +18,11 @@ function classNames(...classes) {
 }
 
 function ResearcherCombobox({
-  label, filteredItem, setQuery, members, ...props
+  label,
+  filteredItem,
+  setQuery,
+  members,
+  ...props
 }) {
   const [field, meta, helpers] = useField(props);
 
@@ -32,7 +36,12 @@ function ResearcherCombobox({
 
   return (
     <div>
-      <Combobox as="div" value={value} onBlur={handleBlur} onChange={(val) => setValue(val._id)}>
+      <Combobox
+        as="div"
+        value={value}
+        onBlur={handleBlur}
+        onChange={(val) => setValue(val._id)}
+      >
         <Combobox.Label
           htmlFor={props.id || props.name}
           className="block text-sm font-medium text-gray-700"
@@ -43,7 +52,9 @@ function ResearcherCombobox({
           <Combobox.Input
             className="w-full rounded-md border border-accent bg-white py-2 pl-3 pr-10 font-bold text-primary shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:text-sm"
             onChange={(event) => setQuery(event.target.value)}
-            displayValue={(value) => filteredItem.find(({ _id }) => value === _id)?.fullName}
+            displayValue={(value) =>
+              filteredItem.find(({ _id }) => value === _id)?.fullName
+            }
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
             <SelectorIcon className="h-5 w-5 text-primary" aria-hidden="true" />
@@ -55,15 +66,22 @@ function ResearcherCombobox({
                 <Combobox.Option
                   key={item._id}
                   value={item}
-                  className={({ active }) => classNames(
-                    "relative cursor-default select-none py-2 pl-3 pr-9",
-                    active ? "bg-primary text-secondary" : "text-primary",
-                  )}
+                  className={({ active }) =>
+                    classNames(
+                      "relative cursor-default select-none py-2 pl-3 pr-9",
+                      active ? "bg-primary text-secondary" : "text-primary",
+                    )
+                  }
                 >
                   {({ active, selected }) => (
                     <>
                       <div className="flex">
-                        <span className={classNames("truncate", selected && "font-semibold")}>
+                        <span
+                          className={classNames(
+                            "truncate",
+                            selected && "font-semibold",
+                          )}
+                        >
                           {item.fullName}
                         </span>
                         <span
@@ -94,27 +112,27 @@ function ResearcherCombobox({
           )}
         </div>
       </Combobox>
-      {touched && error ? <div className="mt-1 text-xs text-red-500">{error}</div> : null}
+      {touched && error ? (
+        <div className="mt-1 text-xs text-red-500">{error}</div>
+      ) : null}
     </div>
   );
 }
 
-function MemberAddModal({
-  open, setOpen, members, teamId,
-}) {
+function MemberAddModal({ open, setOpen, members, teamId }) {
   const [researchers, setResearchers] = useState([]);
   const [selectedReseracher, setSelectedResearcher] = useState(null);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchResearchers("");
-  }, []);
-
   const fetchResearchers = async (query) => {
     const { data } = await axios.get(`/api/user/search?param=${query}`);
     setResearchers(data);
   };
+
+  useEffect(() => {
+    fetchResearchers("");
+  }, []);
 
   const handleQuery = debounce((query) => {
     fetchResearchers(query);

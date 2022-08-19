@@ -8,7 +8,9 @@ function ChatContainer() {
   const [allMessages, setAllMessages] = useState([]);
   const endMessage = useRef(null);
 
-  const { chat: chatId } = useSelector(({ selectedTeamId, acceptedTeams }) => acceptedTeams.data.find(({ _id }) => _id === selectedTeamId));
+  const { chat: chatId } = useSelector(({ selectedTeamId, acceptedTeams }) =>
+    acceptedTeams.data.find(({ _id }) => _id === selectedTeamId),
+  );
 
   useEffect(() => {
     async function fetchAllMessages() {
@@ -16,6 +18,7 @@ function ChatContainer() {
         const { data } = await axios.get(`/api/chat/${chatId}`);
         console.log(data);
         setAllMessages(data);
+        // eslint-disable-next-line no-empty
       } catch (_) {}
     }
 

@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAcceptedTeams } from "~/store/actions/teamActions";
@@ -19,7 +19,10 @@ function NavigationBar({ sidebarOpen, setSidebarOpen }) {
 
   return (
     <div>
-      <NavigationBarMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <NavigationBarMobile
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
 
       <NavigationBarDesktop />
     </div>

@@ -4,23 +4,26 @@ import BaseInput from "~/components/generic/form/BaseInput";
 import FormModal from "~/components/FormModal";
 import TextEditorInput from "~/components/TextEditorInput";
 
-import {
-  name, title, description, date,
-} from "~/utils/validation";
+import { name, title, description, date } from "~/utils/validation";
 import { updateAcceptedTeam } from "~/store/actions/teamActions";
 
 function ProposalModal(props) {
+  const { setOpen } = props;
   const dispatch = useDispatch();
 
   const handleSubmit = async (values) => {
     dispatch(updateAcceptedTeam(values));
-    props.setOpen(false);
+    setOpen(false);
   };
 
   return (
     <FormModal
       validation={{
-        name, title, description, startDate: date, endDate: date,
+        name,
+        title,
+        description,
+        startDate: date,
+        endDate: date,
       }}
       handleSubmit={handleSubmit}
       {...props}

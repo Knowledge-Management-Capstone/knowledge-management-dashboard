@@ -13,7 +13,9 @@ function ChatInput() {
   const {
     data: { _id: sender },
   } = useSelector((state) => state.user);
-  const { chat: chatId } = useSelector(({ selectedTeamId, acceptedTeams }) => acceptedTeams.data.find(({ _id }) => _id === selectedTeamId));
+  const { chat: chatId } = useSelector(({ selectedTeamId, acceptedTeams }) =>
+    acceptedTeams.data.find(({ _id }) => _id === selectedTeamId),
+  );
 
   const handleSubmit = async (e) => {
     if (e.key && !(e.key === "Enter")) {

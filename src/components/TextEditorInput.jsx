@@ -14,13 +14,18 @@ function TextEditorInput({ label, ...props }) {
 
   return (
     <div className="mt-3">
-      <label htmlFor={props.id || props.name} className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor={props.id || props.name}
+        className="block text-sm font-medium text-gray-700"
+      >
         {label}
       </label>
       <div className="mt-1">
         <ReactQuill value={value} onBlur={handleBlur} setValue={setValue} />
       </div>
-      {touched && error ? <div className="mt-1 text-xs text-red-500">{meta.error}</div> : null}
+      {touched && error ? (
+        <div className="mt-1 text-xs text-red-500">{meta.error}</div>
+      ) : null}
     </div>
   );
 }

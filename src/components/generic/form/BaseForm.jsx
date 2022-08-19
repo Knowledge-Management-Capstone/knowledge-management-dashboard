@@ -1,9 +1,7 @@
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
-function BaseForm({
-  initialValues, validation, handleSubmit, children,
-}) {
+function BaseForm({ initialValues, validation, handleSubmit, children }) {
   const onSubmit = (values, { setSubmitting }) => {
     handleSubmit(values);
     setSubmitting(false);

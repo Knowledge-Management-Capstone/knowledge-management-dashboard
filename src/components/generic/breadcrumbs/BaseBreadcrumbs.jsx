@@ -4,7 +4,7 @@ import clsx from "clsx";
 function BaseBreadcrumbs({ pages, separator: SeparatorIcon }) {
   return (
     <nav className="flex" aria-label="Breadcrumb">
-      <ol role="list" className="flex items-center">
+      <ol className="flex items-center">
         {pages.map((p, i) => (
           <li key={p.name}>
             <div className="flex items-center">

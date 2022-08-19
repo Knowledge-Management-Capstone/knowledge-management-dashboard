@@ -2,9 +2,7 @@ import BaseButton from "./generic/button/BaseButton";
 import BaseForm from "./generic/form/BaseForm";
 import BaseModal from "./generic/modal/BaseModal";
 
-function FormModal({
-  title, open, setOpen, children, ...props
-}) {
+function FormModal({ title, open, setOpen, children, ...props }) {
   return (
     <BaseModal title={title} open={open} setOpen={setOpen}>
       <BaseForm {...props}>

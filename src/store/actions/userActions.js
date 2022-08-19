@@ -19,7 +19,9 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: ERROR_USER,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
     MySwal.fire({
       icon: "error",
@@ -29,31 +31,33 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const register = (fullName, email, userId, faculty, major, accountType, password) => async (dispatch) => {
-  dispatch({ type: LOADING_USER });
+export const register =
+  (fullName, email, userId, faculty, major, accountType, password) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: LOADING_USER });
 
-  const { data } = await axios.post("/api/user", {
-    fullName,
-    email,
-    userId,
-    faculty,
-    major,
-    accountType,
-    password,
-  });
+      const { data } = await axios.post("/api/user", {
+        fullName,
+        email,
+        userId,
+        faculty,
+        major,
+        accountType,
+        password,
+      });
 
-  dispatch({ type: USER_REGISTER, payload: data });
-  try {
-  } catch (error) {
-    dispatch({
-      type: ERROR_USER,
-      payload:
+      dispatch({ type: USER_REGISTER, payload: data });
+    } catch (error) {
+      dispatch({
+        type: ERROR_USER,
+        payload:
           error.response && error.response.data.message
             ? error.response.data.message
             : error.message,
-    });
-  }
-};
+      });
+    }
+  };
 
 export const logout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });

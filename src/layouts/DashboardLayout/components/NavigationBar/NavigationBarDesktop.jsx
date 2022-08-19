@@ -17,9 +17,12 @@ function NavigationBarDesktop() {
   const { data: acceptedTeams } = useSelector((state) => state.acceptedTeams);
   const selectedTeamId = useSelector((state) => state.selectedTeamId);
 
-  const filteredTeams = query === ""
-    ? acceptedTeams
-    : acceptedTeams.filter((team) => team.name.toLowerCase().includes(query.toLowerCase()));
+  const filteredTeams =
+    query === ""
+      ? acceptedTeams
+      : acceptedTeams.filter((team) =>
+          team.name.toLowerCase().includes(query.toLowerCase()),
+        );
 
   useEffect(() => {
     setSelectedTeam(acceptedTeams.find(({ _id }) => _id === selectedTeamId));
@@ -56,7 +59,12 @@ function NavigationBarDesktop() {
               <NavigationBarItem {...navigation} key={navigation.name} />
             ))}
             <div className="pt-3">
-              <NavigationBarItem name="Keluar" path="#" icon={LogoutIcon} onLogout={handleLogout} />
+              <NavigationBarItem
+                name="Keluar"
+                path="#"
+                icon={LogoutIcon}
+                onLogout={handleLogout}
+              />
             </div>
           </nav>
         </div>

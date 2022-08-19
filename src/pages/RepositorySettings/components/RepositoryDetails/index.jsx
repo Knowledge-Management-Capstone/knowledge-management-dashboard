@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import BaseButton from "~/components/generic/button/BaseButton";
@@ -8,7 +8,9 @@ import RepositoryEditModal from "./RepositoryEditModal";
 function RepositoryDetails() {
   const [openDialog, setOpenDialog] = useState(false);
 
-  const detail = useSelector(({ selectedTeamId, acceptedTeams }) => acceptedTeams.data.find(({ _id }) => _id === selectedTeamId));
+  const detail = useSelector(({ selectedTeamId, acceptedTeams }) =>
+    acceptedTeams.data.find(({ _id }) => _id === selectedTeamId),
+  );
 
   const { repository, ...rest } = detail;
 
@@ -16,7 +18,9 @@ function RepositoryDetails() {
 
   return (
     <>
-      <h1 className="mt-3 text-2xl font-semibold text-gray-900">{detail?.name}</h1>
+      <h1 className="mt-3 text-2xl font-semibold text-gray-900">
+        {detail?.name}
+      </h1>
       <div className="my-6 ml-4 flex flex-col">
         <div className="text-lg font-medium">Topic</div>
         {/* TODO: Add this field to db */}
@@ -25,16 +29,16 @@ function RepositoryDetails() {
         <div>
           <time dateTime={detail?.repository?.startDate}>
             {toLocaleFormat(detail?.repository?.startDate)}
-          </time>
-          {" "}
-          -
-          {" "}
+          </time>{" "}
+          -{" "}
           <time dateTime={detail?.repository?.endDate}>
             {toLocaleFormat(detail?.repository?.endDate)}
           </time>
         </div>
         <div className="mt-5 text-lg  font-medium">Description</div>
-        <div dangerouslySetInnerHTML={{ __html: detail?.repository?.description }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: detail?.repository?.description }}
+        />
         {data?._id === detail?.administrator?._id && (
           <BaseButton className="ml-auto" onClick={() => setOpenDialog(true)}>
             Edit

@@ -27,7 +27,9 @@ export const fetchTeams = (id) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -44,7 +46,9 @@ export const createTeam = (payload) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -58,7 +62,9 @@ export const updateTeam = (payload) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -72,7 +78,9 @@ export const deleteTeam = (id) => async (dispatch) => {
     dispatch({
       type: ERROR_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -94,40 +102,48 @@ export const fetchAcceptedTeams = (id) => async (dispatch) => {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
 
 export const addTeamMember = (payload) => async (dispatch) => {
   try {
-    await axios.put(`/api/team/${payload.teamId}/member/${payload.researcher._id}`);
+    await axios.put(
+      `/api/team/${payload.teamId}/member/${payload.researcher._id}`,
+    );
 
     dispatch({ type: ADD_TEAM_MEMBER, payload });
   } catch (error) {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
 
-export const deleteTeamMember = ({ teamId, userId }) => async (dispatch) => {
-  try {
-    await axios.delete(`/api/team/${teamId}/member/${userId}`);
+export const deleteTeamMember =
+  ({ teamId, userId }) =>
+  async (dispatch) => {
+    try {
+      await axios.delete(`/api/team/${teamId}/member/${userId}`);
 
-    dispatch({ type: DELETE_TEAM_MEMBER, payload: { userId, teamId } });
-  } catch (error) {
-    dispatch({
-      type: ERROR_ACCEPTED_TEAM,
-      payload:
+      dispatch({ type: DELETE_TEAM_MEMBER, payload: { userId, teamId } });
+    } catch (error) {
+      dispatch({
+        type: ERROR_ACCEPTED_TEAM,
+        payload:
           error.response && error.response.data.message
             ? error.response.data.message
             : error.message,
-    });
-  }
-};
+      });
+    }
+  };
 
 export const updateAcceptedTeam = (payload) => async (dispatch) => {
   try {
@@ -138,7 +154,9 @@ export const updateAcceptedTeam = (payload) => async (dispatch) => {
     dispatch({
       type: ERROR_ACCEPTED_TEAM,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };

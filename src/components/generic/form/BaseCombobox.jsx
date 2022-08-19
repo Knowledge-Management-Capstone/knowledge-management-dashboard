@@ -27,14 +27,21 @@ export default function BaseCombobox({ filteredItem, setQuery, ...props }) {
               <Combobox.Option
                 key={item._id}
                 value={item}
-                className={({ active }) => classNames(
-                  "relative cursor-default select-none py-2 pl-3 pr-9",
-                  active ? "bg-primary text-secondary" : "text-primary",
-                )}
+                className={({ active }) =>
+                  classNames(
+                    "relative cursor-default select-none py-2 pl-3 pr-9",
+                    active ? "bg-primary text-secondary" : "text-primary",
+                  )
+                }
               >
                 {({ active, selected }) => (
                   <>
-                    <span className={classNames("block truncate", selected && "font-semibold")}>
+                    <span
+                      className={classNames(
+                        "block truncate",
+                        selected && "font-semibold",
+                      )}
+                    >
                       {item.name}
                     </span>
 

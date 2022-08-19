@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { LockClosedIcon } from "@heroicons/react/outline";
 
 import {
-  fullName, email, userId, faculty, major, accountType, password,
+  fullName,
+  email,
+  userId,
+  faculty,
+  major,
+  accountType,
+  password,
 } from "~/utils/validation";
 import { register } from "~/store/actions/userActions";
 
@@ -36,10 +42,11 @@ function Register() {
   }, [token, navigate]);
 
   const handleSubmit = (values) => {
-    const {
-      fullName, email, userId, faculty, major, accountType, password,
-    } = values;
-    dispatch(register(fullName, email, userId, faculty, major, accountType, password));
+    const { fullName, email, userId, faculty, major, accountType, password } =
+      values;
+    dispatch(
+      register(fullName, email, userId, faculty, major, accountType, password),
+    );
   };
 
   return (
@@ -86,9 +93,11 @@ function Register() {
           </BaseForm>
           <div className="mt-6">
             <p className="mt-2 text-center text-sm text-gray-600">
-              Already have an account?
-              {" "}
-              <Link to="/login" className="font-medium text-primary hover:text-accent">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="font-medium text-primary hover:text-accent"
+              >
                 Sign In
               </Link>
             </p>

@@ -25,14 +25,16 @@ function RepositoryHistory() {
     }
 
     fetchTeams();
-  }, []);
+  }, [_id]);
 
   return (
     <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 md:px-8">
-      <h1 className="text-2xl font-semibold text-gray-900">Repository Penelitian</h1>
+      <h1 className="text-2xl font-semibold text-gray-900">
+        Repository Penelitian
+      </h1>
       <BaseTable header={header} loading={loading} empty={teams.length === 0}>
-        {teams
-          && teams.map((t) => (
+        {teams &&
+          teams.map((t) => (
             <tr key={t._id}>
               <BaseTableItem>{t.name}</BaseTableItem>
               <BaseTableItem>{t.repository.title}</BaseTableItem>
@@ -53,7 +55,9 @@ function RepositoryHistory() {
                   {t.status}
                 </span>
               </BaseTableItem>
-              <BaseTableItem>{t.repository.startDate.slice(0, 4)}</BaseTableItem>
+              <BaseTableItem>
+                {t.repository.startDate.slice(0, 4)}
+              </BaseTableItem>
             </tr>
           ))}
       </BaseTable>

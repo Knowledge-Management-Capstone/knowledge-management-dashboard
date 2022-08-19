@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import {
-  DocumentTextIcon, FolderIcon, PencilAltIcon, TrashIcon,
+  DocumentTextIcon,
+  FolderIcon,
+  PencilAltIcon,
+  TrashIcon,
 } from "@heroicons/react/outline";
 
 function DocumentItem({ type, onRename }) {
   return (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
       to="#"
       className="max-w-md rounded-md hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"

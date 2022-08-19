@@ -1,9 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
 
-import { fetchTeams, updateTeam, deleteTeam } from "~/store/actions/teamActions";
+import {
+  fetchTeams,
+  updateTeam,
+  deleteTeam,
+} from "~/store/actions/teamActions";
 
 import BaseTable from "~/components/generic/table/BaseTable";
 import BaseTableItem from "~/components/generic/table/BaseTableItem";
@@ -44,8 +48,8 @@ function ProposalTable() {
   return (
     <>
       <BaseTable header={header} loading={loading} empty={teams.length === 0}>
-        {teams
-          && teams.map((p) => (
+        {teams &&
+          teams.map((p) => (
             <tr key={p._id}>
               <BaseTableItem className="font-medium">{p.name}</BaseTableItem>
               <BaseTableItem>

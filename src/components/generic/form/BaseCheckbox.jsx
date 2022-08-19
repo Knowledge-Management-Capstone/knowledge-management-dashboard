@@ -11,7 +11,10 @@ function BaseCheckbox({ label, ...props }) {
         {...field}
         {...props}
       />
-      <label htmlFor={props.id || props.name} className="ml-2 block text-sm text-gray-900">
+      <label
+        htmlFor={props.id || props.name}
+        className="ml-2 block text-sm text-gray-900"
+      >
         {label}
       </label>
     </div>

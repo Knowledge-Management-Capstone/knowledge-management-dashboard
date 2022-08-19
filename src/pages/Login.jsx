@@ -52,7 +52,11 @@ function Login() {
             <div className="flex items-center justify-between">
               <BaseCheckbox label="Remember me" name="remember" />
               <div className="mt-3 text-sm">
-                <Link to="#" className="font-medium text-primary hover:text-accent">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <Link
+                  to="#"
+                  className="font-medium text-primary hover:text-accent"
+                >
                   Forgot your password?
                 </Link>
               </div>
@@ -63,9 +67,11 @@ function Login() {
           </BaseForm>
           <div className="mt-6">
             <p className="mt-2 text-center text-sm text-gray-600">
-              Don't have an account?
-              {" "}
-              <Link to="/register" className="font-medium text-primary hover:text-accent">
+              Don&apos;t have an account?{" "}
+              <Link
+                to="/register"
+                className="font-medium text-primary hover:text-accent"
+              >
                 Register
               </Link>
             </p>
