@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import clsx from 'clsx'
+import { toTimeOnlyFormat } from '~/utils/date'
 
 const loggedInId = 1
 
@@ -24,6 +25,9 @@ const ChatBubble = ({ message }) => {
           })}
         >
           {message.text}
+          <time dateTime={message.createdAt} className="mt-2 flex justify-end text-xs italic">
+            {toTimeOnlyFormat(message.createdAt)}
+          </time>
         </p>
       </div>
     </div>
