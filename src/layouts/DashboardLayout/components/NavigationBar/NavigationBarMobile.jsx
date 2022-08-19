@@ -1,28 +1,25 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XIcon, LogoutIcon } from '@heroicons/react/outline'
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { XIcon, LogoutIcon } from "@heroicons/react/outline";
 
-import dashboard from '~/config/dashboard'
+import dashboard from "~/config/dashboard";
 
-import BaseCombobox from '~/components/generic/form/BaseCombobox'
-import NavigationBarItem from './NavigationBarItem'
+import BaseCombobox from "~/components/generic/form/BaseCombobox";
+import NavigationBarItem from "./NavigationBarItem";
 
 const people = [
-  { id: 1, name: 'Leslie Alexander' }
+  { id: 1, name: "Leslie Alexander" },
 
   // More users...
-]
+];
 
-const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
-  const [query, setQuery] = useState('')
-  const [selectedPerson, setSelectedPerson] = useState()
+function NavigationBarMobile({ sidebarOpen, setSidebarOpen }) {
+  const [query, setQuery] = useState("");
+  const [selectedPerson, setSelectedPerson] = useState();
 
-  const filteredPeople =
-    query === ''
-      ? people
-      : people.filter((person) => {
-          return person.name.toLowerCase().includes(query.toLowerCase())
-        })
+  const filteredPeople = query === ""
+    ? people
+    : people.filter((person) => person.name.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -94,10 +91,10 @@ const NavigationBarMobile = ({ sidebarOpen, setSidebarOpen }) => {
             </div>
           </div>
         </Transition.Child>
-        <div className="w-14 flex-shrink-0" aria-hidden="true"></div>
+        <div className="w-14 flex-shrink-0" aria-hidden="true" />
       </Dialog>
     </Transition.Root>
-  )
+  );
 }
 
-export default NavigationBarMobile
+export default NavigationBarMobile;

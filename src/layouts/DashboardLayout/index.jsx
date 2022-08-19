@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import NavigationBar from './components/NavigationBar'
+import NavigationBar from "./components/NavigationBar";
 
-const DashboardLayout = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const navigate = useNavigate()
+function DashboardLayout({ children }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   const {
-    data: { token }
-  } = useSelector((state) => state.user)
+    data: { token },
+  } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!token) navigate('/login')
-  }, [token, navigate])
+    if (!token) navigate("/login");
+  }, [token, navigate]);
 
   return (
     <div className="min-h-screen">
@@ -23,7 +23,7 @@ const DashboardLayout = ({ children }) => {
         <main className="h-full">{children}</main>
       </div>
     </div>
-  )
+  );
 }
 
-export default DashboardLayout
+export default DashboardLayout;

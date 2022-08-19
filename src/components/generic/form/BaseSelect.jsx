@@ -1,7 +1,7 @@
-import { useField } from 'formik'
+import { useField } from "formik";
 
-const BaseSelect = ({ label, ...props }) => {
-  const [field, meta] = useField(props)
+function BaseSelect({ label, ...props }) {
+  const [field, meta] = useField(props);
 
   return (
     <div className="mt-3">
@@ -17,7 +17,7 @@ const BaseSelect = ({ label, ...props }) => {
         <div className="mt-1 text-xs text-red-500">{meta.error}</div>
       ) : null}
     </div>
-  )
+  );
 }
 
-export default BaseSelect
+export default BaseSelect;

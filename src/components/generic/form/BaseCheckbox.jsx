@@ -1,7 +1,7 @@
-import { useField } from 'formik'
+import { useField } from "formik";
 
-const BaseCheckbox = ({ label, ...props }) => {
-  const [field] = useField(props)
+function BaseCheckbox({ label, ...props }) {
+  const [field] = useField(props);
 
   return (
     <div className="mt-3 flex items-center">
@@ -15,7 +15,7 @@ const BaseCheckbox = ({ label, ...props }) => {
         {label}
       </label>
     </div>
-  )
+  );
 }
 
-export default BaseCheckbox
+export default BaseCheckbox;

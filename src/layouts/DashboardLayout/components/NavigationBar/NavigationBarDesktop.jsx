@@ -1,40 +1,37 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { LogoutIcon } from '@heroicons/react/outline'
-import dashboard from '~/config/dashboard'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LogoutIcon } from "@heroicons/react/outline";
+import dashboard from "~/config/dashboard";
 
-import { selectTeam } from '~/store/actions/teamActions'
+import { selectTeam } from "~/store/actions/teamActions";
 
-import BaseCombobox from '~/components/generic/form/BaseCombobox'
-import NavigationBarItem from './NavigationBarItem'
+import BaseCombobox from "~/components/generic/form/BaseCombobox";
+import NavigationBarItem from "./NavigationBarItem";
 
-const NavigationBarDesktop = () => {
-  const [query, setQuery] = useState('')
-  const [selectedTeam, setSelectedTeam] = useState({})
+function NavigationBarDesktop() {
+  const [query, setQuery] = useState("");
+  const [selectedTeam, setSelectedTeam] = useState({});
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const { data: acceptedTeams } = useSelector((state) => state.acceptedTeams)
-  const selectedTeamId = useSelector((state) => state.selectedTeamId)
+  const { data: acceptedTeams } = useSelector((state) => state.acceptedTeams);
+  const selectedTeamId = useSelector((state) => state.selectedTeamId);
 
-  const filteredTeams =
-    query === ''
-      ? acceptedTeams
-      : acceptedTeams.filter((team) => {
-          return team.name.toLowerCase().includes(query.toLowerCase())
-        })
+  const filteredTeams = query === ""
+    ? acceptedTeams
+    : acceptedTeams.filter((team) => team.name.toLowerCase().includes(query.toLowerCase()));
 
   useEffect(() => {
-    setSelectedTeam(acceptedTeams.find(({ _id }) => _id === selectedTeamId))
-  }, [selectedTeamId, acceptedTeams])
+    setSelectedTeam(acceptedTeams.find(({ _id }) => _id === selectedTeamId));
+  }, [selectedTeamId, acceptedTeams]);
 
   const handleSelectTeam = ({ _id }) => {
-    dispatch(selectTeam(_id))
-  }
+    dispatch(selectTeam(_id));
+  };
 
   const handleLogout = () => {
-    console.log('logout')
-  }
+    console.log("logout");
+  };
 
   return (
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
@@ -65,7 +62,7 @@ const NavigationBarDesktop = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default NavigationBarDesktop
+export default NavigationBarDesktop;

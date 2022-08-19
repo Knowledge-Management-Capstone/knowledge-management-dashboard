@@ -1,32 +1,34 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useSelector, useDispatch } from 'react-redux'
-import { Form, Formik, useField } from 'formik'
-import * as Yup from 'yup'
-import debounce from 'lodash.debounce'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
-import { Combobox } from '@headlessui/react'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { Form, Formik, useField } from "formik";
+import * as Yup from "yup";
+import debounce from "lodash.debounce";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { Combobox } from "@headlessui/react";
 
-import { researcher } from '~/utils/validation'
+import { researcher } from "~/utils/validation";
 
-import BaseButton from '~/components/generic/button/BaseButton'
-import BaseModal from '~/components/generic/modal/BaseModal'
-import { addTeamMember } from '~/store/actions/teamActions'
+import BaseButton from "~/components/generic/button/BaseButton";
+import BaseModal from "~/components/generic/modal/BaseModal";
+import { addTeamMember } from "~/store/actions/teamActions";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
-const ResearcherCombobox = ({ label, filteredItem, setQuery, members, ...props }) => {
-  const [field, meta, helpers] = useField(props)
+function ResearcherCombobox({
+  label, filteredItem, setQuery, members, ...props
+}) {
+  const [field, meta, helpers] = useField(props);
 
-  const { onBlur, value } = field
-  const { touched, error } = meta
-  const { setValue } = helpers
+  const { onBlur, value } = field;
+  const { touched, error } = meta;
+  const { setValue } = helpers;
 
   const handleBlur = () => {
-    onBlur({ target: { name: props.name } })
-  }
+    onBlur({ target: { name: props.name } });
+  };
 
   return (
     <div>
@@ -53,23 +55,21 @@ const ResearcherCombobox = ({ label, filteredItem, setQuery, members, ...props }
                 <Combobox.Option
                   key={item._id}
                   value={item}
-                  className={({ active }) =>
-                    classNames(
-                      'relative cursor-default select-none py-2 pl-3 pr-9',
-                      active ? 'bg-primary text-secondary' : 'text-primary'
-                    )
-                  }
+                  className={({ active }) => classNames(
+                    "relative cursor-default select-none py-2 pl-3 pr-9",
+                    active ? "bg-primary text-secondary" : "text-primary",
+                  )}
                 >
                   {({ active, selected }) => (
                     <>
                       <div className="flex">
-                        <span className={classNames('truncate', selected && 'font-semibold')}>
+                        <span className={classNames("truncate", selected && "font-semibold")}>
                           {item.fullName}
                         </span>
                         <span
                           className={classNames(
-                            'ml-2 truncate text-gray-500',
-                            active ? 'text-indigo-200' : 'text-gray-500'
+                            "ml-2 truncate text-gray-500",
+                            active ? "text-indigo-200" : "text-gray-500",
                           )}
                         >
                           {item.email}
@@ -79,8 +79,8 @@ const ResearcherCombobox = ({ label, filteredItem, setQuery, members, ...props }
                       {selected && (
                         <span
                           className={classNames(
-                            'absolute inset-y-0 right-0 flex items-center pr-4',
-                            active ? 'text-white' : 'text-primary'
+                            "absolute inset-y-0 right-0 flex items-center pr-4",
+                            active ? "text-white" : "text-primary",
                           )}
                         >
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -96,50 +96,52 @@ const ResearcherCombobox = ({ label, filteredItem, setQuery, members, ...props }
       </Combobox>
       {touched && error ? <div className="mt-1 text-xs text-red-500">{error}</div> : null}
     </div>
-  )
+  );
 }
 
-const MemberAddModal = ({ open, setOpen, members, teamId }) => {
-  const [researchers, setResearchers] = useState([])
-  const [selectedReseracher, setSelectedResearcher] = useState(null)
+function MemberAddModal({
+  open, setOpen, members, teamId,
+}) {
+  const [researchers, setResearchers] = useState([]);
+  const [selectedReseracher, setSelectedResearcher] = useState(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchResearchers('')
-  }, [])
+    fetchResearchers("");
+  }, []);
 
   const fetchResearchers = async (query) => {
-    const { data } = await axios.get(`/api/user/search?param=${query}`)
-    setResearchers(data)
-  }
+    const { data } = await axios.get(`/api/user/search?param=${query}`);
+    setResearchers(data);
+  };
 
   const handleQuery = debounce((query) => {
-    fetchResearchers(query)
-  }, 500)
+    fetchResearchers(query);
+  }, 500);
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     if (members.includes(values.researcher)) {
-      setFieldError('researcher', 'Researcher already exists')
-      return
+      setFieldError("researcher", "Researcher already exists");
+      return;
     }
 
     dispatch(
       addTeamMember({
         teamId,
-        researcher: researchers.find(({ _id }) => _id === values.researcher)
-      })
-    )
+        researcher: researchers.find(({ _id }) => _id === values.researcher),
+      }),
+    );
 
-    setSubmitting(false)
-    setOpen(false)
-  }
+    setSubmitting(false);
+    setOpen(false);
+  };
 
   return (
     <BaseModal title="Add Member" open={open} setOpen={setOpen}>
       <Formik
-        initialValues={{ researcher: '' }}
-        validationSchema={Yup.object({ researcher: '' })}
+        initialValues={{ researcher: "" }}
+        validationSchema={Yup.object({ researcher: "" })}
         validation={{ researcher }}
         onSubmit={handleSubmit}
       >
@@ -173,7 +175,7 @@ const MemberAddModal = ({ open, setOpen, members, teamId }) => {
         </Form>
       </Formik>
     </BaseModal>
-  )
+  );
 }
 
-export default MemberAddModal
+export default MemberAddModal;

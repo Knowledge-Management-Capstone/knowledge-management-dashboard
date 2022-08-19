@@ -1,17 +1,15 @@
-import { useSelector } from 'react-redux'
-import { InformationCircleIcon } from '@heroicons/react/outline'
+import { useSelector } from "react-redux";
+import { InformationCircleIcon } from "@heroicons/react/outline";
 
-import BaseIconButton from '~/components/generic/button/BaseIconButton'
+import BaseIconButton from "~/components/generic/button/BaseIconButton";
 
 const research = {
-  title: 'Capstone Project',
-  members: ['Dian Rahmaji', 'Dzakiy Harissalam']
-}
+  title: "Capstone Project",
+  members: ["Dian Rahmaji", "Dzakiy Harissalam"],
+};
 
-const DiscussionHeader = ({ setOpen }) => {
-  const teamDetail = useSelector(({ selectedTeamId, acceptedTeams }) => {
-    return acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
-  })
+function DiscussionHeader({ setOpen }) {
+  const teamDetail = useSelector(({ selectedTeamId, acceptedTeams }) => acceptedTeams.data.find(({ _id }) => _id === selectedTeamId));
 
   return (
     <div className="mx-auto w-full px-4 sm:px-6 md:px-8">
@@ -25,8 +23,8 @@ const DiscussionHeader = ({ setOpen }) => {
                   <p className="mt-2 text-sm text-gray-500">
                     {teamDetail.members.length
                       ? [teamDetail.administrator, ...teamDetail.members].reduce(
-                          (prev, curr) => prev?.fullName + ', ' + curr?.fullName
-                        )
+                        (prev, curr) => `${prev?.fullName}, ${curr?.fullName}`,
+                      )
                       : teamDetail.administrator.fullName}
                   </p>
                 </div>
@@ -41,7 +39,7 @@ const DiscussionHeader = ({ setOpen }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default DiscussionHeader
+export default DiscussionHeader;

@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
-import DashboardLayout from '~/layouts/DashboardLayout'
-import MemberTable from './components/MemberTable'
-import RepositoryDetails from './components/RepositoryDetails'
+import DashboardLayout from "~/layouts/DashboardLayout";
+import MemberTable from "./components/MemberTable";
+import RepositoryDetails from "./components/RepositoryDetails";
 
-const RepositorySettings = () => {
-  const teamDetail = useSelector(({ selectedTeamId, acceptedTeams }) => {
-    return acceptedTeams.data.find(({ _id }) => _id === selectedTeamId)
-  })
+function RepositorySettings() {
+  const teamDetail = useSelector(({ selectedTeamId, acceptedTeams }) => acceptedTeams.data.find(({ _id }) => _id === selectedTeamId));
 
   return (
     <DashboardLayout>
@@ -25,7 +23,7 @@ const RepositorySettings = () => {
         </div>
       </div>
     </DashboardLayout>
-  )
+  );
 }
 
-export default RepositorySettings
+export default RepositorySettings;
