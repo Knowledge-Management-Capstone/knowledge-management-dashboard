@@ -9,6 +9,7 @@ module.exports = {
     "react-app/jest",
     "airbnb",
     "plugin:react/recommended",
+    "plugin:prettier/recommended",
   ],
   overrides: [],
   parserOptions: {
@@ -19,7 +20,7 @@ module.exports = {
     sourceType: "module",
     project: "./jsconfig.json",
   },
-  plugins: ["react"],
+  plugins: ["react", "prettier"],
   rules: {
     quotes: ["error", "double", { avoidEscape: true }],
     "react/jsx-uses-react": "off",
@@ -30,6 +31,8 @@ module.exports = {
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }], // should add ".ts" if typescript project
     "react/prop-types": "warn",
     "no-shadow": "off",
-    "no-underscore-dangle": "off",
+    "comma-dangle": "off",
+    "import/no-unresolved": "off", // TODO: fix this
+    "import/extensions": "off", // TODO: fix this
   },
 };
