@@ -31,10 +31,9 @@ const ChatContainer = () => {
   return (
     <div className="h-7/8 mx-auto w-full overflow-y-scroll px-4 sm:px-6 md:px-14">
       <div className="flex flex-col">
-        {allMessages.map((m) => 
+        {allMessages.map((m) => (
           <ChatBubble key={m._id} message={m} />
-        )}
-        <pre>{JSON.stringify(allMessages, 0, 2)}</pre>
+        ))}
         <div ref={endMessage} />
       </div>
     </div>

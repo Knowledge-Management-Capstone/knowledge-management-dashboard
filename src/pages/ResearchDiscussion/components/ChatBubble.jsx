@@ -4,7 +4,9 @@ import clsx from 'clsx'
 const loggedInId = 1
 
 const ChatBubble = ({ message }) => {
-  const {data: {_id: userId}} = useSelector(data => data.user)
+  const {
+    data: { _id: userId }
+  } = useSelector((data) => data.user)
   console.log(userId, message.sender._id)
 
   return (
