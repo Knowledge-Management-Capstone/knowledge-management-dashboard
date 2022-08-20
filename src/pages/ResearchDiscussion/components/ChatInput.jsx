@@ -12,7 +12,7 @@ function ChatInput() {
   const { sendMessage } = useWebSocket();
 
   const {
-    data: { _id, fullName },
+    data: { _id },
   } = useSelector((state) => state.user);
 
   const handleSubmit = async (e) => {
@@ -20,13 +20,8 @@ function ChatInput() {
       return;
     }
     sendMessage({
-      sender: {
-        _id,
-        fullName,
-      },
+      sender: _id,
       text: message,
-      _id: Math.floor(Math.random() * 1_000_000),
-      createdAt: new Date(),
     });
     setLoading(true);
     setMessage("");

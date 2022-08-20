@@ -17,7 +17,7 @@ export default function WebSocketProvider({ children }) {
   const sendMessage = (message) => {
     socketRef.current.emit(roomId, message);
 
-    dispatch(updateChatLog(message));
+    dispatch(updateChatLog(roomId, message));
   };
 
   useEffect(() => {

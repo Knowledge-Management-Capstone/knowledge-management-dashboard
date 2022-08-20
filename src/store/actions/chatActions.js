@@ -25,8 +25,22 @@ export const fetchChatLog = (roomId) => async (dispatch) => {
   }
 };
 
-export const updateChatLog = (message) => async (dispatch) => {
-  dispatch({ type: UPDATE_CHAT_LOG, payload: message });
+export const updateChatLog = (roomId, message) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`/api/chat/${roomId}`, {
+      ...message,
+    });
+
+    dispatch({ type: UPDATE_CHAT_LOG, payload: data.message });
+  } catch (error) {
+    dispatch({
+      type: ERROR_CHAT_ROOM,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
 
 // FIXME: is this usable?
