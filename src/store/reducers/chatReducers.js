@@ -20,17 +20,24 @@ export const chatReducer = (
       return { ...state, loading: true };
     }
     case FETCH_CHAT_LOG: {
-      return { ...state, loading: false, data: { ...action.payload } };
+      return {
+        ...state,
+        error: null,
+        loading: false,
+        data: { ...action.payload },
+      };
     }
     case UPDATE_CHAT_LOG: {
       return {
         ...state,
+        error: null,
         data: { ...state.data, log: [...state.data.log, action.payload] },
       };
     }
     case SET_CHAT_ROOM_ID: {
       return {
         ...state,
+        error: null,
         data: { roomId: action.payload, log: [] },
       };
     }

@@ -4,6 +4,7 @@ import {
   FETCH_CHAT_LOG,
   LOADING_CHAT_LOG,
   SET_CHAT_ROOM_ID,
+  UPDATE_CHAT_LOG,
 } from "../constants/chatConstants";
 
 export const fetchChatLog = (roomId) => async (dispatch) => {
@@ -22,6 +23,10 @@ export const fetchChatLog = (roomId) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const updateChatLog = (message) => async (dispatch) => {
+  dispatch({ type: UPDATE_CHAT_LOG, payload: message });
 };
 
 // FIXME: is this usable?

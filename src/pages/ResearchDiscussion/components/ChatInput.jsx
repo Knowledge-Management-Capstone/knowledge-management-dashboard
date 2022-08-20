@@ -1,38 +1,41 @@
 import { useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { PaperClipIcon } from "@heroicons/react/outline";
 import { PaperAirplaneIcon } from "@heroicons/react/solid";
 
+import useWebSocket from "~/hooks/useWebSocket";
 import BaseIconButton from "~/components/generic/button/BaseIconButton";
 
 function ChatInput() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const { sendMessage } = useWebSocket();
 
   const {
-    data: { _id: sender },
+    data: { _id, fullName },
   } = useSelector((state) => state.user);
-  const { chat: chatId } = useSelector(({ selectedTeamId, acceptedTeams }) =>
-    acceptedTeams.data.find(({ _id }) => _id === selectedTeamId),
-  );
 
   const handleSubmit = async (e) => {
     if (e.key && !(e.key === "Enter")) {
       return;
     }
-    setLoading(true);
-    await axios.post(`/api/chat/${chatId}`, {
-      sender,
+    sendMessage({
+      sender: {
+        _id,
+        fullName,
+      },
       text: message,
+      _id: Math.floor(Math.random() * 1_000_000),
+      createdAt: new Date(),
     });
+    setLoading(true);
     setMessage("");
     setLoading(false);
   };
 
   return (
     <div className="w-full px-10 pb-10">
-      <div className="align-center flex justify-end gap-2">
+      <div className="flex items-center justify-end gap-2">
         <div className="mt-1 grow">
           <input
             type="text"
