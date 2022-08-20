@@ -15,7 +15,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "selectedTeamId", "acceptedTeams"],
+  whitelist: ["user", "chat", "selectedTeamId", "acceptedTeams"],
 };
 
 const reducer = combineReducers({
