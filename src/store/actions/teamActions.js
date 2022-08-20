@@ -96,7 +96,7 @@ export const fetchAcceptedTeams = (id) => async (dispatch) => {
 
     const persistedData = JSON.parse(localStorage.getItem("persist:root"));
 
-    if (!persistedData.selectedTeamId) {
+    if (persistedData.selectedTeamId.length === 2) {
       dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: data[0]._id });
       dispatch({ type: SET_CHAT_ROOM_ID, payload: data[0].chat });
     }
