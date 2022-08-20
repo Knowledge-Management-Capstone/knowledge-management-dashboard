@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SET_CHAT_ROOM_ID } from "../constants/chatConstants";
 
 import {
   ADD_TEAM_MEMBER,
@@ -97,6 +98,7 @@ export const fetchAcceptedTeams = (id) => async (dispatch) => {
 
     if (!persistedData.selectedTeamId) {
       dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: data[0]._id });
+      dispatch({ type: SET_CHAT_ROOM_ID, payload: data[0].chat });
     }
   } catch (error) {
     dispatch({
@@ -161,6 +163,7 @@ export const updateAcceptedTeam = (payload) => async (dispatch) => {
   }
 };
 
-export const selectTeam = (id) => (dispatch) => {
-  dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: id });
+export const selectTeam = (team) => (dispatch) => {
+  dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: team._id });
+  dispatch({ type: SET_CHAT_ROOM_ID, payload: team.chat });
 };

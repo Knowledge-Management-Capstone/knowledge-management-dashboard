@@ -1,9 +1,9 @@
-/* eslint-disable import/prefer-default-export, default-param-last */
 import axios from "axios";
 import {
   ERROR_CHAT_ROOM,
   FETCH_CHAT_LOG,
   LOADING_CHAT_LOG,
+  SET_CHAT_ROOM_ID,
 } from "../constants/chatConstants";
 
 export const fetchChatLog = (roomId) => async (dispatch) => {
@@ -22,4 +22,9 @@ export const fetchChatLog = (roomId) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+// FIXME: is this usable?
+export const setRoomId = (roomId) => (dispatch) => {
+  dispatch({ type: SET_CHAT_ROOM_ID, payload: roomId });
 };
