@@ -86,7 +86,7 @@ export const deleteTeam = (id) => async (dispatch) => {
   }
 };
 
-export const fetchAcceptedTeams = (id) => async (dispatch) => {
+export const fetchAcceptedTeams = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: LOADING_ACCEPTED_TEAM });
 
@@ -94,9 +94,7 @@ export const fetchAcceptedTeams = (id) => async (dispatch) => {
 
     dispatch({ type: FETCH_ACCEPTED_TEAM, payload: data });
 
-    const persistedData = JSON.parse(localStorage.getItem("persist:root"));
-
-    if (persistedData.selectedTeamId.length === 2) {
+    if (!getState().selectedTeamId.length) {
       dispatch({ type: SELECT_ACCEPTED_TEAM_ID, payload: data[0]._id });
       dispatch({ type: SET_CHAT_ROOM_ID, payload: data[0].chat });
     }
