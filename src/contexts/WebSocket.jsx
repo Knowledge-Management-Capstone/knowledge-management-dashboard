@@ -13,18 +13,41 @@ export default function WebSocketProvider({ children }) {
   const {
     data: { roomId },
   } = useSelector((state) => state.chat);
+  const {
+    data: { _id, fullName },
+  } = useSelector((state) => state.user);
 
   const sendMessage = (message) => {
-    socketRef.current.emit(roomId, message);
+    socketRef.current.emit("send_message", roomId, {
+      sender: _id,
+      text: message,
+    });
 
-    dispatch(updateChatLog(roomId, message));
+    dispatch(
+      updateChatLog({
+        _id: Math.floor(Math.random * 1_000_000),
+        text: message,
+        createdAt: new Date(),
+        sender: { _id, fullName },
+      }),
+    );
   };
 
   useEffect(() => {
-    if (!socketRef.current) {
+    if (!socketRef.current && _id) {
       socketRef.current = io(import.meta.env.VITE_BASE_URL);
     }
-  }, []);
+
+    return () => socketRef.current.disconnect();
+  }, [_id]);
+
+  useEffect(() => {
+    socketRef.current.emit("join_room", roomId);
+
+    socketRef.current.on("receive_message", (message) => {
+      dispatch(updateChatLog(message));
+    });
+  }, [dispatch, roomId]);
 
   const value = {
     socket: socketRef.current,

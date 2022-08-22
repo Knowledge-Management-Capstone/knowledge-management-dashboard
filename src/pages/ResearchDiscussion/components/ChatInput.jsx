@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { PaperClipIcon } from "@heroicons/react/outline";
 import { PaperAirplaneIcon } from "@heroicons/react/solid";
 
@@ -11,18 +10,11 @@ function ChatInput() {
   const [message, setMessage] = useState("");
   const { sendMessage } = useWebSocket();
 
-  const {
-    data: { _id },
-  } = useSelector((state) => state.user);
-
   const handleSubmit = async (e) => {
     if (e.key && !(e.key === "Enter")) {
       return;
     }
-    sendMessage({
-      sender: _id,
-      text: message,
-    });
+    sendMessage(message);
     setLoading(true);
     setMessage("");
     setLoading(false);
