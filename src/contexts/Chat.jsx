@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 
 import { updateChatLog } from "~/store/actions/chatActions";
+import { updateNotification } from "~/store/actions/notificationActions";
 
 export const ChatContext = createContext(undefined);
 
@@ -47,6 +48,7 @@ export default function ChatProvider({ children }) {
 
       socketRef.current.on("receive_message", (message) => {
         dispatch(updateChatLog(message));
+        dispatch(updateNotification());
       });
     }
   }, [dispatch, roomId, _id]);
