@@ -11,4 +11,4 @@ class SoundEffect {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export const notification = new SoundEffect("~/assets/audio/message.mp3");
+export const notification = new SoundEffect("/assets/audio/message.mp3");

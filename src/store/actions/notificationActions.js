@@ -17,7 +17,11 @@ export const fetchNotifications = (memberId, roomId) => async (dispatch) => {
       `/api/notification/${roomId}/member/${memberId}`,
     );
 
-    dispatch({ type: FETCH_NOTIFICATION, payload: data });
+    dispatch({ type: FETCH_NOTIFICATION, payload: data.unread_messages });
+
+    if (data.unread_messages > 0) {
+      notification.play();
+    }
   } catch (error) {
     dispatch({
       type: ERROR_NOTIFICATION,
