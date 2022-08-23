@@ -26,7 +26,8 @@ export default function ChatProvider({ children }) {
 
     dispatch(
       updateChatLog({
-        _id: Math.floor(Math.random * 1_000_000),
+        // TODO: use uuid instead
+        _id: Math.floor(Math.random() * 1_000_000),
         text: message,
         createdAt: new Date(),
         sender: { _id, fullName },
