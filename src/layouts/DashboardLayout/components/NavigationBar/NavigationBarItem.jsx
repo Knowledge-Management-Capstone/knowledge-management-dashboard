@@ -9,7 +9,7 @@ function NavigationBarItem({ name, path, icon: NavIcon, notification = 0 }) {
       key={name}
       to={path}
       className={clsx(
-        "group flex items-center justify-between rounded-md p-2 text-base font-medium text-white hover:text-secondary",
+        "flex items-center justify-between rounded-md p-2 text-base font-medium text-white hover:text-secondary",
         {
           "bg-primary hover:bg-accent": pathname !== path,
           "bg-accent font-bold": pathname === path,
@@ -21,7 +21,9 @@ function NavigationBarItem({ name, path, icon: NavIcon, notification = 0 }) {
         {name}
       </div>
       {notification !== 0 && (
-        <span className="rounded-full bg-red-500 px-2">{notification}</span>
+        <span className="rounded-full bg-red-400 px-2 !text-white">
+          {notification}
+        </span>
       )}
     </Link>
   );
