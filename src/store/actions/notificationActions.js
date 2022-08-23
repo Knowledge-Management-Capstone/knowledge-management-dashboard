@@ -14,7 +14,7 @@ export const fetchNotifications = (memberId, roomId) => async (dispatch) => {
     dispatch({ type: LOADING_NOTIFICATION });
 
     const { data } = await axios.get(
-      `/api/notification/${roomId}/member/${memberId}}`,
+      `/api/notification/${roomId}/member/${memberId}`,
     );
 
     dispatch({ type: FETCH_NOTIFICATION, payload: data });
@@ -36,7 +36,7 @@ export const updateNotification = () => (dispatch) => {
 
 export const resetNotification = (memberId, roomId) => async (dispatch) => {
   try {
-    await axios.put(`/api/notification/${roomId}/member/${memberId}}`);
+    await axios.put(`/api/notification/${roomId}/member/${memberId}`);
 
     dispatch({ type: RESET_NOTIFICATION });
   } catch (error) {
