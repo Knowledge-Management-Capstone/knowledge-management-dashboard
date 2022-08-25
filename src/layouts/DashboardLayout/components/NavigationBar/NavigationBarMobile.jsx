@@ -1,28 +1,41 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon, LogoutIcon } from "@heroicons/react/outline";
 
 import dashboard from "~/config/dashboard";
+import { selectTeam } from "~/store/actions/teamActions";
 
 import BaseCombobox from "~/components/generic/form/BaseCombobox";
 import NavigationBarItem from "./NavigationBarItem";
 
-const people = [
-  { id: 1, name: "Leslie Alexander" },
-
-  // More users...
-];
-
 function NavigationBarMobile({ sidebarOpen, setSidebarOpen }) {
   const [query, setQuery] = useState("");
-  const [selectedPerson, setSelectedPerson] = useState();
 
-  const filteredPeople =
+  const [selectedTeam, setSelectedTeam] = useState({});
+
+  const dispatch = useDispatch();
+
+  const { data: acceptedTeams } = useSelector((state) => state.acceptedTeams);
+  const selectedTeamId = useSelector((state) => state.selectedTeamId);
+  const { data: notification } = useSelector((state) => state.notification);
+
+  const filteredTeams =
     query === ""
-      ? people
-      : people.filter((person) =>
-          person.name.toLowerCase().includes(query.toLowerCase()),
+      ? acceptedTeams
+      : acceptedTeams.filter((team) =>
+          team.name.toLowerCase().includes(query.toLowerCase()),
         );
+
+  useEffect(() => {
+    setSelectedTeam(acceptedTeams.find(({ _id }) => _id === selectedTeamId));
+  }, [selectedTeamId, acceptedTeams]);
+
+  const handleSelectTeam = (team) => {
+    dispatch(selectTeam(team));
+  };
+
+  const handleLogout = () => {};
 
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -72,7 +85,7 @@ function NavigationBarMobile({ sidebarOpen, setSidebarOpen }) {
                 </button>
               </div>
             </Transition.Child>
-            <div className="flex flex-shrink-0 items-center px-4">
+            <div className="flex shrink-0 items-center px-4">
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
@@ -81,24 +94,46 @@ function NavigationBarMobile({ sidebarOpen, setSidebarOpen }) {
             </div>
             <div className="mt-5 h-0 flex-1 overflow-y-auto">
               <nav className="space-y-1 px-2">
-                <BaseCombobox
-                  className="mb-4"
-                  value={selectedPerson}
-                  onChange={setSelectedPerson}
-                  filteredPeople={filteredPeople}
-                  setQuery={setQuery}
-                />
-                {dashboard.map(({ navigation }) => (
-                  <NavigationBarItem {...navigation} key={navigation.name} />
-                ))}
+                {acceptedTeams.length > 0 && (
+                  <BaseCombobox
+                    className="mb-4"
+                    value={selectedTeam}
+                    onChange={handleSelectTeam}
+                    filteredItem={filteredTeams}
+                    setQuery={setQuery}
+                  />
+                )}
+                {acceptedTeams.length > 0 ? (
+                  Object.values(dashboard).map((navigation) => {
+                    return navigation.path === "/discussion" ? (
+                      <NavigationBarItem
+                        {...navigation}
+                        key={navigation.name}
+                        notification={notification}
+                      />
+                    ) : (
+                      <NavigationBarItem
+                        {...navigation}
+                        key={navigation.name}
+                      />
+                    );
+                  })
+                ) : (
+                  <NavigationBarItem {...dashboard.proposal} />
+                )}
                 <div className="pt-3">
-                  <NavigationBarItem name="Keluar" path="#" icon={LogoutIcon} />
+                  <NavigationBarItem
+                    name="Keluar"
+                    path="#"
+                    icon={LogoutIcon}
+                    onLogout={handleLogout}
+                  />
                 </div>
               </nav>
             </div>
           </div>
         </Transition.Child>
-        <div className="w-14 flex-shrink-0" aria-hidden="true" />
+        <div className="w-14 shrink-0" aria-hidden="true" />
       </Dialog>
     </Transition.Root>
   );

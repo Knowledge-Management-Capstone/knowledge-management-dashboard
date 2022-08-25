@@ -33,9 +33,7 @@ function NavigationBarDesktop() {
     dispatch(selectTeam(team));
   };
 
-  const handleLogout = () => {
-    console.log("logout");
-  };
+  const handleLogout = () => {};
 
   return (
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
@@ -49,24 +47,30 @@ function NavigationBarDesktop() {
         </div>
         <div className="mt-5 flex flex-1 flex-col">
           <nav className="flex-1 space-y-1 px-2 pb-4">
-            <BaseCombobox
-              className="mb-4"
-              value={selectedTeam}
-              onChange={handleSelectTeam}
-              filteredItem={filteredTeams}
-              setQuery={setQuery}
-            />
-            {dashboard.map(({ navigation }) => {
-              return navigation.path === "/discussion" ? (
-                <NavigationBarItem
-                  {...navigation}
-                  key={navigation.name}
-                  notification={notification}
-                />
-              ) : (
-                <NavigationBarItem {...navigation} key={navigation.name} />
-              );
-            })}
+            {acceptedTeams.length > 0 && (
+              <BaseCombobox
+                className="mb-4"
+                value={selectedTeam}
+                onChange={handleSelectTeam}
+                filteredItem={filteredTeams}
+                setQuery={setQuery}
+              />
+            )}
+            {acceptedTeams.length > 0 ? (
+              Object.values(dashboard).map((navigation) => {
+                return navigation.path === "/discussion" ? (
+                  <NavigationBarItem
+                    {...navigation}
+                    key={navigation.name}
+                    notification={notification}
+                  />
+                ) : (
+                  <NavigationBarItem {...navigation} key={navigation.name} />
+                );
+              })
+            ) : (
+              <NavigationBarItem {...dashboard.proposal} />
+            )}
             <div className="pt-3">
               <NavigationBarItem
                 name="Keluar"
