@@ -4,18 +4,32 @@ import FormModal from "~/components/FormModal";
 
 import { fullName, role } from "~/utils/validation";
 
-function MemberEditModal(props) {
+function MemberEditModal({ setOpen, initialValues, ...props }) {
+  const { isAdmin } = initialValues;
+  const handleSubmit = () => {
+    setOpen(false);
+  };
+
   return (
     <FormModal
       title="Edit Member"
+      setOpen={setOpen}
       validation={{ fullName, role }}
-      handleSubmit={console.log}
+      handleSubmit={handleSubmit}
+      initialValues={initialValues}
       {...props}
     >
       <BaseInput label="Full Name" name="fullName" type="text" disabled />
       <BaseSelect label="Role" name="role">
-        <option value="frontend">Frontend Engineer</option>
-        <option value="backend">Backend Engineer</option>
+        <option value="" disabled defaultValue>
+          Select role
+        </option>
+        <option value="administrator" disabled={isAdmin}>
+          Administrator
+        </option>
+        <option value="researcher" disabled={!isAdmin}>
+          Researcher
+        </option>
       </BaseSelect>
     </FormModal>
   );
