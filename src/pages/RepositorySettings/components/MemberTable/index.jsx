@@ -21,7 +21,10 @@ function MemberTable() {
   const dispatch = useDispatch();
 
   const { _id: teamId, members, isAdmin } = useSelectedTeam();
-  const { loading } = useSelector((state) => state.user);
+  const {
+    data: { _id: userId },
+    loading,
+  } = useSelector((state) => state.user);
 
   // const handleEdit = (m) => {
   //   setSelectedMember(m);
@@ -47,16 +50,18 @@ function MemberTable() {
               <BaseTableItem>
                 {m.isAdmin ? "Administrator" : "Researcher"}
               </BaseTableItem>
-              <BaseTableItem className="relative flex gap-2">
-                <PencilAltIcon
-                  className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
-                  onClick={() => {}}
-                />
-                <TrashIcon
-                  className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-red-700"
-                  onClick={() => handleDelete(m._id)}
-                />
-              </BaseTableItem>
+              {isAdmin && userId !== m._id && (
+                <BaseTableItem className="relative flex gap-2">
+                  <PencilAltIcon
+                    className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
+                    onClick={() => {}}
+                  />
+                  <TrashIcon
+                    className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-red-700"
+                    onClick={() => handleDelete(m._id)}
+                  />
+                </BaseTableItem>
+              )}
             </tr>
           ))}
       </BaseTable>
