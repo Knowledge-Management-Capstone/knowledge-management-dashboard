@@ -5,7 +5,6 @@ import FormModal from "~/components/FormModal";
 import { fullName, role } from "~/utils/validation";
 
 function MemberEditModal({ setOpen, initialValues, ...props }) {
-  const { isAdmin } = initialValues;
   const handleSubmit = () => {
     setOpen(false);
   };
@@ -24,10 +23,10 @@ function MemberEditModal({ setOpen, initialValues, ...props }) {
         <option value="" disabled defaultValue>
           Select role
         </option>
-        <option value="administrator" disabled={isAdmin}>
+        <option value="administrator" disabled={initialValues?.isAdmin}>
           Administrator
         </option>
-        <option value="researcher" disabled={!isAdmin}>
+        <option value="researcher" disabled={!initialValues?.isAdmin}>
           Researcher
         </option>
       </BaseSelect>
