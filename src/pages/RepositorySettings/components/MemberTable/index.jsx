@@ -83,6 +83,7 @@ function MemberTable() {
       <MemberEditModal
         open={openEditDialog}
         setOpen={setOpenEditDialog}
+        teamId={teamId}
         initialValues={selectedMember}
       />
     </div>
