@@ -49,7 +49,8 @@ function DetailProfile() {
             Speciality
           </dd>
           <dt className="text-base text-gray-900">
-            {user.specialities.reduce((prev, curr) => `${prev}, ${curr}`)}
+            {user.specialities.length > 0 &&
+              user.specialities.reduce((prev, curr) => `${prev}, ${curr}`)}
           </dt>
         </div>
       </div>
