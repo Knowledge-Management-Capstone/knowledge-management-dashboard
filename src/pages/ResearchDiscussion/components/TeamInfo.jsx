@@ -83,7 +83,7 @@ export default function TeamInfo({ open, setOpen }) {
                                 <div
                                   className="prose"
                                   dangerouslySetInnerHTML={{
-                                    __html: repository?.description,
+                                    __html: team.description,
                                   }}
                                 />
                               </dd>
