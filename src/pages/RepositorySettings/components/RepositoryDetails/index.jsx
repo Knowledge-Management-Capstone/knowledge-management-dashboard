@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 import BaseButton from "~/components/generic/button/BaseButton";
 import useSelectedTeam from "~/hooks/useSelectedTeam";
@@ -11,9 +10,7 @@ function RepositoryDetails() {
 
   const team = useSelectedTeam();
 
-  const { repository, ...rest } = team;
-
-  const { data } = useSelector((state) => state.user);
+  const { repository, isAdmin, ...rest } = team;
 
   return (
     <>
@@ -48,7 +45,6 @@ function RepositoryDetails() {
           <dt className="text-base font-medium text-gray-500 sm:w-40 sm:shrink-0">
             Description
           </dt>
-          {/* TODO: Add this field to db */}
           <dd className="mt-1 text-base text-gray-900 sm:col-span-2">
             {/* eslint-disable react/no-danger */}
             <div
@@ -60,7 +56,7 @@ function RepositoryDetails() {
           </dd>
         </div>
 
-        {data?._id === team?.administrator?._id && (
+        {isAdmin && (
           <BaseButton className="ml-auto" onClick={() => setOpenDialog(true)}>
             Edit
           </BaseButton>
