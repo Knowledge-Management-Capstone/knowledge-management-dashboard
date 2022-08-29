@@ -10,7 +10,7 @@ function DocumentModal(props) {
     <FormModal validation={{ title, note, files }} {...props}>
       <BaseInput label="Document Name" name="title" />
       <TextEditorInput label="Note" name="note" />
-      <BaseFileUpload label="Upload Files" name="files" />
+      <BaseFileUpload label="Documents" name="files" id="files" />
     </FormModal>
   );
 }
