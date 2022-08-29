@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+input[type="file"]::file-selector-button {
+  @apply mr-2 cursor-pointer border-0 bg-gray-800 py-2 pl-2 pr-3 text-sm font-medium text-white hover:bg-gray-700;
+}
+
 .ql-editor {
   min-height: 200px;
 }

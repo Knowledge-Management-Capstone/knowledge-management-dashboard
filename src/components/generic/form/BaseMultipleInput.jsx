@@ -75,7 +75,7 @@ function BaseMultipleInput({ label, ...props }) {
           {...props}
         />
       </div>
-      <p className="mt-2 text-sm text-gray-500" id="email-description">
+      <p className="mt-2 text-sm text-gray-500" id="list">
         {label}:{" "}
         {value.length > 0 ? (
           value.map((value, index) => (
