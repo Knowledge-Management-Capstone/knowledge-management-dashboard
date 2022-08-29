@@ -11,7 +11,7 @@ function Badge({ value, handleDelete }) {
         className="ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-gray-500 hover:bg-gray-300 hover:text-gray-800 focus:bg-gray-800 focus:text-white focus:outline-none"
         onClick={handleDelete}
       >
-        <span className="sr-only">Remove small option</span>
+        <span className="sr-only">Remove {value}</span>
         <svg
           className="h-2 w-2"
           stroke="currentColor"
@@ -56,7 +56,10 @@ function BaseMultipleInput({ label, ...props }) {
         htmlFor={props.id || props.name}
         className="block text-sm font-medium text-gray-700"
       >
-        {label}
+        {label}{" "}
+        <span className="font-normal">
+          (separate with <span className="italic">space</span>)
+        </span>
       </label>
       <div className="mt-1">
         <input
