@@ -23,10 +23,10 @@ function RepositoryDetails() {
       <div className="my-6 ml-4 flex flex-col space-y-2">
         <div>
           <dt className="text-base font-medium text-gray-500 sm:w-40 sm:shrink-0">
-            Topic
+            Topics
           </dt>
           <dd className="mt-1 text-base text-gray-900 sm:col-span-2">
-            {team.length > 0 &&
+            {team.topics.length > 0 &&
               team.topics.reduce((prev, curr) => `${prev}, ${curr}`)}
           </dd>
         </div>
