@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useField } from "formik";
 import { UploadIcon } from "@heroicons/react/solid";
 
-// TODO: Setup Formik and Firebase Storage
 function BaseFileUpload({ label, ...props }) {
-  const [fileList, setFileList] = useState([]);
+  const [field, meta, helpers] = useField(props);
+
+  const { onBlur, value } = field;
+  const { touched, error } = meta;
+  const { setValue } = helpers;
+
+  const handleBlur = () => {
+    onBlur({ target: { name: props.name } });
+  };
 
   const handleChange = (e) => {
-    setFileList((prevState) => [...prevState, ...e.target.files]);
+    setValue([...value, ...e.target.files]);
   };
 
   const handleDelete = (index) => {
-    const list = [...fileList];
+    const list = [...value];
     list.splice(index, 1);
-    setFileList(list);
+    setValue(list);
   };
 
   return (
@@ -33,12 +40,12 @@ function BaseFileUpload({ label, ...props }) {
           type="file"
           multiple
           onChange={handleChange}
-          // {...field}
+          onBlur={handleBlur}
           {...props}
         />
       </label>
-      <p className="mt-2 text-sm text-gray-500" id="list">
-        {fileList.map(({ name }, index) => (
+      <div className="mt-2 text-sm text-gray-500" id="list">
+        {value.map(({ name }, index) => (
           <div
             className="flex w-full appearance-none items-center justify-between rounded-md border p-2 text-gray-800 shadow-sm disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none sm:text-sm"
             key={name}
@@ -65,7 +72,10 @@ function BaseFileUpload({ label, ...props }) {
             </button>
           </div>
         ))}
-      </p>
+      </div>
+      {touched && error ? (
+        <div className="mt-1 text-xs text-red-500">{error}</div>
+      ) : null}
     </div>
   );
 }

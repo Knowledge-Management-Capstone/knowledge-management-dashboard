@@ -6,8 +6,13 @@ import TextEditorInput from "~/components/TextEditorInput";
 import BaseFileUpload from "~/components/generic/form/BaseFileUpload";
 
 function DocumentModal(props) {
+  const handleSubmit = () => {};
   return (
-    <FormModal validation={{ title, note, files }} {...props}>
+    <FormModal
+      validation={{ title, note, files }}
+      handleSubmit={handleSubmit}
+      {...props}
+    >
       <BaseInput label="Document Name" name="title" />
       <TextEditorInput label="Note" name="note" />
       <BaseFileUpload label="Documents" name="files" id="files" />
