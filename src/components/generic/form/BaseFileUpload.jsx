@@ -22,6 +22,7 @@ function FileItem({ file, onSuccessUpload, onDelete }) {
 
   useEffect(() => {
     const uploadFile = () => {
+      // TODO: Implement nested structure based on mongoDB
       const _storageDir = `/${repositoryId}/${timestamp.now().toMillis()}_${
         file.name
       }`;
