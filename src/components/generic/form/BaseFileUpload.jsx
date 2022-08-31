@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useField } from "formik";
 import {
   deleteObject,
@@ -8,12 +8,13 @@ import {
 } from "firebase/storage";
 import { UploadIcon } from "@heroicons/react/solid";
 
-import { storage } from "~/config/firebase";
+import { storage, timestamp } from "~/config/firebase";
 import useSelectedTeam from "~/hooks/useSelectedTeam";
 
 // https://alexsidorenko.com/blog/react-list-rerender/
-function FileItem({ file, onDelete }) {
+function FileItem({ file, onSuccessUpload, onDelete }) {
   const [percentage, setPercentage] = useState(0);
+  const [storageDir, setStorageDir] = useState("");
 
   const {
     repository: { _id: repositoryId },
@@ -21,8 +22,11 @@ function FileItem({ file, onDelete }) {
 
   useEffect(() => {
     const uploadFile = () => {
-      const storageDir = `/${repositoryId}/${file.name}`;
-      const storageRef = ref(storage, storageDir);
+      const _storageDir = `/${repositoryId}/${timestamp.now().toMillis()}_${
+        file.name
+      }`;
+      const storageRef = ref(storage, _storageDir);
+      setStorageDir(_storageDir);
 
       const upload = uploadBytesResumable(storageRef, file);
 
@@ -36,26 +40,27 @@ function FileItem({ file, onDelete }) {
         },
         // eslint-disable-next-line no-console
         (err) => console.log(err),
-        // eslint-disable-next-line no-console
         () =>
-          getDownloadURL(upload.snapshot.ref).then((url) => console.log(url)),
+          getDownloadURL(upload.snapshot.ref).then((url) => {
+            onSuccessUpload({
+              name: file.name,
+              url,
+            });
+          }),
       );
     };
     uploadFile();
-  }, [file, repositoryId]);
+  }, [file, repositoryId, onSuccessUpload]);
 
   const handleDelete = async () => {
     try {
-      const storageDir = `/${repositoryId}/${file.name}`;
       const storageRef = ref(storage, storageDir);
 
       await deleteObject(storageRef);
-      // TODO: Remove from array
-      console.log("success");
+
       onDelete();
-    } catch (error) {
-      console.log(error);
-    }
+      // eslint-disable-next-line no-empty
+    } catch (_) {}
   };
   return (
     <div
@@ -90,24 +95,44 @@ function FileItem({ file, onDelete }) {
 }
 
 function BaseFileUpload({ label, ...props }) {
+  const [files, setFiles] = useState([]);
+  const [inputValue, setInputValue] = useState([]);
   const [field, meta, helpers] = useField(props);
 
-  const { onBlur, value } = field;
+  const { onBlur } = field;
   const { touched, error } = meta;
   const { setValue } = helpers;
+
+  useEffect(() => {
+    setValue(inputValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
+
+  const handdleSuccessUpload = useCallback((newFile) => {
+    setInputValue((prevState) => [...prevState, newFile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleBlur = () => {
     onBlur({ target: { name: props.name } });
   };
 
   const handleChange = (e) => {
-    setValue([...value, ...e.target.files]);
+    setFiles((prevState) => [...prevState, ...e.target.files]);
   };
 
   const handleDelete = (index) => {
-    const list = [...value];
-    list.splice(index, 1);
-    setValue(list);
+    setInputValue((prevState) => {
+      const newState = [...prevState];
+      newState.splice(index, 1);
+      return newState;
+    });
+
+    setFiles((prevState) => {
+      const newState = [...prevState];
+      newState.splice(index, 1);
+      return newState;
+    });
   };
 
   return (
@@ -133,10 +158,11 @@ function BaseFileUpload({ label, ...props }) {
         />
       </label>
       <div className="mt-2 text-sm text-gray-500" id="list">
-        {value.map((file, index) => (
+        {files.map((file, index) => (
           <FileItem
             file={file}
             key={file.name}
+            onSuccessUpload={handdleSuccessUpload}
             onDelete={() => handleDelete(index)}
           />
         ))}
