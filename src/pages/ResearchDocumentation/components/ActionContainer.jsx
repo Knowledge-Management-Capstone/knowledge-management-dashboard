@@ -8,37 +8,29 @@ function ActionContainer() {
   const [openDocumentDialog, setOpenDocumentDialog] = useState(false);
   const [openFolderDialog, setOpenFolderDialog] = useState(false);
 
-  const handleCreate = (type) => {
-    if (type === "folder") {
-      setOpenFolderDialog(true);
-    } else {
-      setOpenDocumentDialog(true);
-    }
-  };
-
   return (
     <>
       <div className="mx-auto flex items-center gap-3 px-4 pt-3 pb-4 sm:px-6 md:px-8">
         <button
           type="button"
-          className="flex cursor-pointer items-center gap-2 rounded-md py-2 px-3 hover:bg-slate-200"
-          onClick={() => handleCreate("folder")}
+          className="flex cursor-pointer items-center gap-2 rounded-md border-2 py-2 px-3 text-accent hover:bg-primary hover:text-secondary"
+          onClick={() => setOpenFolderDialog(true)}
         >
-          <FolderAddIcon className="h-6 w-6" /> New Folder
+          <FolderAddIcon className="h-6 w-6" /> Add Folder
         </button>
         <button
           type="button"
-          className="flex cursor-pointer items-center gap-2 rounded-md py-2 px-3 hover:bg-slate-200"
-          onClick={() => handleCreate("file")}
+          className="flex cursor-pointer items-center gap-2 rounded-md border-2 py-2 px-3 text-accent hover:bg-primary hover:text-secondary"
+          onClick={() => setOpenDocumentDialog(true)}
         >
-          <DocumentAddIcon className="h-6 w-6" /> New Document
+          <DocumentAddIcon className="h-6 w-6" /> Upload Document
         </button>
       </div>
       <FolderModal
         title="Add Folder"
         open={openFolderDialog}
         setOpen={setOpenFolderDialog}
-        initialValues={{ title: "", note: "" }}
+        initialValues={{ title: "" }}
       />
       <DocumentModal
         title="Add Document"
