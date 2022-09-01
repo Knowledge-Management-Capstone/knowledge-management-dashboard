@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DocumentAddIcon, FolderAddIcon } from "@heroicons/react/outline";
 
+import BaseButton from "~/components/generic/button/BaseButton";
 import DocumentModal from "./document/DocumentModal";
 import FolderModal from "./folder/FolderModal";
 
@@ -11,20 +12,18 @@ function ActionContainer() {
   return (
     <>
       <div className="mx-auto flex items-center gap-3 px-4 pt-3 pb-4 sm:px-6 md:px-8">
-        <button
-          type="button"
-          className="flex cursor-pointer items-center gap-2 rounded-md border-2 py-2 px-3 text-accent hover:bg-primary hover:text-secondary"
+        <BaseButton
+          className="mt-3 flex items-center gap-3"
           onClick={() => setOpenFolderDialog(true)}
         >
           <FolderAddIcon className="h-6 w-6" /> Add Folder
-        </button>
-        <button
-          type="button"
-          className="flex cursor-pointer items-center gap-2 rounded-md border-2 py-2 px-3 text-accent hover:bg-primary hover:text-secondary"
+        </BaseButton>
+        <BaseButton
+          className="mt-3 flex items-center gap-3"
           onClick={() => setOpenDocumentDialog(true)}
         >
           <DocumentAddIcon className="h-6 w-6" /> Upload Document
-        </button>
+        </BaseButton>
       </div>
       <FolderModal
         title="Add Folder"

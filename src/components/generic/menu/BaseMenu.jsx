@@ -12,15 +12,15 @@ export function BaseMenuItem({ icon: MenuIcon, name, onClick }) {
           type="button"
           className={clsx(
             {
-              "bg-gray-100 text-gray-900": active,
-              "text-gray-700": !active,
+              "bg-primary text-secondary": active,
+              "text-primary": !active,
             },
             "group flex w-full items-center px-4 py-2 text-sm",
           )}
           onClick={onClick}
         >
           <MenuIcon
-            className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+            className="mr-3 h-5 w-5 text-primary group-hover:text-secondary"
             aria-hidden="true"
           />
           {name}

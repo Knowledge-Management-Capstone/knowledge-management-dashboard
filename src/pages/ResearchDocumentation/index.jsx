@@ -5,7 +5,8 @@ import useSelectedTeam from "~/hooks/useSelectedTeam";
 import ActionContainer from "./components/ActionContainer";
 import BaseBreadcrumbs from "~/components/generic/breadcrumbs/BaseBreadcrumbs";
 import DashboardLayout from "~/layouts/DashboardLayout";
-import ReactQuill from "~/components/ReactQuill";
+import FolderNote from "./components/folder/FolderNote";
+
 import DocumentCardList from "./components/document/DocumentCardList";
 // import DocumentContainer from "./components/DocumentContainer";
 
@@ -26,7 +27,7 @@ function ResearchDocumentation() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <ActionContainer />
-        <ReactQuill value="<h1>Details Here</h1>" />
+        <FolderNote />
         <DocumentCardList />
         {/* <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 md:px-8">
           <DocumentContainer />
