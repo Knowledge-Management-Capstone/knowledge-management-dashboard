@@ -8,6 +8,7 @@ import DashboardLayout from "~/layouts/DashboardLayout";
 import FolderNote from "./components/folder/FolderNote";
 
 import DocumentCardList from "./components/document/DocumentCardList";
+import FolderCardList from "./components/folder/FolderCardList";
 // import DocumentContainer from "./components/DocumentContainer";
 
 function ResearchDocumentation() {
@@ -27,6 +28,10 @@ function ResearchDocumentation() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <ActionContainer />
+        <div className="mt-4 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-gray-300" />
+        </div>
+        <FolderCardList />
         <FolderNote />
         <DocumentCardList />
         {/* <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 md:px-8">
