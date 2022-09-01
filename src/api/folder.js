@@ -1,2 +1,4 @@
 // TODO: Add endpoints
-export default () => ({});
+export default (client) => ({
+  createFolder: (data) => client.post("/api/folder", data),
+});
