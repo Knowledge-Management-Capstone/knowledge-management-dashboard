@@ -18,7 +18,7 @@ function ActionContainer() {
 
   return (
     <>
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 pt-3 pb-4 sm:px-6 md:px-8">
+      <div className="mx-auto flex items-center gap-3 px-4 pt-3 pb-4 sm:px-6 md:px-8">
         <button
           type="button"
           className="flex cursor-pointer items-center gap-2 rounded-md py-2 px-3 hover:bg-slate-200"
