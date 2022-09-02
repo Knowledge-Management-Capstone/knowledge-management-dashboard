@@ -9,7 +9,6 @@ import FolderNote from "./components/folder/FolderNote";
 
 import DocumentCardList from "./components/document/DocumentCardList";
 import FolderCardList from "./components/folder/FolderCardList";
-// import DocumentContainer from "./components/DocumentContainer";
 
 function ResearchDocumentation() {
   const {
@@ -34,9 +33,6 @@ function ResearchDocumentation() {
         <FolderCardList />
         <FolderNote />
         <DocumentCardList />
-        {/* <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 md:px-8">
-          <DocumentContainer />
-        </div> */}
       </div>
     </DashboardLayout>
   );
