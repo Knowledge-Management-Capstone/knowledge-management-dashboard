@@ -93,6 +93,15 @@ export default function TeamInfo({ open, setOpen }) {
                               </div>
                               <div>
                                 <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
+                                  Description
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                                  This is the best description. Use text area to
+                                  fill this field!
+                                </dd>
+                              </div>
+                              <div>
+                                <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
                                   Status
                                 </dt>
                                 <dd className="mt-1 flex items-center gap-1 text-sm text-gray-900 sm:col-span-2">
@@ -103,7 +112,8 @@ export default function TeamInfo({ open, setOpen }) {
                                         "bg-blue-400": true, // Ongoing
                                         "bg-green-400": false, // Done
                                         "bg-yellow-400": false, // Draft
-                                        "bg-red-400": false, // Abandoned / Critical
+                                        "bg-gray-400": false, // abandoned
+                                        "bg-red-400": false, // Critical
                                       },
 
                                       "  mt-0.5 h-2.5 w-2.5 rounded-full",

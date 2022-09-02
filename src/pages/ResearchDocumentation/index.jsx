@@ -20,7 +20,7 @@ function ResearchDocumentation() {
 
   return (
     <DashboardLayout>
-      <div className="py-6">
+      <div className="pt-6 pb-40">
         <div className="mx-auto px-4 sm:px-6 md:px-8">
           <BaseBreadcrumbs pages={pages} separator={ChevronRightIcon} />
         </div>
