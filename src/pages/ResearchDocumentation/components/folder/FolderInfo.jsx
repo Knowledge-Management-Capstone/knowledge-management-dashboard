@@ -3,8 +3,8 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 
-import { toLocaleFormat } from "~/utils/date";
 import useSelectedTeam from "~/hooks/useSelectedTeam";
+import BaseButton from "~/components/generic/button/BaseButton";
 
 const getProfileFromFullName = (fullName) => {
   const names = fullName.split(" ");
@@ -60,7 +60,7 @@ export default function TeamInfo({ open, setOpen }) {
                                 <div>
                                   <div className="flex items-center">
                                     <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">
-                                      {team.name}
+                                      {repository.title}
                                     </h3>
                                   </div>
                                 </div>
@@ -72,41 +72,40 @@ export default function TeamInfo({ open, setOpen }) {
                           <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
                             <div>
                               <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
-                                Description
+                                Created At
                               </dt>
                               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 {/* eslint-disable react/no-danger */}
-                                <div
-                                  className="prose"
-                                  dangerouslySetInnerHTML={{
-                                    __html: team.description,
-                                  }}
-                                />
+                                Senin, 24 Agustus 1998
                               </dd>
                             </div>
                             <div>
                               <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
-                                Topics
+                                Updated At
                               </dt>
                               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                                {team.topics.length > 0 &&
-                                  team.topics.reduce(
-                                    (prev, curr) => `${prev}, ${curr}`,
+                                Senin, 24 Agustus 2022
+                              </dd>
+                            </div>
+                            <div>
+                              <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
+                                Status
+                              </dt>
+                              <dd className="mt-1 flex items-center gap-1 text-sm text-gray-900 sm:col-span-2">
+                                Ongoing{" "}
+                                <span
+                                  className={clsx(
+                                    {
+                                      "bg-blue-400": true, // Ongoing
+                                      "bg-green-400": false, // Done
+                                      "bg-yellow-400": false, // Draft
+                                      "bg-red-400": false, // Abandoned / Critical
+                                    },
+
+                                    "  mt-0.5 h-2.5 w-2.5 rounded-full",
                                   )}
-                              </dd>
-                            </div>
-                            <div>
-                              <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
-                                Date
-                              </dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                                <time dateTime={repository?.startDate}>
-                                  {toLocaleFormat(repository?.startDate)}
-                                </time>{" "}
-                                -{" "}
-                                <time dateTime={repository?.endDate}>
-                                  {toLocaleFormat(repository?.startDate)}
-                                </time>
+                                  aria-hidden="true"
+                                />
                               </dd>
                             </div>
                           </dl>
@@ -114,7 +113,7 @@ export default function TeamInfo({ open, setOpen }) {
                       </div>
                       <div className="px-4 sm:px-6">
                         <div className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
-                          Members
+                          Author(s)
                         </div>
                         <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
                           {members &&
@@ -164,12 +163,6 @@ export default function TeamInfo({ open, setOpen }) {
                                           <span className="font-medium">
                                             {person.fullName}
                                           </span>
-                                          &nbsp;
-                                          {person.isAdmin && (
-                                            <span className="text-gray-700">
-                                              (Administrator)
-                                            </span>
-                                          )}
                                         </div>
                                         <p className="truncate text-sm text-gray-500">
                                           {`${person.email}`}
@@ -182,6 +175,9 @@ export default function TeamInfo({ open, setOpen }) {
                             ))}
                         </ul>
                       </div>
+                      <BaseButton className="mx-6 mt-2">
+                        Edit Details
+                      </BaseButton>
                     </div>
                   )}
                 </Dialog.Panel>

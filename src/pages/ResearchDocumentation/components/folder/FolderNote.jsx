@@ -7,7 +7,9 @@ import ReactQuill from "~/components/ReactQuill";
 import BaseButton from "~/components/generic/button/BaseButton";
 
 export default function FolderNote() {
-  const [content, setContent] = useState("<h1>Details Here</h1>");
+  const [content, setContent] = useState(
+    "<h1>Details Here...</h1><p>Click the edit note to edit note</p>",
+  );
   const [isEditing, setIsEditing] = useState(false);
 
   return (
