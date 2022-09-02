@@ -8,21 +8,25 @@ import {
 
 import { BaseMenu, BaseMenuItem } from "~/components/generic/menu/BaseMenu";
 import DocumentInfoModal from "./DocumentInfoModal";
+import DocumentEditModal from "./DocumentEditModal";
 
 const files = [
   {
     title: "IMG_4985.HEIC",
     size: "3.9 MB",
   },
-  // More files...
 ];
 
 function DocumentCard({ file }) {
   const [openInfoModal, setOpenInfoModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const handleDownload = () => {};
   const handleDelete = () => {};
-  const handleEdit = () => {};
+  const handleOpenEditModal = () => {
+    setOpenInfoModal(false);
+    setOpenEditModal(true);
+  };
 
   return (
     <>
@@ -55,7 +59,7 @@ function DocumentCard({ file }) {
             <BaseMenuItem
               icon={PencilAltIcon}
               name="Edit"
-              onClick={handleEdit}
+              onClick={() => setOpenEditModal(true)}
             />
             <BaseMenuItem
               icon={TrashIcon}
@@ -65,7 +69,13 @@ function DocumentCard({ file }) {
           </BaseMenu>
         </div>
       </li>
-      <DocumentInfoModal open={openInfoModal} setOpen={setOpenInfoModal} />
+      {/* TODO: Move this to DocumentCardList */}
+      <DocumentInfoModal
+        open={openInfoModal}
+        setOpen={setOpenInfoModal}
+        onOpenEditModal={handleOpenEditModal}
+      />
+      <DocumentEditModal open={openEditModal} setOpen={setOpenEditModal} />
     </>
   );
 }

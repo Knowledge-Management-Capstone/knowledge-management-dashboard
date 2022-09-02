@@ -12,7 +12,7 @@ const getProfileFromFullName = (fullName) => {
   return `${names[0][0]}${names[1][0]}`;
 };
 
-function DocumentEditModal(props) {
+function DocumentEditModal({ onOpenEditModal, ...props }) {
   const team = useSelectedTeam();
 
   const { members } = team;
@@ -118,7 +118,10 @@ function DocumentEditModal(props) {
             </dd>
           </div>
         </dl>
-        <BaseButton className="mt-5 inline-flex w-full justify-center rounded-md border border-transparent px-4 py-2 shadow-sm focus:outline-none sm:col-start-2 sm:text-sm">
+        <BaseButton
+          className="mt-5 inline-flex w-full justify-center rounded-md border border-transparent px-4 py-2 shadow-sm focus:outline-none sm:col-start-2 sm:text-sm"
+          onClick={onOpenEditModal}
+        >
           Edit Details
         </BaseButton>
       </div>
