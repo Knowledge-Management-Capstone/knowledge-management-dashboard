@@ -28,7 +28,7 @@ function FolderCard({ folder }) {
           <div className="flex-1 truncate px-4 py-2 text-base">
             <Link
               to={`/documentation/${folder._id}`}
-              className="font-medium text-gray-900 hover:text-gray-600"
+              className="font-medium text-gray-900 hover:text-gray-600 hover:underline"
             >
               {folder.name}
             </Link>
