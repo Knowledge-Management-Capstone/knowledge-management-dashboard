@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 
 import useSelectedTeam from "~/hooks/useSelectedTeam";
@@ -18,7 +18,6 @@ function ResearchDocumentation() {
   const {
     repository: { title, root: folderId },
   } = useSelectedTeam();
-  const { data: folder } = useSelector((state) => state.folder);
 
   useEffect(() => {
     dispatch(fetchFolderById(folderId));
@@ -39,7 +38,6 @@ function ResearchDocumentation() {
         <div className="mt-4 flex items-center" aria-hidden="true">
           <div className="w-full border-t border-gray-300" />
         </div>
-        <pre>{JSON.stringify(folder, 0, 2)}</pre>
         <FolderCardList />
         <FolderNote />
         <DocumentCardList />
