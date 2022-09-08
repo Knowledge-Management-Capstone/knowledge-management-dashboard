@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   InformationCircleIcon,
   PencilAltIcon,
@@ -25,12 +26,12 @@ function FolderCard({ folder }) {
       <li key={folder.name} className="col-span-1 flex rounded-md shadow-sm">
         <div className="flex flex-1 items-center justify-between rounded-md border-2 border-gray-200 bg-white py-3">
           <div className="flex-1 truncate px-4 py-2 text-base">
-            <a
-              href={folder.href}
+            <Link
+              to={`/documentation/${folder._id}`}
               className="font-medium text-gray-900 hover:text-gray-600"
             >
               {folder.name}
-            </a>
+            </Link>
           </div>
 
           <div className="shrink-0 pr-2">
