@@ -22,9 +22,14 @@ export const folderReducer = (
     case FETCH_FOLDER: {
       return { loading: false, error: null, data: action.payload };
     }
-    // TODO:
     case CREATE_FOLDER: {
-      return { ...state, data: { ...state.data, ...action.payload } };
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          folders: [...state.data.folders, action.payload],
+        },
+      };
     }
     case UPDATE_PARENT_FOLDER: {
       return { ...state, data: { ...state.data, ...action.payload } };
