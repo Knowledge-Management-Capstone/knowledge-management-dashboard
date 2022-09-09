@@ -5,7 +5,8 @@ import {
   FETCH_FOLDER,
   LOADING_FOLDER,
   SET_ACTIVE_FOLDER_ID,
-  // UPDATE_FOLDER,
+  UPDATE_CHILD_FOLDER,
+  UPDATE_PARENT_FOLDER,
 } from "../constants/folderConstants";
 
 export const fetchFolderById = (folderId) => async (dispatch) => {
@@ -45,12 +46,21 @@ export const createFolder = (payload) => async (dispatch) => {
 };
 
 export const updateFolder = (payload) => async (dispatch) => {
-  const { folderId, ...rest } = payload;
+  const { folderId, type, ...rest } = payload;
   try {
-    const { data } = await folderApi.updateFolder({ folderId }, rest);
-    console.log(data);
+    await folderApi.updateFolder({ folderId }, rest);
 
-    // dispatch({ type: UPDATE_FOLDER, payload: data });
+    if (type === "parent") {
+      dispatch({
+        type: UPDATE_PARENT_FOLDER,
+        payload: { _id: folderId, ...rest },
+      });
+    } else {
+      dispatch({
+        type: UPDATE_CHILD_FOLDER,
+        payload: { _id: folderId, ...rest },
+      });
+    }
   } catch (error) {
     dispatch({
       type: ERROR_FOLDER,

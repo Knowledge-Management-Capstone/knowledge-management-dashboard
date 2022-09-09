@@ -8,12 +8,12 @@ import BaseSelect from "~/components/generic/form/BaseSelect";
 import BaseTextArea from "~/components/generic/form/BaseTextArea";
 import FormModal from "~/components/FormModal";
 
-export default function FolderEditModal({ setOpen, ...props }) {
+export default function FolderEditModal({ setOpen, type, ...props }) {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
     const { _id: folderId, name, description, status } = values;
-    dispatch(updateFolder({ folderId, name, description, status }));
+    dispatch(updateFolder({ folderId, type, name, description, status }));
     setOpen(false);
   };
   return (

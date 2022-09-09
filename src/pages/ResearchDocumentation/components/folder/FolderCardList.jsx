@@ -57,6 +57,7 @@ function FolderCard({ folder }) {
       </li>
 
       <FolderEditModal
+        type="child"
         open={openEditModal}
         setOpen={setOpenEditModal}
         initialValues={folder}

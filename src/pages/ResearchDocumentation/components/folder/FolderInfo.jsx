@@ -201,6 +201,7 @@ export default function FolderInfo({ open, setOpen }) {
         </Dialog>
       </Transition.Root>
       <FolderInfoModal
+        type="parent"
         open={openEditInfo}
         setOpen={setOpenEditInfo}
         initialValues={{ _id, name, description, status }}
