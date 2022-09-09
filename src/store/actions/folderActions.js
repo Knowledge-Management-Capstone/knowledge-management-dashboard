@@ -96,7 +96,7 @@ export const deleteFolder = (folderId) => async (dispatch) => {
   try {
     await folderApi.deleteFolder({ folderId });
 
-    dispatch({ type: DELETE_FOLDER, payload: folderId });
+    dispatch({ type: DELETE_FOLDER, payload: { folderId } });
   } catch (error) {
     dispatch({
       type: ERROR_FOLDER,
