@@ -1,10 +1,4 @@
-import {
-  craftingTime,
-  description,
-  files,
-  status,
-  title,
-} from "~/utils/validation";
+import { craftingTime, description, files, status } from "~/utils/validation";
 
 import BaseInput from "~/components/generic/form/BaseInput";
 import FormModal from "~/components/FormModal";
@@ -21,12 +15,12 @@ function DocumentModal({ setOpen, ...props }) {
   };
   return (
     <FormModal
-      validation={{ craftingTime, description, files, status, title }}
+      validation={{ craftingTime, description, files, status }}
       handleSubmit={handleSubmit}
       setOpen={setOpen}
       {...props}
     >
-      <BaseInput label="Document Name" name="title" />
+      <BaseFileUpload label="Documents" name="files" id="files" />
       <BaseSelect label="Status" name="status">
         <option value="" disabled defaultValue>
           Select current status
@@ -42,7 +36,6 @@ function DocumentModal({ setOpen, ...props }) {
         type="number"
       />
       <BaseTextArea label="Description" name="description" />
-      <BaseFileUpload label="Documents" name="files" id="files" />
     </FormModal>
   );
 }

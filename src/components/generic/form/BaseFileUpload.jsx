@@ -95,7 +95,7 @@ function FileItem({ file, onSuccessUpload, onDelete }) {
   );
 }
 
-function BaseFileUpload({ label, ...props }) {
+function BaseFileUpload({ label, multiple, ...props }) {
   const [files, setFiles] = useState([]);
   const [inputValue, setInputValue] = useState([]);
   const [field, meta, helpers] = useField(props);
@@ -147,12 +147,13 @@ function BaseFileUpload({ label, ...props }) {
         className="mt-1 block w-32 cursor-pointer text-sm font-medium text-gray-700"
       >
         <div className="flex items-center gap-2 rounded-md bg-primary p-2 pl-3 text-white hover:bg-accent hover:text-secondary">
-          <div>Choose Files</div> <UploadIcon className="inline h-4 w-4" />
+          <div>{multiple ? "Choose Files" : "Choose File"}</div>{" "}
+          <UploadIcon className="inline h-4 w-4" />
         </div>
         <input
           className="hidden"
           type="file"
-          multiple
+          multiple={multiple}
           onChange={handleChange}
           onBlur={handleBlur}
           {...props}
