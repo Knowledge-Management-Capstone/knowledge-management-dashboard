@@ -14,6 +14,7 @@ import BaseSelect from "~/components/generic/form/BaseSelect";
 import ResearcherCombobox from "~/components/ResearcherCombobox";
 
 function MemberAddModal({ open, setOpen, members, teamId }) {
+  // TODO: Refactor duplicate code
   const [researchers, setResearchers] = useState([]);
   const [selectedReseracher, setSelectedResearcher] = useState(null);
 

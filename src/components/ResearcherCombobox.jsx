@@ -24,7 +24,7 @@ export default function ResearcherCombobox({
   };
 
   return (
-    <div>
+    <div className="mt-3">
       <Combobox
         as="div"
         value={value}
