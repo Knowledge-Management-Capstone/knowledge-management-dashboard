@@ -14,7 +14,6 @@ import BaseSelect from "~/components/generic/form/BaseSelect";
 import ResearcherCombobox from "./ResearcherCombobox";
 
 function MemberAddModal({ open, setOpen, members, teamId }) {
-  // TODO: Refactor duplicate code
   const [researchers, setResearchers] = useState([]);
   const [selectedReseracher, setSelectedResearcher] = useState(null);
 
@@ -65,7 +64,7 @@ function MemberAddModal({ open, setOpen, members, teamId }) {
             name="researcher"
             value={selectedReseracher}
             onChange={setSelectedResearcher}
-            filteredItem={researchers}
+            filteredItems={researchers}
             setQuery={handleQuery}
             members={members}
           />

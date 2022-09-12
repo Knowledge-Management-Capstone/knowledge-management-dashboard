@@ -2,13 +2,14 @@ import * as Yup from "yup";
 
 export const _id = Yup.string().required("_id is required");
 export const accountType = Yup.string().required("Account type is required");
+export const author = Yup.mixed().required("Author is required");
 export const craftingTime = Yup.number().required("Crafting time is required");
 export const date = Yup.date().required("Date is required");
 export const description = Yup.string().required("Description is required");
 export const documentName = Yup.string().required("Document name is required");
 export const email = Yup.string().required("Email is required");
 export const faculty = Yup.string().required("Faculty is required");
-export const files = Yup.mixed(); // TODO: Fix this
+export const files = Yup.mixed().required("File is required");
 export const fullName = Yup.string().required("Full name is required");
 export const major = Yup.string().required("Major is required");
 export const name = Yup.string().required("Name is required");

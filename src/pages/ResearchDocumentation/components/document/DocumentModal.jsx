@@ -3,6 +3,7 @@ import * as Yup from "yup";
 
 import { craftingTime, description, files, status } from "~/utils/validation";
 
+import AuthorInput from "./AuthorInput";
 import BaseModal from "~/components/generic/modal/BaseModal";
 import BaseInput from "~/components/generic/form/BaseInput";
 import BaseFileUpload from "~/components/generic/form/BaseFileUpload";
@@ -56,6 +57,7 @@ function DocumentModal({ open, setOpen, title, members }) {
             type="number"
           />
           <BaseTextArea label="Description" name="description" />
+          <AuthorInput />
           <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
             <BaseButton
               type="submit"
