@@ -11,7 +11,7 @@ import BaseButton from "~/components/generic/button/BaseButton";
 import BaseModal from "~/components/generic/modal/BaseModal";
 import { addTeamMember } from "~/store/actions/teamActions";
 import BaseSelect from "~/components/generic/form/BaseSelect";
-import ResearcherCombobox from "~/components/ResearcherCombobox";
+import ResearcherCombobox from "./ResearcherCombobox";
 
 function MemberAddModal({ open, setOpen, members, teamId }) {
   // TODO: Refactor duplicate code
