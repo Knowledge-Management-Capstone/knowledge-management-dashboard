@@ -10,9 +10,7 @@ export const addDocument = (payload) => async (dispatch) => {
   try {
     dispatch({ type: LOADING_DOCUMENT });
 
-    const { folderId, ...rest } = payload;
-
-    const { data } = await documentApi.addDocument(rest);
+    const { data } = await documentApi.addDocument(payload);
 
     dispatch({ type: ADD_DOCUMENT, payload: data });
   } catch (error) {
