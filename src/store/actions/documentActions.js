@@ -8,11 +8,11 @@ import {
 // eslint-disable-next-line import/prefer-default-export
 export const addDocument = (payload) => async (dispatch) => {
   try {
-    const { folderId, ...rest } = payload;
-
     dispatch({ type: LOADING_DOCUMENT });
 
-    const { data } = await documentApi.addDocument({ folderId }, rest);
+    const { folderId, ...rest } = payload;
+
+    const { data } = await documentApi.addDocument(rest);
 
     dispatch({ type: ADD_DOCUMENT, payload: data });
   } catch (error) {
