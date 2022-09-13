@@ -9,7 +9,12 @@ import AuthorCombobox from "./AuthorCombobox";
 import BaseButton from "~/components/generic/button/BaseButton";
 import BaseModal from "~/components/generic/modal/BaseModal";
 
-export default function AuthorAddModal({ open, setOpen, authors, setAuthors }) {
+export default function AuthorAddModal({
+  open,
+  setOpen,
+  authors,
+  onAddAuthor,
+}) {
   const [selectedMember, setSelectedMember] = useState(null);
   const [filteredMembers, setFilteredMembers] = useState([]);
 
@@ -30,7 +35,7 @@ export default function AuthorAddModal({ open, setOpen, authors, setAuthors }) {
       return;
     }
 
-    setAuthors((prevState) => [...prevState, author]);
+    onAddAuthor(author);
 
     setSubmitting(false);
     setOpen(false);

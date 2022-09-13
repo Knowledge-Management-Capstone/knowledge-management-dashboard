@@ -3,7 +3,10 @@ import * as Yup from "yup";
 export const _id = Yup.string().required("_id is required");
 export const accountType = Yup.string().required("Account type is required");
 export const author = Yup.mixed().required("Author is required");
-export const craftingTime = Yup.number().required("Crafting time is required");
+export const authors = Yup.array().min(1, "Authors are required");
+export const craftingTime = Yup.number()
+  .required("Crafting time is required")
+  .min(1, "Must be more than 0");
 export const date = Yup.date().required("Date is required");
 export const description = Yup.string().required("Description is required");
 export const documentName = Yup.string().required("Document name is required");

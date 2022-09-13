@@ -1,7 +1,13 @@
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import { craftingTime, description, files, status } from "~/utils/validation";
+import {
+  authors,
+  craftingTime,
+  description,
+  files,
+  status,
+} from "~/utils/validation";
 
 import AuthorInput from "./AuthorInput";
 import BaseModal from "~/components/generic/modal/BaseModal";
@@ -11,12 +17,8 @@ import BaseSelect from "~/components/generic/form/BaseSelect";
 import BaseTextArea from "~/components/generic/form/BaseTextArea";
 import BaseButton from "~/components/generic/button/BaseButton";
 
-function DocumentModal({ open, setOpen, title, members }) {
-  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
-    if (members.includes(values.author)) {
-      setFieldError("author", "Author already exists");
-    }
-    // TODO: API call to Add Documents Here
+function DocumentModal({ open, setOpen, title }) {
+  const handleSubmit = async (values, { setSubmitting }) => {
     // eslint-disable-next-line no-console
     console.log(values);
     setSubmitting(false);
@@ -26,13 +28,14 @@ function DocumentModal({ open, setOpen, title, members }) {
     <BaseModal title={title} open={open} setOpen={setOpen}>
       <Formik
         initialValues={{
-          title: "",
           description: "",
+          authors: [],
           status: "",
           files: [],
           craftingTime: 0,
         }}
         validationSchema={Yup.object({
+          authors,
           craftingTime,
           description,
           files,
@@ -57,7 +60,7 @@ function DocumentModal({ open, setOpen, title, members }) {
             type="number"
           />
           <BaseTextArea label="Description" name="description" />
-          <AuthorInput />
+          <AuthorInput label="authors" name="authors" />
           <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
             <BaseButton
               type="submit"
