@@ -1,10 +1,17 @@
 import { useField } from "formik";
 
-import { craftingTime, description, name, status } from "~/utils/validation";
+import {
+  craftingTime,
+  description,
+  name,
+  status,
+  authors,
+} from "~/utils/validation";
 
-import BaseTextArea from "~/components/generic/form/BaseTextArea";
+import AuthorInput from "./AuthorInput";
 import BaseInput from "~/components/generic/form/BaseInput";
 import BaseSelect from "~/components/generic/form/BaseSelect";
+import BaseTextArea from "~/components/generic/form/BaseTextArea";
 import FormModal from "~/components/FormModal";
 
 export function InputWithAddOns({ label, extension, ...props }) {
@@ -40,12 +47,30 @@ export function InputWithAddOns({ label, extension, ...props }) {
 export default function DocumentEditModal(props) {
   const {
     initialValues: { extension },
+    setOpen,
   } = props;
+
+  const handleSubmit = (values) => {
+    const { authors, name, status, description } = values;
+
+    const payload = {
+      authors: authors.map(({ _id }) => _id),
+      name,
+      status,
+      description,
+    };
+
+    // eslint-disable-next-line no-console
+    console.log(payload);
+
+    setOpen(false);
+  };
 
   return (
     <FormModal
       title="Edit Document"
-      validation={{ craftingTime, description, name, status }}
+      validation={{ craftingTime, description, name, status, authors }}
+      handleSubmit={handleSubmit}
       {...props}
     >
       <InputWithAddOns
@@ -69,7 +94,7 @@ export default function DocumentEditModal(props) {
         <option value="critical">Critical</option>
       </BaseSelect>
       <BaseTextArea label="Description" name="description" />
-      {/* TODO: Add authors */}
+      <AuthorInput label="authors" name="authors" />
     </FormModal>
   );
 }

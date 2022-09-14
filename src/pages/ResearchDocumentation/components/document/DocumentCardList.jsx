@@ -73,7 +73,6 @@ function DocumentCard({ document }) {
           </BaseMenu>
         </div>
       </li>
-      {/* TODO: Move this to DocumentCardList */}
       <InfoModal
         item={document}
         open={openInfoModal}
