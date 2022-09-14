@@ -1,4 +1,5 @@
 import { useField } from "formik";
+import { useDispatch } from "react-redux";
 
 import {
   craftingTime,
@@ -7,6 +8,7 @@ import {
   status,
   authors,
 } from "~/utils/validation";
+import { updateDocument } from "~/store/actions/documentActions";
 
 import AuthorInput from "./AuthorInput";
 import BaseInput from "~/components/generic/form/BaseInput";
@@ -50,19 +52,19 @@ export default function DocumentEditModal(props) {
     setOpen,
   } = props;
 
-  const handleSubmit = (values) => {
-    const { authors, name, status, description } = values;
+  const dispatch = useDispatch();
 
+  const handleSubmit = (values) => {
+    const { _id, authors, description, name, status } = values;
     const payload = {
       authors: authors.map(({ _id }) => _id),
+      description,
+      _id,
       name,
       status,
-      description,
     };
 
-    // eslint-disable-next-line no-console
-    console.log(payload);
-
+    dispatch(updateDocument(payload));
     setOpen(false);
   };
 
