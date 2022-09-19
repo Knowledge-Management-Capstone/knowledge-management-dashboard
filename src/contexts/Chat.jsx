@@ -49,13 +49,17 @@ export default function ChatProvider({ children }) {
       socketRef.current.emit("join_room", roomId);
 
       socketRef.current.on("receive_message", (message) => {
-        console.log(message);
-        dispatch(updateChatLog(message));
-        dispatch(updateNotification());
+        if (message.sender !== _id) {
+          dispatch(updateChatLog(message));
+          dispatch(updateNotification());
+        }
       });
     }
 
-    return () => socketRef.current.emit("leave_room", roomId);
+    return () => {
+      socketRef.current.off("receive_message");
+      socketRef.current.emit("leave_room", roomId);
+    };
   }, [dispatch, roomId, _id, acceptedTeams]);
 
   const value = {
