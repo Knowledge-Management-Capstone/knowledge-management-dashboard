@@ -1,8 +1,11 @@
-/* eslint-disable import/prefer-default-export, default-param-last */
+/* eslint-disable default-param-last */
 import {
+  ADD_ATTACHMENT,
   ERROR_CHAT_ROOM,
   FETCH_CHAT_LOG,
   LOADING_CHAT_LOG,
+  REMOVE_ATTACHMENT,
+  RESET_ATTACHMENT,
   SET_CHAT_ROOM_ID,
   UPDATE_CHAT_LOG,
 } from "../constants/chatConstants";
@@ -45,6 +48,25 @@ export const chatReducer = (
         ...state,
         error: action.payload,
       };
+    }
+    default:
+      return state;
+  }
+};
+
+export const attachmentReducer = (state = [], action) => {
+  switch (action.type) {
+    case ADD_ATTACHMENT: {
+      return [...state, ...action.payload];
+    }
+    case REMOVE_ATTACHMENT: {
+      return [
+        ...state.slice(0, action.payload),
+        ...state.slice(action.payload + 1, state.length),
+      ];
+    }
+    case RESET_ATTACHMENT: {
+      return [];
     }
     default:
       return state;
