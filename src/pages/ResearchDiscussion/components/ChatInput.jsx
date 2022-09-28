@@ -2,8 +2,10 @@ import { useState } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/solid";
 
 import useChat from "~/hooks/useChat";
-import BaseIconButton from "~/components/generic/button/BaseIconButton";
+
 import AttachmentButton from "./AttachmentButton";
+import AttachmentList from "./AttachmentList";
+import BaseIconButton from "~/components/generic/button/BaseIconButton";
 
 function ChatInput() {
   const [loading, setLoading] = useState(false);
@@ -22,6 +24,7 @@ function ChatInput() {
 
   return (
     <div className="w-full px-10 pb-10">
+      <AttachmentList />
       <div className="flex items-center justify-end gap-2">
         <div className="mt-1 grow">
           <input

@@ -31,7 +31,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   chat: chatReducer,
-  attachment: attachmentReducer,
+  attachments: attachmentReducer,
   folder: folderReducer,
   activeFolderId: activeFolderIdReducer,
   notification: notificationReducer,
