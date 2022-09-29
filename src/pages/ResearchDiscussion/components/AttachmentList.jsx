@@ -1,11 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import prettyBytes from "pretty-bytes";
 import { XIcon } from "@heroicons/react/outline";
 
-function AttachmentEntry({ attachment }) {
+import { removeAttachment } from "~/store/actions/chatActions";
+
+function AttachmentEntry({ attachment, onDelete }) {
   return (
     <li className="relative rounded-lg border">
-      <XIcon className="absolute right-2 top-2 z-50 h-5 w-5 hover:text-red-500" />
+      <XIcon
+        onClick={onDelete}
+        className="absolute right-2 top-2 z-50 h-5 w-5 hover:text-red-500"
+      />
       <div className="group aspect-w-10 aspect-h-7 block overflow-hidden rounded-lg bg-gray-100 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
         <div type="button" className="absolute inset-0 focus:outline-none">
           <span className="sr-only">View details for {attachment.name}</span>
@@ -26,12 +31,21 @@ function AttachmentEntry({ attachment }) {
 }
 
 export default function AttachmentList() {
+  const dispatch = useDispatch();
   const attachments = useSelector((state) => state.attachments);
+
+  const handleDelete = (index) => {
+    dispatch(removeAttachment(index));
+  };
 
   return (
     <ul className="mx-auto mt-3 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8">
-      {attachments.map(({ id, file }) => (
-        <AttachmentEntry key={id} attachment={file} />
+      {attachments.map(({ id, file }, index) => (
+        <AttachmentEntry
+          key={id}
+          attachment={file}
+          onDelete={() => handleDelete(index)}
+        />
       ))}
     </ul>
   );
