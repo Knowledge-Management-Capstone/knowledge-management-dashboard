@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { PaperClipIcon } from "@heroicons/react/outline";
 import { v4 as uuidv4 } from "uuid";
 
-import BaseIconButton from "~/components/generic/button/BaseIconButton";
 import { addAttachment } from "~/store/actions/chatActions";
+
+import BaseIconButton from "~/components/generic/button/BaseIconButton";
 
 export default function AttachmentButton() {
   const fileInputRef = useRef(null);

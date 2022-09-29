@@ -19,7 +19,7 @@ function AttachmentEntry({ attachment, onDelete }) {
       <div className="mt-2 flex items-start justify-between p-2">
         <div className="flex flex-col truncate">
           <p className="pointer-events-none truncate text-sm font-medium text-gray-900">
-            {attachment.name}.{attachment.extension}
+            {attachment.name}
           </p>
           <p className="pointer-events-none block text-sm font-medium text-gray-500">
             {prettyBytes(attachment.size)}
