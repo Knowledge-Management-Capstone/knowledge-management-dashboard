@@ -23,7 +23,7 @@ function ChatBubble({ message }) {
             "bg-primary text-white": message.sender._id === userId,
           })}
         >
-          {message.text}
+          {message.body}
           <time
             dateTime={message.createdAt}
             className="mt-2 flex justify-end text-xs italic"

@@ -23,13 +23,13 @@ export default function ChatProvider({ children }) {
   const sendMessage = (message) => {
     socketRef.current.emit("send_message", roomId, {
       sender: _id,
-      text: message,
+      body: message,
     });
 
     dispatch(
       updateChatLog({
         _id: uuidv4(),
-        text: message,
+        body: message,
         createdAt: new Date(),
         sender: { _id, fullName },
       }),
