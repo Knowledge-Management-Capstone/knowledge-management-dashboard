@@ -6,7 +6,7 @@ import { removeAttachment } from "~/store/actions/chatActions";
 
 function AttachmentEntry({ attachment, onDelete }) {
   return (
-    <li className="relative rounded-lg border">
+    <li className="relative rounded-lg border-2 border-solid border-gray-500 bg-gray-200">
       <XIcon
         onClick={onDelete}
         className="absolute right-2 top-2 z-50 h-5 w-5 hover:text-red-500"
@@ -39,14 +39,18 @@ export default function AttachmentList() {
   };
 
   return (
-    <ul className="mx-auto mt-3 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8">
-      {attachments.map(({ id, file }, index) => (
-        <AttachmentEntry
-          key={id}
-          attachment={file}
-          onDelete={() => handleDelete(index)}
-        />
-      ))}
-    </ul>
+    attachments.length > 0 && (
+      <div className="z-20 flex items-center justify-end gap-2">
+        <ul className="absolute right-0 bottom-20 mx-auto mt-3 grid grid-cols-2 gap-x-4 gap-y-8 bg-gray-200/80 p-3 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8">
+          {attachments.map(({ id, file }, index) => (
+            <AttachmentEntry
+              key={id}
+              attachment={file}
+              onDelete={() => handleDelete(index)}
+            />
+          ))}
+        </ul>
+      </div>
+    )
   );
 }
