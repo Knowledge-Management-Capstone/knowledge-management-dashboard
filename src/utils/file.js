@@ -157,6 +157,7 @@ function isVideo(extension) {
     "ogv",
     "swf",
     "wtv",
+    "mkv",
   ].includes(extension.toLowerCase());
 }
 

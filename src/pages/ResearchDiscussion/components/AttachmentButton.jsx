@@ -20,7 +20,7 @@ export default function AttachmentButton() {
       id: uuidv4(),
       file,
     }));
-    console.log(filesArray);
+
     dispatch(addAttachment(Array.from(filesArray)));
   };
 
