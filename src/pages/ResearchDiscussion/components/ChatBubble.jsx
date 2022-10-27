@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import clsx from "clsx";
+import { FileDoc } from "phosphor-react";
 import { DownloadIcon } from "@heroicons/react/solid";
 
 import { toTimeOnlyFormat } from "~/utils/date";
@@ -29,12 +30,13 @@ function LoadingIcon() {
   );
 }
 
+// TODO: Determine File Name and Icon
 function Attachment() {
   const isUploading = true;
   return (
     <div className="col-span-1 flex rounded-md border-2 border-gray-200 shadow-sm">
       <div className="flex w-16 shrink-0 items-center justify-center rounded-l-md text-sm font-medium">
-        Me
+        <FileDoc className="h-8 w-8" />
       </div>
       <div className="flex flex-1 items-center justify-between rounded-md py-3">
         <div className="flex-1 truncate py-2 pr-10 text-base ">Attachment</div>

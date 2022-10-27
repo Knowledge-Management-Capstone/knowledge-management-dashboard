@@ -1,4 +1,3 @@
-import {} from "mime-types";
 import {
   File,
   FileAudio,
@@ -161,7 +160,15 @@ function isVideo(extension) {
   ].includes(extension.toLowerCase());
 }
 
-export default function getFileIcon(extension) {
+export function splitNameAndExtension(file) {
+  const splittedFileName = file.split(".");
+  const name = splittedFileName.slice(0, splittedFileName.length - 1).join(".");
+  const extension = splittedFileName[splittedFileName.length - 1];
+
+  return { name, extension };
+}
+
+export function getFileIcon(extension) {
   if (isArchive(extension)) {
     return FileZip;
   }
