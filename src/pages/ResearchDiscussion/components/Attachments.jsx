@@ -5,13 +5,22 @@ import { useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-import { addAttachment, removeAttachment } from "~/store/actions/chatActions";
+import {
+  addAttachment,
+  removeAttachment,
+  resetAttachment,
+  updateChatLog,
+} from "~/store/actions/chatActions";
 import { getFileIcon, splitNameAndExtension } from "~/utils/file";
 
 import BaseIconButton from "~/components/generic/button/BaseIconButton";
 
 function AddFileButton() {
   const fileInputRef = useRef(null);
+
+  const {
+    data: { _id, fullName },
+  } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -20,8 +29,11 @@ function AddFileButton() {
     if (!files) return;
 
     const filesArray = Array.from(files).map((file) => ({
-      id: uuidv4(),
+      _id: uuidv4(),
+      createdAt: new Date(),
       file,
+      sender: { _id, fullName },
+      type: "text",
     }));
 
     dispatch(addAttachment(Array.from(filesArray)));
@@ -91,13 +103,16 @@ export default function Attachments() {
   // const { sendMessage } = useChat();
 
   const handleSubmit = (e) => {
-    if ((e.key && !(e.key === "Enter")) || message.length === 0) {
+    if (e.key && !(e.key === "Enter") && attachments.length > 0) {
       return;
     }
+
     // sendMessage(message);
+    dispatch(updateChatLog(attachments));
     setLoading(true);
     setMessage("");
     setLoading(false);
+    dispatch(resetAttachment());
   };
 
   const handleDelete = (index) => {
@@ -108,9 +123,9 @@ export default function Attachments() {
     attachments.length > 0 && (
       <div className="absolute left-0 bottom-0 z-20 flex w-full flex-col items-center justify-end gap-2 bg-gray-200">
         <ul className="right-0 bottom-20 mx-auto mt-3 grid w-full grid-cols-2 gap-x-4 gap-y-8 p-3 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8">
-          {attachments.map(({ id, file }, index) => (
+          {attachments.map(({ _id, file }, index) => (
             <AttachmentEntry
-              key={id}
+              key={_id}
               attachment={file}
               onDelete={() => handleDelete(index)}
             />

@@ -33,7 +33,7 @@ export const chatReducer = (
       return {
         ...state,
         error: null,
-        data: { ...state.data, log: [...state.data.log, action.payload] },
+        data: { ...state.data, log: [...state.data.log, ...action.payload] },
       };
     }
     case SET_CHAT_ROOM_ID: {

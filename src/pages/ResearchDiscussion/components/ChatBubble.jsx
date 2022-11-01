@@ -1,9 +1,10 @@
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
-import { FileDoc } from "phosphor-react";
 import { DownloadIcon } from "@heroicons/react/solid";
 
 import { toTimeOnlyFormat } from "~/utils/date";
+import { getFileIcon, splitNameAndExtension } from "~/utils/file";
 
 function LoadingIcon() {
   return (
@@ -30,16 +31,21 @@ function LoadingIcon() {
   );
 }
 
-// TODO: Determine File Name and Icon
-function Attachment() {
+function Attachment({ file }) {
+  const { extension, name } = splitNameAndExtension(file.name);
+  const FileIcon = useMemo(() => getFileIcon(extension), [extension]);
+
   const isUploading = true;
+
   return (
     <div className="col-span-1 flex rounded-md border-2 border-gray-200 shadow-sm">
       <div className="flex w-16 shrink-0 items-center justify-center rounded-l-md text-sm font-medium">
-        <FileDoc className="h-8 w-8" />
+        <FileIcon className="h-8 w-8" />
       </div>
       <div className="flex flex-1 items-center justify-between rounded-md py-3">
-        <div className="flex-1 truncate py-2 pr-10 text-base ">Attachment</div>
+        <div className="max-w-[50%] flex-1 py-2 pr-10 text-base">
+          <span className="truncate">{name}</span>.{extension}
+        </div>
         <div className="shrink-0 pr-2">
           {isUploading ? (
             <LoadingIcon />
@@ -77,9 +83,8 @@ function ChatBubble({ message }) {
             {message.body}
           </p>
         ) : (
-          <Attachment message={message} />
+          <Attachment file={message.file} />
         )}
-        <Attachment />
         <time
           dateTime={message.createdAt}
           className="mb-2 flex justify-end text-xs italic"

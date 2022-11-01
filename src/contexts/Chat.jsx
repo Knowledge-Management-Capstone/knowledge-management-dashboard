@@ -27,12 +27,15 @@ export default function ChatProvider({ children }) {
     });
 
     dispatch(
-      updateChatLog({
-        _id: uuidv4(),
-        body: message,
-        createdAt: new Date(),
-        sender: { _id, fullName },
-      }),
+      updateChatLog([
+        {
+          _id: uuidv4(),
+          body: message,
+          createdAt: new Date(),
+          sender: { _id, fullName },
+          type: "text",
+        },
+      ]),
     );
   };
 
