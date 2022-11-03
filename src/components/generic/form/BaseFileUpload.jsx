@@ -113,7 +113,7 @@ function BaseFileUpload({ label, multiple, ...props }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
-  const handdleSuccessUpload = useCallback((newFile) => {
+  const handleSuccessUpload = useCallback((newFile) => {
     setInputValue((prevState) => [...prevState, newFile]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -170,7 +170,7 @@ function BaseFileUpload({ label, multiple, ...props }) {
           <FileItem
             file={file}
             key={file.name}
-            onSuccessUpload={handdleSuccessUpload}
+            onSuccessUpload={handleSuccessUpload}
             onDelete={() => handleDelete(index)}
           />
         ))}

@@ -8,6 +8,7 @@ import {
   RESET_ATTACHMENT,
   SET_CHAT_ROOM_ID,
   UPDATE_CHAT_LOG,
+  UPDATE_ATTACHMENT_STATUS,
 } from "../constants/chatConstants";
 
 /**
@@ -34,6 +35,19 @@ export const chatReducer = (
         ...state,
         error: null,
         data: { ...state.data, log: [...state.data.log, ...action.payload] },
+      };
+    }
+    case UPDATE_ATTACHMENT_STATUS: {
+      const { _id, ...payload } = action.payload;
+      const log = state.data.log.map((attachment) => {
+        return attachment._id === _id
+          ? { ...attachment, ...payload }
+          : attachment;
+      });
+      return {
+        ...state,
+        error: null,
+        data: { ...state.data, log },
       };
     }
     case SET_CHAT_ROOM_ID: {

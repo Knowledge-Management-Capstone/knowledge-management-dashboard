@@ -7,6 +7,7 @@ import {
   REMOVE_ATTACHMENT,
   RESET_ATTACHMENT,
   SET_CHAT_ROOM_ID,
+  UPDATE_ATTACHMENT_STATUS,
   UPDATE_CHAT_LOG,
 } from "../constants/chatConstants";
 
@@ -47,4 +48,9 @@ export const removeAttachment = (index) => (dispatch) => {
 
 export const resetAttachment = () => (dispatch) => {
   dispatch({ type: RESET_ATTACHMENT });
+};
+
+export const updateAttachmentStatus = (payload) => (dispatch) => {
+  // TODO: Update data in backend
+  dispatch({ type: UPDATE_ATTACHMENT_STATUS, payload });
 };

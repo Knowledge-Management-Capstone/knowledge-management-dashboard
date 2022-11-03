@@ -26,6 +26,7 @@ export default function AttachmentButton() {
       file,
       sender: { _id, fullName },
       type: "attachment",
+      status: "uploading",
     }));
 
     dispatch(addAttachment(Array.from(filesArray)));
