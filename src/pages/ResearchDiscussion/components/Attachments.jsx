@@ -33,7 +33,7 @@ function AddFileButton() {
       createdAt: new Date(),
       file,
       sender: { _id, fullName },
-      type: "text",
+      type: "attachment",
     }));
 
     dispatch(addAttachment(Array.from(filesArray)));

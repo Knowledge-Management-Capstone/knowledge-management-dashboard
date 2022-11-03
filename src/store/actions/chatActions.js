@@ -51,6 +51,5 @@ export const resetAttachment = () => (dispatch) => {
 };
 
 export const updateAttachmentStatus = (payload) => (dispatch) => {
-  // TODO: Update data in backend
   dispatch({ type: UPDATE_ATTACHMENT_STATUS, payload });
 };

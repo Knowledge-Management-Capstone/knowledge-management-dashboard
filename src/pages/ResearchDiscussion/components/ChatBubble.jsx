@@ -9,6 +9,7 @@ import { toTimeOnlyFormat } from "~/utils/date";
 import { getFileIcon, splitNameAndExtension } from "~/utils/file";
 import useSelectedTeam from "~/hooks/useSelectedTeam";
 import { updateAttachmentStatus } from "~/store/actions/chatActions";
+import useChat from "~/hooks/useChat";
 
 function LoadingIcon() {
   return (
@@ -36,11 +37,12 @@ function LoadingIcon() {
 }
 
 function Attachment({ attachment }) {
-  const { _id, file, status } = attachment;
-  const { extension, name } = splitNameAndExtension(file.name || "");
+  const { _id, file, status, body } = attachment;
+  const { extension, name } = splitNameAndExtension(file?.name ?? body);
   const FileIcon = useMemo(() => getFileIcon(extension), [extension]);
 
   const dispatch = useDispatch();
+  const { sendMessage } = useChat();
 
   const storageDirRef = useRef("");
 
@@ -69,16 +71,18 @@ function Attachment({ attachment }) {
             dispatch(
               updateAttachmentStatus({
                 _id,
+                body: file.name,
                 url,
                 status: "uploaded",
               }),
             );
+            sendMessage(file.name, "attachment", url);
           }),
       );
     };
 
     if (status === "uploading") uploadFile();
-  }, [_id, dispatch, file, repositoryId, status]);
+  }, [_id, dispatch, file, repositoryId, sendMessage, status]);
 
   function handleDownload(url) {
     window.open(url);
