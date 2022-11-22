@@ -49,6 +49,7 @@ function Authors({ authors, onDelete }) {
                     min={0}
                     value={author.contribution}
                   />
+                  Hour(s)
                   <XIcon
                     className="h-5 w-5 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
                     onClick={() => onDelete(index)}
