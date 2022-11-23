@@ -7,6 +7,7 @@ export const authors = Yup.array().min(1, "Authors are required");
 export const contribution = Yup.number()
   .required("contribution is required")
   .min(1, "Must be more than 0");
+export const contributions = Yup.array().min(1, "Contributions are required");
 export const craftingTime = Yup.number()
   .required("Crafting time is required")
   .min(1, "Must be more than 0");

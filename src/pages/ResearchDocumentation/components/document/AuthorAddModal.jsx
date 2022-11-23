@@ -48,7 +48,7 @@ export default function AuthorAddModal({
   return (
     <BaseModal title="Add Author" open={open} setOpen={setOpen}>
       <Formik
-        initialValues={{ author: {}, contribution: undefined }}
+        initialValues={{ author: {}, contribution: 0 }}
         validationSchema={Yup.object({ author, contribution })}
         onSubmit={handleSubmit}
       >
