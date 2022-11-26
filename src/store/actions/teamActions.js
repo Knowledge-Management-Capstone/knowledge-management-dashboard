@@ -188,12 +188,7 @@ export const deleteTeamMember =
 // FIXME: Data Update Error
 export const updateAcceptedTeam = (payload) => async (dispatch) => {
   try {
-    const { data } = await teamApi.updateAcceptedTeam(
-      { teamId: payload._id },
-      payload,
-    );
-
-    console.log(data);
+    await teamApi.updateAcceptedTeam({ teamId: payload._id }, payload);
 
     dispatch({ type: EDIT_ACCEPTED_TEAM, payload });
   } catch (error) {
