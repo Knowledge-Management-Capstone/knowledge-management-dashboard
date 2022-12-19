@@ -38,7 +38,7 @@ const dashboard = {
     element: <RepositoryProposal />,
   },
   profile: {
-    path: "/profile",
+    path: "/",
     name: "Profil",
     icon: UserIcon,
     element: <UserProfile />,
