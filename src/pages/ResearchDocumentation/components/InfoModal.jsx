@@ -103,7 +103,7 @@ export default function InfoModal({ item, onOpenEditModal, ...props }) {
                             </div>
                           </div>
                         </div>
-                        <div>{contribution} Hour(s)</div>
+                        <div>{contribution} Jam</div>
                       </div>
                     </li>
                   ))}

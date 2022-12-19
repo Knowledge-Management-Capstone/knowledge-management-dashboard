@@ -161,7 +161,7 @@ export default function TeamInfo({ open, setOpen }) {
                                           &nbsp;
                                           {person.isAdmin && (
                                             <span className="text-gray-700">
-                                              (Administrator)
+                                              (Group Manager)
                                             </span>
                                           )}
                                         </div>
