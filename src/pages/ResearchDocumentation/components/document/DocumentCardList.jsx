@@ -56,12 +56,12 @@ function DocumentCard({ document }) {
           <BaseMenu>
             <BaseMenuItem
               icon={DownloadIcon}
-              name="Download"
+              name="Unduh"
               onClick={() => handleDownload(document.url)}
             />
             <BaseMenuItem
               icon={InformationCircleIcon}
-              name="Details"
+              name="Detail"
               onClick={() => setOpenInfoModal(true)}
             />
             <BaseMenuItem
@@ -71,7 +71,7 @@ function DocumentCard({ document }) {
             />
             <BaseMenuItem
               icon={TrashIcon}
-              name="Delete"
+              name="Hapus"
               onClick={() => handleDelete(document)}
             />
           </BaseMenu>

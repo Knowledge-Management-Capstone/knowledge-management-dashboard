@@ -43,7 +43,7 @@ function FolderCard({ folder }) {
             <BaseMenu>
               <BaseMenuItem
                 icon={InformationCircleIcon}
-                name="Details"
+                name="Detail"
                 onClick={() => setOpenInfoModal(true)}
               />
               <BaseMenuItem
@@ -53,7 +53,7 @@ function FolderCard({ folder }) {
               />
               <BaseMenuItem
                 icon={TrashIcon}
-                name="Delete"
+                name="Hapus"
                 onClick={() => handleDelete(folder._id)}
               />
             </BaseMenu>
