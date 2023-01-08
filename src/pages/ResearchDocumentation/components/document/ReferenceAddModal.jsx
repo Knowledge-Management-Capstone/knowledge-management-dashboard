@@ -1,16 +1,43 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import debounce from "lodash.debounce";
 
 import { reference } from "~/utils/validation";
 
 import BaseButton from "~/components/generic/button/BaseButton";
 import BaseModal from "~/components/generic/modal/BaseModal";
 import ReferenceCombobox from "./ReferenceCombobox";
+import { documentApi } from "~/api";
 
-export default function ReferenceAddModal({ open, setOpen }) {
+export default function ReferenceAddModal({
+  open,
+  setOpen,
+  references,
+  onAddReference,
+}) {
   const [selectedReference, setSelectedReference] = useState(null);
-  const handleSubmit = () => {};
+  const [filteredReferences, setFilteredReferences] = useState([]);
+
+  const fetchReferences = async (query) => {
+    const { data } = await documentApi.searchDocument(query);
+    setFilteredReferences(data);
+  };
+
+  const handleQuery = debounce((query) => {
+    fetchReferences(query);
+  }, 500);
+
+  const handleSubmit = ({ reference }, { setSubmitting, setFieldError }) => {
+    if (references.includes(reference)) {
+      setFieldError("reference", "Reference is already added!");
+      return;
+    }
+
+    onAddReference({ reference });
+    setSubmitting(false);
+    setOpen(false);
+  };
 
   return (
     <BaseModal title="Tambah Referensi" open={open} setOpen={setOpen}>
@@ -26,6 +53,8 @@ export default function ReferenceAddModal({ open, setOpen }) {
             name="reference"
             value={selectedReference}
             onChange={setSelectedReference}
+            setQuery={handleQuery}
+            filteredItems={filteredReferences}
           />
           <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
             <BaseButton

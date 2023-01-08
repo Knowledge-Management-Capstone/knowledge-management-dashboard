@@ -2,25 +2,13 @@ import clsx from "clsx";
 import { useField } from "formik";
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { useState } from "react";
 
-const items = [
-  {
-    _id: 1,
-    name: "sample",
-    extension: "txt",
-    url: "https://firebasestorage.googleapis.com/v0/b/knowledge-management-capstone.appspot.com/o/sample%2F1663082103633_sample%20file.txt?alt=media&token=e3b3c154-9c36-45db-ad8f-d307674491fa",
-  },
-  {
-    _id: 2,
-    name: "LogBook",
-    extension: "docx",
-    url: "https://firebasestorage.googleapis.com/v0/b/knowledge-management-capstone.appspot.com/o/sample%2F1663082103633_sample%20file.txt?alt=media&token=e3b3c154-9c36-45db-ad8f-d307674491fa",
-  },
-];
-
-export default function ReferenceCombobox({ label, ...props }) {
-  const [documents, setDocuments] = useState([]);
+export default function ReferenceCombobox({
+  label,
+  filteredItems,
+  setQuery,
+  ...props
+}) {
   const [field, meta, helpers] = useField(props);
 
   const { onBlur, value } = field;
@@ -31,14 +19,14 @@ export default function ReferenceCombobox({ label, ...props }) {
     onBlur({ target: { name: props.name } });
   };
 
-  const handleChange = (event) => {
-    console.log(event);
-    setDocuments(items);
-  };
-
   return (
     <div className="mt-3">
-      <Combobox as="div" onBlur={handleBlur} value={value} onChange={setValue}>
+      <Combobox
+        as="div"
+        value={value}
+        onBlur={handleBlur}
+        onChange={(val) => setValue(val._id)}
+      >
         <Combobox.Label
           htmlFor={props.id || props.name}
           className="block text-sm font-medium text-gray-700"
@@ -48,17 +36,17 @@ export default function ReferenceCombobox({ label, ...props }) {
         <div className="relative mt-1">
           <Combobox.Input
             className="w-full rounded-md border border-accent bg-white py-2 pl-3 pr-10 font-bold text-primary shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:text-sm"
-            onChange={handleChange}
+            onChange={(event) => setQuery(event.target.value)}
             displayValue={(value) =>
-              value && `${value?.name}.${value?.extension}`
+              filteredItems.find(({ _id }) => value === _id)?.name
             }
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
             <SelectorIcon className="h-5 w-5 text-primary" aria-hidden="true" />
           </Combobox.Button>
-          {documents.length > 0 && (
+          {filteredItems.length > 0 && (
             <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-              {documents.map((item) => (
+              {filteredItems.map((item) => (
                 <Combobox.Option
                   key={item._id}
                   value={item}
