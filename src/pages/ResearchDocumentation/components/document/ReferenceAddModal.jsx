@@ -40,7 +40,7 @@ export default function ReferenceAddModal({
       return;
     }
 
-    onAddReference({ reference });
+    onAddReference(reference);
     setSubmitting(false);
     setOpen(false);
   };

@@ -60,8 +60,8 @@ function References({ references, onDelete }) {
         {references &&
           references.map((r, index) => (
             <ReferenceEntry
-              key={r.reference._id}
-              reference={r.reference}
+              key={r._id}
+              reference={r}
               handleDelete={() => onDelete(index)}
             />
           ))}

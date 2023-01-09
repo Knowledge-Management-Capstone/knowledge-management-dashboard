@@ -30,7 +30,7 @@ export default function DocumentAddModal({ open, setOpen, title }) {
   } = useSelectedTeam();
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    const { files, contributions, ...rest } = values;
+    const { files, contributions, references, ...rest } = values;
 
     const payload = {
       folderId,
@@ -38,6 +38,7 @@ export default function DocumentAddModal({ open, setOpen, title }) {
         author: author._id,
         contribution,
       })),
+      references: references.map((r) => r._id),
       ...files[0],
       repositoryId,
       ...rest,
