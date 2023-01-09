@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import debounce from "lodash.debounce";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { isEmpty } from "lodash";
 
 import { reference } from "~/utils/validation";
 
@@ -29,7 +31,11 @@ export default function ReferenceAddModal({
   }, 500);
 
   const handleSubmit = ({ reference }, { setSubmitting, setFieldError }) => {
-    if (references.includes(reference)) {
+    if (isEmpty(reference)) {
+      setFieldError("reference", "Please select a reference!");
+      return;
+    }
+    if (references.map((r) => r.reference._id).includes(reference._id)) {
       setFieldError("reference", "Reference is already added!");
       return;
     }

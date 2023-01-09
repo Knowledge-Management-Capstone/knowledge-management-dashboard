@@ -21,12 +21,7 @@ export default function ReferenceCombobox({
 
   return (
     <div className="mt-3">
-      <Combobox
-        as="div"
-        value={value}
-        onBlur={handleBlur}
-        onChange={(val) => setValue(val._id)}
-      >
+      <Combobox as="div" value={value} onBlur={handleBlur} onChange={setValue}>
         <Combobox.Label
           htmlFor={props.id || props.name}
           className="block text-sm font-medium text-gray-700"
@@ -38,7 +33,7 @@ export default function ReferenceCombobox({
             className="w-full rounded-md border border-accent bg-white py-2 pl-3 pr-10 font-bold text-primary shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:text-sm"
             onChange={(event) => setQuery(event.target.value)}
             displayValue={(value) =>
-              filteredItems.find(({ _id }) => value === _id)?.name
+              filteredItems.find(({ _id }) => value._id === _id)?.name
             }
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
