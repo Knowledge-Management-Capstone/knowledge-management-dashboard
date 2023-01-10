@@ -9,21 +9,6 @@ import { getFileIcon } from "~/utils/file";
 import BaseButton from "~/components/generic/button/BaseButton";
 import BaseModal from "~/components/generic/modal/BaseModal";
 
-const references = [
-  {
-    _id: 1,
-    name: "sample",
-    extension: "txt",
-    url: "https://firebasestorage.googleapis.com/v0/b/knowledge-management-capstone.appspot.com/o/sample%2F1663082103633_sample%20file.txt?alt=media&token=e3b3c154-9c36-45db-ad8f-d307674491fa",
-  },
-  {
-    _id: 2,
-    name: "Dokumen Logbook",
-    extension: "docx",
-    url: "https://firebasestorage.googleapis.com/v0/b/knowledge-management-capstone.appspot.com/o/sample%2F1663082103633_sample%20file.txt?alt=media&token=e3b3c154-9c36-45db-ad8f-d307674491fa",
-  },
-];
-
 function ReferenceEntry({ reference }) {
   const FileIcon = useMemo(
     () => getFileIcon(reference.extension),
@@ -45,7 +30,14 @@ function ReferenceEntry({ reference }) {
                 </span>
               </div>
               <p className="truncate text-sm text-gray-500">
-                Knowledge Management &gt; ... &gt; Sample Folder
+                {reference.folders.parent.length > 0 &&
+                  `${
+                    reference.folders.parent.sort(
+                      (a, b) => b.level - a.level,
+                    )[0]?.name
+                  } > `}
+                {reference.folders.parent.length > 1 && "... > "}
+                {reference.folders.name}
               </p>
             </div>
           </div>
@@ -60,7 +52,14 @@ function ReferenceEntry({ reference }) {
 }
 
 export default function InfoModal({ item, onOpenEditModal, type, ...props }) {
-  const { createdAt, description, status, updatedAt, contributions } = item;
+  const {
+    createdAt,
+    description,
+    status,
+    updatedAt,
+    contributions,
+    references,
+  } = item;
 
   return (
     <BaseModal title={item.name} {...props}>
@@ -166,19 +165,20 @@ export default function InfoModal({ item, onOpenEditModal, type, ...props }) {
                   </ul>
                 </dd>
               </div>
-              <div>
-                <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
-                  Referensi
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                  <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
-                    {references &&
-                      references.map((r) => (
+              {references.length > 0 && (
+                <div>
+                  <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0">
+                    Referensi
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                    <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
+                      {references.map((r) => (
                         <ReferenceEntry key={r._id} reference={r} />
                       ))}
-                  </ul>
-                </dd>
-              </div>
+                    </ul>
+                  </dd>
+                </div>
+              )}
             </>
           )}
         </dl>
