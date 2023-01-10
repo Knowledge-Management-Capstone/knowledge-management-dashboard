@@ -69,7 +69,12 @@ export default function DocumentAddModal({ open, setOpen, title }) {
         onSubmit={handleSubmit}
       >
         <Form>
-          <BaseFileUpload label="Dokumen" name="files" id="files" />
+          <BaseFileUpload
+            label="Dokumen"
+            name="files"
+            id="files"
+            location={repositoryId}
+          />
           <BaseSelect label="Status" name="status">
             <option value="" disabled defaultValue>
               Pilih status
