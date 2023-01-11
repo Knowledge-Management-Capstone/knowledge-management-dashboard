@@ -40,7 +40,7 @@ export default function ReferenceCombobox({
             <SelectorIcon className="h-5 w-5 text-primary" aria-hidden="true" />
           </Combobox.Button>
           {filteredItems.length > 0 && (
-            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-y-scroll rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {filteredItems.map((item) => (
                 <Combobox.Option
                   key={item._id}
@@ -51,32 +51,52 @@ export default function ReferenceCombobox({
                         "bg-primary text-secondary": active,
                         "text-primary": !active,
                       },
-                      "relative cursor-default select-none py-2 pl-3 pr-9",
+                      "relative z-20 cursor-default select-none  py-2 pl-3 pr-9",
                     )
                   }
                 >
                   {({ active, selected }) => (
                     <>
-                      <div className="flex">
-                        <span
-                          className={clsx(
-                            { "font-semibold": selected },
-                            "truncate",
-                          )}
-                        >
-                          {item.name}.{item.extension}
-                        </span>
-                        <span
-                          className={clsx(
-                            {
-                              "text-indigo-200": active,
-                              "text-gray-500": !active,
-                            },
-                            "ml-2 truncate text-gray-500",
-                          )}
-                        >
-                          {item.name}
-                        </span>
+                      <div
+                        className={clsx(
+                          { "font-semibold": selected },
+                          "flex gap-2",
+                        )}
+                      >
+                        <div className="flex flex-col">
+                          <span>Name</span>
+                          <span>Authors</span>
+                          <span>Location</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span
+                            className={clsx(
+                              { "font-semibold": selected },
+                              "truncate",
+                            )}
+                          >
+                            {item.name}.{item.extension}
+                          </span>
+                          <span>
+                            {item.authors.reduce(
+                              (prev, curr) =>
+                                prev === undefined
+                                  ? curr.fullName
+                                  : `${prev} , ${curr.fullName}`,
+                              undefined,
+                            )}
+                          </span>
+                          <span>
+                            {item.folders.parent.length > 0 &&
+                              `${
+                                item.folders.parent.sort(
+                                  (a, b) => b.level - a.level,
+                                )[0]?.name
+                              } > `}
+                            {item.folders.parent.length > 1 && "... > "}
+                            {item.folders.name}
+                          </span>
+                        </div>
                       </div>
                       {selected && (
                         <span
