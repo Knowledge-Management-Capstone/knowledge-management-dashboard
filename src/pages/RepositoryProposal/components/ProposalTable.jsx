@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
-import { PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
+import {
+  DownloadIcon,
+  PencilAltIcon,
+  TrashIcon,
+} from "@heroicons/react/outline";
 
 import {
   fetchTeams,
@@ -71,6 +75,10 @@ function ProposalTable() {
                 <PencilAltIcon
                   className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
                   onClick={() => handleEdit(p)}
+                />
+                <DownloadIcon
+                  className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-green-700"
+                  onClick={() => window.open(p.document)}
                 />
                 <TrashIcon
                   className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-red-700"
