@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import {
+  AnnotationIcon,
   DownloadIcon,
   PencilAltIcon,
   TrashIcon,
@@ -16,11 +17,13 @@ import {
 import BaseTable from "~/components/generic/table/BaseTable";
 import BaseTableItem from "~/components/generic/table/BaseTableItem";
 import ProposalModal from "./ProposalModal";
+import ReviewModal from "./ReviewModal";
 
 const header = ["Judul", "Status", "Aksi"];
 
 function ProposalTable() {
   const [openDialog, setOpenDialog] = useState(false);
+  const [openReview, setOpenReview] = useState(false);
   const [selectedProposal, setSelectedProposal] = useState(null);
 
   const dispatch = useDispatch();
@@ -38,6 +41,11 @@ function ProposalTable() {
     repository.endDate = repository.endDate.slice(0, 10);
     setSelectedProposal({ ...repository, ...rest });
     setOpenDialog(true);
+  };
+
+  const handleOpenReview = (p) => {
+    setSelectedProposal(p);
+    setOpenReview(true);
   };
 
   const handleDelete = (id) => {
@@ -72,6 +80,12 @@ function ProposalTable() {
                 </span>
               </BaseTableItem>
               <BaseTableItem className="relative flex gap-2">
+                {p.status === "rejected" && (
+                  <AnnotationIcon
+                    className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
+                    onClick={() => handleOpenReview(p)}
+                  />
+                )}
                 <PencilAltIcon
                   className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
                   onClick={() => handleEdit(p)}
@@ -94,6 +108,12 @@ function ProposalTable() {
         setOpen={setOpenDialog}
         initialValues={selectedProposal}
         handleSubmit={handleSubmit}
+      />
+
+      <ReviewModal
+        open={openReview}
+        setOpen={setOpenReview}
+        selectedProposal={selectedProposal}
       />
     </>
   );
