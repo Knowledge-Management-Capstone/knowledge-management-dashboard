@@ -16,7 +16,7 @@ import {
 
 import BaseTable from "~/components/generic/table/BaseTable";
 import BaseTableItem from "~/components/generic/table/BaseTableItem";
-import ProposalModal from "./ProposalModal";
+import ProposalEditModal from "./ProposalEditModal";
 import ReviewModal from "./ReviewModal";
 
 const header = ["Judul", "Status", "Aksi"];
@@ -53,7 +53,7 @@ function ProposalTable() {
   };
 
   const handleSubmit = (values) => {
-    dispatch(updateTeam({ ...values, status: "updated" }));
+    dispatch(updateTeam(values));
     setOpenDialog(false);
   };
 
@@ -102,8 +102,7 @@ function ProposalTable() {
             </tr>
           ))}
       </BaseTable>
-      <ProposalModal
-        title="Edit Repository"
+      <ProposalEditModal
         open={openDialog}
         setOpen={setOpenDialog}
         initialValues={selectedProposal}

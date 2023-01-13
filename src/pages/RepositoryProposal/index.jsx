@@ -33,7 +33,7 @@ function RepositoryProlosal() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <ProposalTable />
           <ProposalModal
-            title="Ajukan Repositori"
+            title="Ajukan Proyek Penelitian"
             open={openDialog}
             setOpen={setOpenDialog}
             handleSubmit={handleSubmit}
