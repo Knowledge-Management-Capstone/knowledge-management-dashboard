@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 import BaseInput from "~/components/generic/form/BaseInput";
 import FormModal from "~/components/FormModal";
 import BaseMultipleInput from "~/components/generic/form/BaseMultipleInput";
@@ -9,10 +11,15 @@ import {
   major,
   specialities,
 } from "~/utils/validation";
+import { updateUser } from "~/store/actions/userActions";
 
 export default function ProfileEditModal(props) {
+  const { setOpen } = props;
+  const dispatch = useDispatch();
+
   const handleSubmit = (values) => {
-    console.log(values);
+    dispatch(updateUser(values));
+    setOpen(false);
   };
   return (
     <FormModal
