@@ -8,6 +8,7 @@ import {
   fullName,
   email,
   faculty,
+  userId,
   major,
   specialities,
 } from "~/utils/validation";
@@ -24,7 +25,7 @@ export default function ProfileEditModal(props) {
   return (
     <FormModal
       title="Edit Profil"
-      validation={{ fullName, email, faculty, major, specialities }}
+      validation={{ fullName, email, userId, faculty, major, specialities }}
       handleSubmit={handleSubmit}
       {...props}
     >
