@@ -2,9 +2,11 @@ import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import prettyBytes from "pretty-bytes";
 import {
+  ClockIcon,
   DownloadIcon,
   InformationCircleIcon,
   PencilAltIcon,
+  RefreshIcon,
   TrashIcon,
 } from "@heroicons/react/outline";
 
@@ -63,6 +65,12 @@ function DocumentCard({ document }) {
               icon={InformationCircleIcon}
               name="Detail"
               onClick={() => setOpenInfoModal(true)}
+            />
+            <BaseMenuItem icon={ClockIcon} name="Riwayat" onClick={() => {}} />
+            <BaseMenuItem
+              icon={RefreshIcon}
+              name="Perbarui"
+              onClick={() => {}}
             />
             <BaseMenuItem
               icon={PencilAltIcon}
