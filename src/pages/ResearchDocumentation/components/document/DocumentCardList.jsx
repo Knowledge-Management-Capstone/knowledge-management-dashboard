@@ -5,7 +5,6 @@ import {
   ClockIcon,
   DownloadIcon,
   InformationCircleIcon,
-  PencilAltIcon,
   RefreshIcon,
   TrashIcon,
 } from "@heroicons/react/outline";
@@ -14,11 +13,13 @@ import { deleteDocument } from "~/store/actions/documentActions";
 
 import { BaseMenu, BaseMenuItem } from "~/components/generic/menu/BaseMenu";
 import DocumentEditModal from "./DocumentEditModal";
+import HistoryModal from "./HistoryModal";
 import InfoModal from "../InfoModal";
 import { getFileIcon } from "~/utils/file";
 
 function DocumentCard({ document }) {
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [openHistoryModal, setOpenHistoryModal] = useState(false);
   const [openInfoModal, setOpenInfoModal] = useState(false);
 
   const FileIcon = useMemo(
@@ -31,13 +32,28 @@ function DocumentCard({ document }) {
   const handleDownload = (link) => {
     window.open(link);
   };
+
   const handleDelete = (document) => {
     const { _id: documentId, storageDir } = document;
     dispatch(deleteDocument({ documentId, storageDir }));
   };
+
   const handleOpenEditModal = () => {
     setOpenInfoModal(false);
+    setOpenHistoryModal(false);
     setOpenEditModal(true);
+  };
+
+  const handleOpenHistoryModal = () => {
+    setOpenInfoModal(false);
+    setOpenEditModal(false);
+    setOpenHistoryModal(true);
+  };
+
+  const handleOpenInfoModal = () => {
+    setOpenHistoryModal(false);
+    setOpenEditModal(false);
+    setOpenInfoModal(true);
   };
 
   return (
@@ -66,15 +82,14 @@ function DocumentCard({ document }) {
               name="Detail"
               onClick={() => setOpenInfoModal(true)}
             />
-            <BaseMenuItem icon={ClockIcon} name="Riwayat" onClick={() => {}} />
+            <BaseMenuItem
+              icon={ClockIcon}
+              name="Riwayat"
+              onClick={() => setOpenHistoryModal(true)}
+            />
             <BaseMenuItem
               icon={RefreshIcon}
               name="Perbarui"
-              onClick={() => {}}
-            />
-            <BaseMenuItem
-              icon={PencilAltIcon}
-              name="Edit"
               onClick={() => setOpenEditModal(true)}
             />
             <BaseMenuItem
@@ -85,12 +100,20 @@ function DocumentCard({ document }) {
           </BaseMenu>
         </div>
       </li>
+      <HistoryModal
+        item={document}
+        open={openHistoryModal}
+        setOpen={setOpenHistoryModal}
+        onOpenEditModal={handleOpenEditModal}
+        onOpenInfoModal={handleOpenInfoModal}
+      />
       <InfoModal
         item={document}
         type="document"
         open={openInfoModal}
         setOpen={setOpenInfoModal}
         onOpenEditModal={handleOpenEditModal}
+        onOpenHistoryModal={handleOpenHistoryModal}
       />
       <DocumentEditModal
         initialValues={document}
