@@ -57,7 +57,7 @@ function Tabs() {
                 },
               )}
             >
-              Hasil Evaluasi
+              Lihat Evaluasi
             </div>
           )}
         </Tab>
@@ -83,7 +83,7 @@ function Tabs() {
             </div>
           </BaseForm>
           <h2 className="mt-6 text-xl font-semibold text-gray-900">
-            Evaluasi Anggota Penelitian
+            Evaluasi Anggota Peneliti
           </h2>
           <div className="mt-5 flex items-center gap-4">
             <div className="my-auto  flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
@@ -134,7 +134,58 @@ function Tabs() {
             </div>
           </BaseForm>
         </Tab.Panel>
-        <Tab.Panel>2</Tab.Panel>
+        <Tab.Panel>
+          <div className="mt-5 flex items-center gap-4">
+            <div className="my-auto  flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+              <div className=" text-sm text-primary">
+                {getProfileFromFullName("Dzakiy Harissalam")}
+              </div>
+            </div>
+            <span className="font-bold">Dzakiy Harissalam</span>
+          </div>
+          <div className="ml-10">
+            <h2 className="mt-6 text-base font-semibold text-gray-900">
+              Evaluasi Project secara Keseluruhan
+            </h2>
+            <p className="mt-2">
+              Projek penelitian berhasil dilakukan dengan baik, tetapi masih ada
+              banyak perbaikan yang dapat dilakukan
+            </p>
+            <h2 className="mt-6 text-base font-semibold text-gray-900">
+              Evaluasi untuk Anda
+            </h2>
+            <p className="mt-2">
+              Dian Rahmaji dapat mengerjakan pembagian proyek penelitian dengan
+              baik
+            </p>
+          </div>
+          <div className="mt-5 flex items-center gap-4">
+            <div className="my-auto  flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+              <div className=" text-sm text-primary">
+                {getProfileFromFullName("Dian Rahmaji")}
+              </div>
+            </div>
+            <span className="font-bold">
+              Dian Rahmaji <span className="font-normal">(Anda)</span>
+            </span>
+          </div>
+          <div className="ml-10">
+            <h2 className="mt-6 text-base font-semibold text-gray-900">
+              Evaluasi Project secara Keseluruhan
+            </h2>
+            <p className="mt-2">
+              Projek penelitian berhasil dilakukan dengan baik, tetapi masih ada
+              banyak perbaikan yang dapat dilakukan
+            </p>
+            <h2 className="mt-6 text-base font-semibold text-gray-900">
+              Evaluasi untuk Anda
+            </h2>
+            <p className="mt-2">
+              Berhasil menyelesaikan proyek tetapi masih ada perbaikan yang
+              harus dilakukan
+            </p>
+          </div>
+        </Tab.Panel>
       </Tab.Panels>
     </Tab.Group>
   );
